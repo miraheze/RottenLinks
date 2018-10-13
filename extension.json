@@ -1,0 +1,28 @@
+{
+	"name": "RottenLinks",
+	"version": "1.0",
+	"author": "John Lewis",
+	"descriptionmsg": "rottenlinks-desc",
+	"url": "https://github.com/miraheze/RottenLinks",
+	"type": "specialpage",
+	"SpecialPages": {
+		"RottenLinks": "SpecialRottenLinks"
+	},
+	"MessagesDirs": {
+		"RottenLinks": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"RottenLinks": "includes/RottenLinks.php",
+		"RottenLinksHooks": "includes/RottenLinksHooks.php",
+		"RottenLinksPager": "includes/RottenLinksPager.php",
+		"SpecialRottenLinks": "includes/SpecialRottenLinks.php"
+	},
+	"Hooks": {
+		"LoadExtensionSchemaUpdates": [
+			"RottenLinksHooks::fnRottenLinksSchemaUpdates"
+		]
+	},
+	"manifest_version": 2
+}
