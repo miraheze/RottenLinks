@@ -31,7 +31,7 @@ class RottenLinksPager extends TablePager {
 				$formatted = HttpStatus::getMessage( (int)$row->rl_respcode );
 				break;
 			case 'rl_pageusage':
-				$formatted = count( json_decode( $row->pageusage, true ) );
+				$formatted = count( json_decode( $row->rl_pageusage, true ) );
 				break;
 			default:
 				$formatted = "Unable to format $name";

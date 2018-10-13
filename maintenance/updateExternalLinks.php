@@ -11,7 +11,7 @@ class UpdateExternalLinks extends Maintenance {
 	function execute() {
 		$dbw = wfGetDB( DB_MASTER );
 
-		$this->output( 'Dropping all existing recorded entries' );
+		$this->output( 'Dropping all existing recorded entries\n' );
 
 		$dbw->delete( 'rottenlinks',
 			'*',
@@ -23,7 +23,7 @@ class UpdateExternalLinks extends Maintenance {
 		$rottenlinksarray = [];
 
 		foreach ( $res as $row ) {
-			$rottenlinksarray[$row->el_to][] = (int)$row->from;
+			$rottenlinksarray[$row->el_to][] = (int)$row->el_from;
 		}
 
 		foreach ( $rottenlinksarray as $url => $pages ) {
@@ -39,7 +39,7 @@ class UpdateExternalLinks extends Maintenance {
 				__METHOD__
 			);
 
-			$this->output( "Added externallink ($url) used on $pagecount with code $resp" );
+			$this->output( "Added externallink ($url) used on $pagecount with code $resp\n" );
 		}
 	}
 }
