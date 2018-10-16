@@ -3,6 +3,7 @@
 	"version": "1.0.1",
 	"author": "John Lewis",
 	"descriptionmsg": "rottenlinks-desc",
+	"license-name": "GPL-3.0-or-later",
 	"url": "https://github.com/miraheze/RottenLinks",
 	"type": "specialpage",
 	"SpecialPages": {
