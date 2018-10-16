@@ -28,7 +28,7 @@ class RottenLinksPager extends TablePager {
 				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, (string)$row->rl_externallink );
 				break;
 			case 'rl_respcode':
-				$formatted = HttpStatus::getMessage( (int)$row->rl_respcode );
+				$formatted = ( (int)$row->rl_respcode != 0 ) ? HttpStatus::getMessage( (int)$row->rl_respcode ) : 'No Response';
 				break;
 			case 'rl_pageusage':
 				$formatted = count( json_decode( $row->rl_pageusage, true ) );
