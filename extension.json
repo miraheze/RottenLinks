@@ -25,5 +25,12 @@
 			"RottenLinksHooks::fnRottenLinksSchemaUpdates"
 		]
 	},
+	"config": {
+		"RottenLinksCurlTimeout": {
+			"description": "Integer. Set the timeout for curl.",
+			"public": true,
+			"value": true
+		}
+	},
 	"manifest_version": 2
 }
