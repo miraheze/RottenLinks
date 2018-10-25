@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [ "Railfail536" ]
+	},
+	"rottenlinks": "Linki zewnętrzne",
+	"rottenlinks-desc": "Wyświetla [[Special:RottenLinks|stan wszystkich linków zewnętrznych]] na wiki",
+	"rottenlinks-table-external": "Link zewnętrzny",
+	"rottenlinks-table-response": "Odpowiedź HTTP",
+	"rottenlinks-table-usage": "Użycie na stronach"
+}
