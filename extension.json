@@ -29,7 +29,7 @@
 		"RottenLinksCurlTimeout": {
 			"description": "Integer. Set the timeout for curl.",
 			"public": true,
-			"value": true
+			"value": 30
 		}
 	},
 	"manifest_version": 2
