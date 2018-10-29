@@ -1,5 +1,9 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.2 (29-10-2018) ===
+* Make cURL timeout configuable  with "wgRottenLinksCurlTimeout"
+* Fixes a issue when curl was not timing out.
+
 === 1.0.1 (16-10-2018) ===
 * Lowered cURL to 30 seconds from PHP standard 300.
 * Added a code 0 text input as standard MediaWiki doesn't recognise code 0 responses.
