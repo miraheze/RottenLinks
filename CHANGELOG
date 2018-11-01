@@ -4,6 +4,7 @@
 * Introduce the ability to exclude special protocols ($wgRottenLinksExcludeProtocols)
 * Reduce page limit from 50 to 25.
 * Show a links usage on the wiki.
+* Added the ability to filter out good HTTP responses (what is bad is considered by $wgRottenLinksBadCodes, will be used later for other purposes).
 
 === 1.0.2 (29-10-2018) ===
 * Make cURL timeout configuable  with "wgRottenLinksCurlTimeout"

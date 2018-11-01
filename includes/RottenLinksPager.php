@@ -1,8 +1,9 @@
 <?php
 class RottenLinksPager extends TablePager {
-	function __construct() {
+	function __construct( $showBad ) {
 		parent::__construct( $this->getContext() );
 		$this->mLimit = 25;
+		$this->showBad = $showBad;
 	}
 
 	function getFieldNames() {
@@ -35,7 +36,7 @@ class RottenLinksPager extends TablePager {
 				break;
 			case 'rl_pageusage':
 				$number = count( json_decode( $row->rl_pageusage, true ) );
-				$formatted = "<a href='$wgScriptPath/Special:LinkSearch/$row->rl_externallink'>$number</a>";
+				$formatted = "<a href=\"{$wgScriptPath}/Special:LinkSearch/{$row->rl_externallink}\">{$number}</a>";
 				break;
 			default:
 				$formatted = "Unable to format $name";
@@ -46,12 +47,18 @@ class RottenLinksPager extends TablePager {
 	}
 
 	function getQueryInfo() {
+		global $wgRottenLinksBadCodes;
+
 		$info = [
 			'tables' => [ 'rottenlinks' ],
 			'fields' => [ 'rl_externallink', 'rl_respcode', 'rl_pageusage' ],
 			'conds' => [],
 			'joins_conds' => [],
 		];
+
+		if ( $this->showBad ) {
+			$info['conds']['rl_respcode'] = $wgRottenLinksBadCodes;
+		}
 
 		return $info;
 	}
