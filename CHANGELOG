@@ -1,5 +1,8 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.3 ( 01-11-2018) ===
+* Introduce the ability to exclude special protocols ($wgRottenLinksExcludeProtocols)
+
 === 1.0.2 (29-10-2018) ===
 * Make cURL timeout configuable  with "wgRottenLinksCurlTimeout"
 * Fixes a issue when curl was not timing out.

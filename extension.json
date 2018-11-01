@@ -1,6 +1,6 @@
 {
 	"name": "RottenLinks",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"author": "John Lewis",
 	"descriptionmsg": "rottenlinks-desc",
 	"license-name": "GPL-3.0-or-later",
@@ -30,7 +30,15 @@
 			"description": "Integer. Set the timeout for curl.",
 			"public": true,
 			"value": 30
-		}
+		},
+		"RottenLinksExcludeProtocols": {
+			"description": "Array. List of protocols to not check validity of.",
+			"public": true,
+			"value": [
+				"tel",
+				"mailto"
+			]
+		},
 	},
 	"manifest_version": 2
 }

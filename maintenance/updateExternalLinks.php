@@ -9,6 +9,8 @@ class UpdateExternalLinks extends Maintenance {
 	}
 
 	function execute() {
+		global $wgRottenLinksExcludeProtocols;
+
 		$dbw = wfGetDB( DB_MASTER );
 
 		$this->output( 'Dropping all existing recorded entries\n' );
@@ -27,19 +29,22 @@ class UpdateExternalLinks extends Maintenance {
 		}
 
 		foreach ( $rottenlinksarray as $url => $pages ) {
-			$resp = RottenLinks::getResponse( $url );
-			$pagecount = count( $pages );
+			$urlexp = explode( ':', $url );
+			if ( !in_array( $urlexp[0], $wgRottenLinksExcludeProtocols ) ) {
+				$resp = RottenLinks::getResponse( $url );
+				$pagecount = count( $pages );
 
-			$dbw->insert( 'rottenlinks',
-				[
-					'rl_externallink' => $url,
-					'rl_respcode' => $resp,
-					'rl_pageusage' => json_encode( $pages )
-				],
-				__METHOD__
-			);
+				$dbw->insert( 'rottenlinks',
+					[
+						'rl_externallink' => $url,
+						'rl_respcode' => $resp,
+						'rl_pageusage' => json_encode( $pages )
+					],
+					__METHOD__
+				);
 
-			$this->output( "Added externallink ($url) used on $pagecount with code $resp\n" );
+				$this->output( "Added externallink ($url) used on $pagecount with code $resp\n" );
+			}
 		}
 	}
 }
