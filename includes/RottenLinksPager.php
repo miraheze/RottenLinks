@@ -2,6 +2,7 @@
 class RottenLinksPager extends TablePager {
 	function __construct() {
 		parent::__construct( $this->getContext() );
+		$this->mLimit = 25;
 	}
 
 	function getFieldNames() {
