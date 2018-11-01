@@ -22,6 +22,8 @@ class RottenLinksPager extends TablePager {
 	}
 
 	function formatValue( $name, $value ) {
+		global $wgScriptPath;
+
 		$row = $this->mCurrentRow;
 
 		switch ( $name ) {
@@ -32,7 +34,8 @@ class RottenLinksPager extends TablePager {
 				$formatted = ( (int)$row->rl_respcode != 0 ) ? HttpStatus::getMessage( (int)$row->rl_respcode ) : 'No Response';
 				break;
 			case 'rl_pageusage':
-				$formatted = count( json_decode( $row->rl_pageusage, true ) );
+				$number = count( json_decode( $row->rl_pageusage, true ) );
+				$formatted = "<a href='$wgScriptPath/Special:LinkSearch/$row->rl_externallink'>$number</a>";
 				break;
 			default:
 				$formatted = "Unable to format $name";

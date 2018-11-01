@@ -3,6 +3,7 @@
 === 1.0.3 ( 01-11-2018) ===
 * Introduce the ability to exclude special protocols ($wgRottenLinksExcludeProtocols)
 * Reduce page limit from 50 to 25.
+* Show a links usage on the wiki.
 
 === 1.0.2 (29-10-2018) ===
 * Make cURL timeout configuable  with "wgRottenLinksCurlTimeout"
