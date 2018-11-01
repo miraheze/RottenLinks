@@ -29,7 +29,7 @@
 		"RottenLinksBadCodes": {
 			"description": "Array. List of HTTP codes that are considered bad.",
 			"public": true,
-			"value": [ "0", "400", "401", "403", "404", "405", "502", "503", "504" ],
+			"value": [ "0", "400", "401", "403", "404", "405", "502", "503", "504" ]
 		},
 		"RottenLinksCurlTimeout": {
 			"description": "Integer. Set the timeout for curl.",
@@ -43,7 +43,7 @@
 				"tel",
 				"mailto"
 			]
-		},
+		}
 	},
 	"manifest_version": 2
 }
