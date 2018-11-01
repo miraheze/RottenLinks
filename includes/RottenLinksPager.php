@@ -36,7 +36,7 @@ class RottenLinksPager extends TablePager {
 				break;
 			case 'rl_pageusage':
 				$number = count( json_decode( $row->rl_pageusage, true ) );
-				$formatted = "<a href=\"{$wgScriptPath}/Special:LinkSearch/{$row->rl_externallink}\">{$number}</a>";
+				$formatted = "<a href=\"{$wgScriptPath}/index.php?title=Special%3ALinkSearch&target={$row->rl_externallink}\">{$number}</a>";
 				break;
 			default:
 				$formatted = "Unable to format $name";

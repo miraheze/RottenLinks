@@ -1,5 +1,8 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.4 (01-11-2018) ===
+* Fix path of LinkSearch
+
 === 1.0.3 ( 01-11-2018) ===
 * Introduce the ability to exclude special protocols ($wgRottenLinksExcludeProtocols)
 * Reduce page limit from 50 to 25.
