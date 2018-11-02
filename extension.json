@@ -27,22 +27,19 @@
 	},
 	"config": {
 		"RottenLinksBadCodes": {
-			"description": "Array. List of HTTP codes that are considered bad.",
+			"description": "Holds a list of HTTP codes that are considered bad. (array)",
 			"public": true,
 			"value": [ "0", "400", "401", "403", "404", "405", "502", "503", "504" ]
 		},
 		"RottenLinksCurlTimeout": {
-			"description": "Integer. Set the timeout for curl.",
+			"description": "Sets the timeout for cURL in seconds. (integer)",
 			"public": true,
 			"value": 30
 		},
 		"RottenLinksExcludeProtocols": {
-			"description": "Array. List of protocols to not check validity of.",
+			"description": "Holds a list of protocols that should not be checked for validity. (array)",
 			"public": true,
-			"value": [
-				"tel",
-				"mailto"
-			]
+			"value": [ "tel", "mailto" ]
 		}
 	},
 	"manifest_version": 2
