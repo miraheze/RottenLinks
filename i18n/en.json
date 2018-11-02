@@ -1,10 +1,14 @@
 {
 	"@metadata": {
-		"authors": [ "John Lewis" ]
+		"authors": [
+			"John Lewis",
+			"Kghbln"
+		]
 	},
-	"rottenlinks": "Rotten Links",
-	"rottenlinks-desc": "Shows the [[Special:RottenLinks|state of all external links]] on the wiki.",
+	"rottenlinks": "Status of external links",
+	"rottenlinks-desc": "Shows the [[Special:RottenLinks|state of all external links]] on the wiki",
 	"rottenlinks-table-external": "External Link",
 	"rottenlinks-table-response": "HTTP Response",
-	"rottenlinks-table-usage": "Page Usage"
+	"rottenlinks-table-usage": "Page Usage",
+	"rottenlinks-showbad": "Show rotten links only"
 }
