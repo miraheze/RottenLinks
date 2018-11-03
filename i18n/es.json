@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iván Hernández Cazorla (Ivanhercaz)"
+		]
+	},
+	"rottenlinks": "Estado de los enlaces externos",
+	"rottenlinks-desc": "Muestra el [[Special:RottenLinks|estado de todos los enlaces externos]] en la wiki",
+	"rottenlinks-table-external": "Enlace externo",
+	"rottenlinks-table-response": "Respuesta HTTP",
+	"rottenlinks-table-usage": "Uso de la página",
+	"rottenlinks-showbad": "Mostrar solo los enlaces caídos"
+}
