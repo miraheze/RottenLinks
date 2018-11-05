@@ -7,5 +7,5 @@
 	"rottenlinks-table-external": "Externer Link",
 	"rottenlinks-table-response": "HTTP-Antwort",
 	"rottenlinks-table-usage": "Seitenanzahl",
-	"rottenlinks-showbad": "Lediglich untergegangene Links anzeigen"
+	"rottenlinks-showbad": "Lediglich fehlerhafte Links anzeigen"
 }
