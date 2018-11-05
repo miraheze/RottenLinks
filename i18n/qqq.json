@@ -1,10 +1,14 @@
 {
 	"@metadata": {
-		"authors": [ "John Lewis" ]
+		"authors": [
+			"John Lewis",
+			"Kghbln"
+		]
 	},
-	"rottenlinks": "Rotten Links",
-	"rottenlinks-desc": "Shows the [[Special:RottenLinks|state of all external links]] on the wiki.",
-	"rottenlinks-table-external": "External Link",
-	"rottenlinks-table-response": "HTTP Response",
-	"rottenlinks-table-usage": "Page Usage"
+	"rottenlinks": "This is the title of Special:RottenLinks as well as the label of the link pointing to it on Special:SpecialPages",
+	"rottenlinks-desc": "This is the extension's despription on Special:Verion",
+	"rottenlinks-table-external": "This is the label of a tabel header on Special:RottenLinks",
+	"rottenlinks-table-response": "This is the label of a tabel header on Special:RottenLinks",
+	"rottenlinks-table-usage": "This is the label of a tabel header on Special:RottenLinks",
+	"rottenlinks-showbad": "This is the text describing a checkbox on Special:RottenLinks"
 }
