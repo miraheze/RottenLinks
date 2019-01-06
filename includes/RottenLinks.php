@@ -3,6 +3,7 @@ class RottenLinks {
 	public static function getResponse( $url ) {
 		global $wgServer, $wgRottenLinksCurlTimeout;
 
+		$url = substr( $url, 0, 2 ) === '//' ? 'https:' . $url : $url;
 		$ch = curl_init( $url );
 		curl_setopt( $ch, CURLOPT_HEADER, true );
 		curl_setopt( $ch, CURLOPT_USERAGENT, "RottenLink, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on $wgServer" );
