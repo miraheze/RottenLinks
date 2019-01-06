@@ -4,6 +4,7 @@ class RottenLinks {
 		global $wgServer, $wgRottenLinksCurlTimeout;
 
 		$ch = curl_init( $url );
+		curl_setopt( $ch, CURLOPT_HEADER, true );
 		curl_setopt( $ch, CURLOPT_USERAGENT, "RottenLink, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on $wgServer" );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 		curl_setopt( $ch, CURLOPT_TIMEOUT, $wgRottenLinksCurlTimeout );
