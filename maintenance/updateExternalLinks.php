@@ -13,7 +13,7 @@ class UpdateExternalLinks extends Maintenance {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		$this->output( 'Dropping all existing recorded entries\n' );
+		$this->output( "Dropping all existing recorded entries\n" );
 
 		$dbw->delete( 'rottenlinks',
 			'*',
