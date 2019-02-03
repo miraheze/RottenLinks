@@ -1,9 +1,17 @@
 == ChangeLog for RottenLinks ==
 
-=== 1.0.4 (01-11-2018) ===
-* Fix path of LinkSearch
+=== 1.0.5 (03-02-2019) ===
+* Introduce ability to exclude namespaces ($wgRottenLinksExcludeNamespaces).
+* Allow page limit to be configurable by end user.
+* Allow controlling of how links open using a config variable.
+* Add viewing of link statistics to Special:RottenLinks.
+* Run time statistics.
+* Link colourisation.
 
-=== 1.0.3 ( 01-11-2018) ===
+=== 1.0.4 (01-11-2018) ===
+* Fix path of LinkSearch.
+
+=== 1.0.3 (01-11-2018) ===
 * Introduce the ability to exclude special protocols ($wgRottenLinksExcludeProtocols)
 * Reduce page limit from 50 to 25.
 * Show a links usage on the wiki.

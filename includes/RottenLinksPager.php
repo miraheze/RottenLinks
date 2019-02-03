@@ -1,8 +1,8 @@
 <?php
 class RottenLinksPager extends TablePager {
-	function __construct( $showBad ) {
+	function __construct( $showBad, $limit ) {
 		parent::__construct( $this->getContext() );
-		$this->mLimit = 25;
+		$this->mLimit = ( $limit ) ? $limit : 25;
 		$this->showBad = $showBad;
 	}
 
@@ -23,16 +23,18 @@ class RottenLinksPager extends TablePager {
 	}
 
 	function formatValue( $name, $value ) {
-		global $wgScriptPath;
+		global $wgScriptPath, $wgRottenLinksExternalLinkTarget, $wgRottenLinksBadCodes;
 
 		$row = $this->mCurrentRow;
 
 		switch ( $name ) {
 			case 'rl_externallink':
-				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, (string)$row->rl_externallink );
+				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, (string)$row->rl_externallink, $attribs = [ 'target' => $wgRottenLinksExternalLinkTarget ] );
 				break;
 			case 'rl_respcode':
-				$formatted = ( (int)$row->rl_respcode != 0 ) ? HttpStatus::getMessage( (int)$row->rl_respcode ) : 'No Response';
+				$respCode = (int)$row->rl_respcode;
+				$colour = ( in_array( $respCode, $wgRottenLinksBadCodes ) ) ? "#8B0000" : "#008000";
+				$formatted = ( $respCode != 0 ) ? "<font color=\"{$colour}\">" . HttpStatus::getMessage( $respCode ) . "</font>" : '<font color="#8B0000">No Response</font>';
 				break;
 			case 'rl_pageusage':
 				$number = count( json_decode( $row->rl_pageusage, true ) );

@@ -9,7 +9,9 @@ class UpdateExternalLinks extends Maintenance {
 	}
 
 	function execute() {
-		global $wgRottenLinksExcludeProtocols;
+		global $wgRottenLinksExcludeProtocols, $wgRottenLinksExcludeNamespaces;
+
+		$time = time();
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -20,7 +22,33 @@ class UpdateExternalLinks extends Maintenance {
 			__METHOD__
 		);
 
-		$res = $dbw->select( 'externallinks', [ 'el_from', 'el_to' ] );
+		if ( $wgRottenLinksExcludeNamespaces ) {
+			$res = $dbw->select(
+				[
+					'externallinks',
+					'page'
+				],
+				[
+					'el_from',
+					'el_to',
+				],
+				'page_namespace NOT IN (' . implode( ',', $wgRottenLinksExcludeNamespaces ) . ')',
+				__METHOD__,
+				[
+					'INNER JOIN' => [
+						'externallinks.el_from' => 'page.page_id'
+					]
+				]
+			);
+		} else {
+			$res = $dbw->select(
+				'externallinks',
+				[
+					'el_from',
+					'el_to'
+				]
+			);
+		}
 
 		$rottenlinksarray = [];
 
@@ -46,6 +74,14 @@ class UpdateExternalLinks extends Maintenance {
 				$this->output( "Added externallink ($url) used on $pagecount with code $resp\n" );
 			}
 		}
+
+		$time = time() - $time;
+
+		$cache = ObjectCache::getLocalClusterInstance();
+		$cache->set( $cache->makeKey( 'RottenLinks', 'lastRun' ), $dbw->timestamp() );
+		$cache->set( $cache->makeKey( 'RottenLinks', 'runTime' ), $time );
+
+		$this->output( 'Script took ' . $time . ' seconds.\n' );
 	}
 }
 
