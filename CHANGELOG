@@ -3,6 +3,7 @@
 === 1.0.6 (05-02-2019) ===
 * Remove namespace exclusion.
 * Fix limit selection.
+* Show HTTP code on statistics.
 
 === 1.0.5 (03-02-2019) ===
 * Introduce ability to exclude namespaces ($wgRottenLinksExcludeNamespaces).
