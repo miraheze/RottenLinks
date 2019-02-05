@@ -1,8 +1,7 @@
 <?php
 class RottenLinksPager extends TablePager {
-	function __construct( $showBad, $limit ) {
+	function __construct( $showBad ) {
 		parent::__construct( $this->getContext() );
-		$this->mLimit = ( $limit ) ? $limit : 25;
 		$this->showBad = $showBad;
 	}
 

@@ -1,6 +1,6 @@
 {
 	"name": "RottenLinks",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"author": "John Lewis",
 	"descriptionmsg": "rottenlinks-desc",
 	"license-name": "GPL-3.0-or-later",
@@ -40,11 +40,6 @@
 			"description": "Holds a list of protocols that should not be checked for validity. (array)",
 			"public": true,
 			"value": [ "tel", "mailto" ]
-		},
-		"RottenLinksExcludeNamespaces": {
-			"description": "Holds a list of namespace IDs that should not be checked for links. (array)",
-			"public": true,
-			"value": []
 		},
 		"RottenLinksExternalLinkTarget": {
 			"description": "Sets the external link target (_self for the current tab or _blank for a new tab). (string)",

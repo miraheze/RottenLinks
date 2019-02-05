@@ -9,7 +9,7 @@ class UpdateExternalLinks extends Maintenance {
 	}
 
 	function execute() {
-		global $wgRottenLinksExcludeProtocols, $wgRottenLinksExcludeNamespaces;
+		global $wgRottenLinksExcludeProtocols;
 
 		$time = time();
 
@@ -22,33 +22,13 @@ class UpdateExternalLinks extends Maintenance {
 			__METHOD__
 		);
 
-		if ( $wgRottenLinksExcludeNamespaces ) {
-			$res = $dbw->select(
-				[
-					'externallinks',
-					'page'
-				],
-				[
-					'el_from',
-					'el_to',
-				],
-				'page_namespace NOT IN (' . implode( ',', $wgRottenLinksExcludeNamespaces ) . ')',
-				__METHOD__,
-				[
-					'INNER JOIN' => [
-						'externallinks.el_from' => 'page.page_id'
-					]
-				]
-			);
-		} else {
-			$res = $dbw->select(
-				'externallinks',
-				[
-					'el_from',
-					'el_to'
-				]
-			);
-		}
+		$res = $dbw->select(
+			'externallinks',
+			[
+				'el_from',
+				'el_to'
+			]
+		);
 
 		$rottenlinksarray = [];
 

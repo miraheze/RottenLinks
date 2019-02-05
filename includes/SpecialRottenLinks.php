@@ -10,7 +10,8 @@ class SpecialRottenLinks extends SpecialPage {
 
 		$showBad = $this->getRequest()->getText( 'showBad' );
 		$stats = $this->getRequest()->getText( 'stats' );
-		$limit = $this->getRequest()->getText( 'limit' );
+
+		$pager = new RottenLinksPager( $showBad );
 
 		$formDescriptor = [
 			'showBad' => [
@@ -26,17 +27,11 @@ class SpecialRottenLinks extends SpecialPage {
 				'default' => ( $stats ) ? $stats : false
 			],
 			'limit' => [
-				'type' => 'select',
+				'type' => 'limitselect',
 				'name' => 'limit',
 				'label-message' => 'table_pager_limit_label',
-				'default' => ( $limit ) ? $limit : 25,
-				'options' => [
-					'25' => 25,
-					'50' => 50,
-					'100' => 100,
-					'250' => 250,
-					'500' => 500,
-				],
+				'default' => $pager->getLimit(),
+				'options' => $pager->getLimitSelectList()
 			]
 		];
 
@@ -49,9 +44,7 @@ class SpecialRottenLinks extends SpecialPage {
 			return;
 		}
 
-		$pager = new RottenLinksPager( $showBad, $limit );
 		$table = $pager->getBody();
-
 		$this->getOutput()->addHTML( $pager->getNavigationBar() . $table . $pager->getNavigationBar() );
 	}
 
