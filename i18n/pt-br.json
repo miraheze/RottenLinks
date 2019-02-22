@@ -6,8 +6,13 @@
 	},
 	"rottenlinks": "Status dos links externos",
 	"rottenlinks-desc": "Mostra o [[Special:RottenLinks|estado de todos os links externos]] na wiki",
+	"rottenlinks-metadata": "Script Data",
 	"rottenlinks-table-external": "Link externo",
- 	"rottenlinks-table-response": "Resposta HTTP",
+	"rottenlinks-table-response": "Resposta HTTP",
 	"rottenlinks-table-usage": "Uso de página",
+	"rottenlinks-rundate": "Data de execução do script",
+	"rottenlinks-runtime": "Tempo de execução do script",
 	"rottenlinks-showbad": "Mostrar somente links quebrados"
+	"rottenlinks-statistics": "Estatísticas de link quebrado",
+	"rottenlinks-stats": "Mostrar estatísticas do link"
 }
