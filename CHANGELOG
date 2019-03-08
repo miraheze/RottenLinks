@@ -1,5 +1,8 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.7 (08-03-2019) ===
+* Fix date handling.
+
 === 1.0.6 (05-02-2019) ===
 * Remove namespace exclusion.
 * Fix limit selection.

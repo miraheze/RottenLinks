@@ -75,7 +75,7 @@ class SpecialRottenLinks extends SpecialPage {
 			'runDate' => [
 				'type' => 'info',
 				'label-message' => 'rottenlinks-rundate',
-				'default' => $context->getLanguage()->timeanddate( $cache->get( $cache->makeKey( 'RottenLinks', 'lastRan' ) ) ),
+				'default' => $context->getLanguage()->timeanddate( $cache->get( $cache->makeKey( 'RottenLinks', 'lastRun' ) ), true ),
 				'section' => 'metadata'
 			]
 		];
