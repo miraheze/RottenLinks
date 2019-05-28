@@ -1,10 +1,10 @@
 <?php
 class SpecialRottenLinks extends SpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'RottenLinks' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -18,13 +18,13 @@ class SpecialRottenLinks extends SpecialPage {
 				'type' => 'check',
 				'name' => 'showBad',
 				'label-message' => 'rottenlinks-showbad',
-				'default' => ( $showBad ) ? $showBad : false
+				'default' => (bool)$showBad
 			],
 			'statistics' => [
 				'type' => 'check',
 				'name' => 'stats',
 				'label-message' => 'rottenlinks-stats',
-				'default' => ( $stats ) ? $stats : false
+				'default' => (bool)$stats
 			],
 			'limit' => [
 				'type' => 'limitselect',
@@ -48,11 +48,11 @@ class SpecialRottenLinks extends SpecialPage {
 		$this->getOutput()->addHTML( $pager->getNavigationBar() . $table . $pager->getNavigationBar() );
 	}
 
-	static function dummyProcess( $formData ) {
+	public static function dummyProcess( $formData ) {
 		return false;
 	}
 
-	static function showStatistics( IContextSource $context ) {
+	public static function showStatistics( IContextSource $context ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$statusNumbers = $dbr->select(

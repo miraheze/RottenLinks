@@ -3,12 +3,12 @@
 require_once( __DIR__ . '/../../../maintenance/Maintenance.php' );
 
 class UpdateExternalLinks extends Maintenance {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Updates rottenlinks database table based on externallinks table.";
 	}
 
-	function execute() {
+	public function execute() {
 		global $wgRottenLinksExcludeProtocols;
 
 		$time = time();

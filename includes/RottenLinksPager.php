@@ -1,11 +1,11 @@
 <?php
 class RottenLinksPager extends TablePager {
-	function __construct( $showBad ) {
+	public function __construct( $showBad ) {
 		parent::__construct( $this->getContext() );
 		$this->showBad = $showBad;
 	}
 
-	function getFieldNames() {
+	public function getFieldNames() {
 		static $headers = null;
 
 		$headers = [
@@ -21,14 +21,14 @@ class RottenLinksPager extends TablePager {
 		return $headers;
 	}
 
-	function formatValue( $name, $value ) {
+	public function formatValue( $name, $value ) {
 		global $wgScriptPath, $wgRottenLinksExternalLinkTarget, $wgRottenLinksBadCodes;
 
 		$row = $this->mCurrentRow;
 
 		switch ( $name ) {
 			case 'rl_externallink':
-				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, (string)$row->rl_externallink, $attribs = [ 'target' => $wgRottenLinksExternalLinkTarget ] );
+				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, (string)$row->rl_externallink, true, '', [ 'target' => $wgRottenLinksExternalLinkTarget ] );
 				break;
 			case 'rl_respcode':
 				$respCode = (int)$row->rl_respcode;
@@ -47,7 +47,7 @@ class RottenLinksPager extends TablePager {
 		return $formatted;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		global $wgRottenLinksBadCodes;
 
 		$info = [
@@ -64,11 +64,11 @@ class RottenLinksPager extends TablePager {
 		return $info;
 	}
 
-	function getDefaultSort() {
+	public function getDefaultSort() {
 		return 'rl_externallink';
 	}
 
-	function isFieldSortable( $name ) {
+	public function isFieldSortable( $name ) {
 		return true;
 	}
 }
