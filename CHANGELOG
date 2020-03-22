@@ -1,5 +1,12 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.8 (22-03-2020) ===
+* Fixed handling of protocol independent links (//meta.miraheze.org/).
+* Introduced excluding a website from being checked.
+* Add link to MediaWiki docs to form the basis of a help page (for now?).
+* Converted to MediaWiki Config Registry.
+* Limit display length of URLs to 50 characters (for now?).
+
 === 1.0.7 (08-03-2019) ===
 * Fix date handling.
 

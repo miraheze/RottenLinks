@@ -1,16 +1,19 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 require_once( __DIR__ . '/../../../maintenance/Maintenance.php' );
 
 class UpdateExternalLinks extends Maintenance {
+	private $config = null;
+
 	public function __construct() {
 		parent::__construct();
+		$this->config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'rottenlinks' );
 		$this->mDescription = "Updates rottenlinks database table based on externallinks table.";
 	}
 
 	public function execute() {
-		global $wgRottenLinksExcludeProtocols;
-
 		$time = time();
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -38,21 +41,33 @@ class UpdateExternalLinks extends Maintenance {
 
 		foreach ( $rottenlinksarray as $url => $pages ) {
 			$urlexp = explode( ':', $url );
-			if ( !in_array( $urlexp[0], $wgRottenLinksExcludeProtocols ) ) {
-				$resp = RottenLinks::getResponse( $url );
-				$pagecount = count( $pages );
 
-				$dbw->insert( 'rottenlinks',
-					[
-						'rl_externallink' => $url,
-						'rl_respcode' => $resp,
-						'rl_pageusage' => json_encode( $pages )
-					],
-					__METHOD__
-				);
-
-				$this->output( "Added externallink ($url) used on $pagecount with code $resp\n" );
+			if ( count( $urlexp ) === 1 ) {
+				$url = 'https:' . $url;
+				$urlexp = explode( ':', $url );
+			} elseif ( in_array( $urlexp[0], (array)$this->config->get( 'RottenLinksExcludeProtocols' ) ) ) {
+				continue;
 			}
+
+			$mainSite = explode( '/', $urlexp[1] );
+
+			if ( in_array( $mainSite[2], (array)$this->config->get( 'RottenLinksExcludeWebsites' ) ) ) {
+				continue;
+			}
+
+			$resp = RottenLinks::getResponse( $url );
+			$pagecount = count( $pages );
+
+			$dbw->insert( 'rottenlinks',
+				[
+					'rl_externallink' => $url,
+					'rl_respcode' => $resp,
+					'rl_pageusage' => json_encode( $pages )
+				],
+				__METHOD__
+			);
+
+			$this->output( "Added externallink ($url) used on $pagecount with code $resp\n" );
 		}
 
 		$time = time() - $time;

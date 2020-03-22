@@ -1,6 +1,6 @@
 {
 	"name": "RottenLinks",
-	"version": "1.0.6",
+	"version": "1.0.8",
 	"author": "John Lewis",
 	"descriptionmsg": "rottenlinks-desc",
 	"license-name": "GPL-3.0-or-later",
@@ -41,11 +41,19 @@
 			"public": true,
 			"value": [ "tel", "mailto" ]
 		},
+		"RottenLinksExcludeWebsites": {
+			"description": "List of websites to blacklist checking of response codes for. (array)",
+			"public": true,
+			"value": false
+		},
 		"RottenLinksExternalLinkTarget": {
 			"description": "Sets the external link target (_self for the current tab or _blank for a new tab). (string)",
 			"public": true,
 			"value": "_self"
 		}
+	},
+	"ConfigRegistry": {
+		"rottenlinks": "GlobalVarConfig::newInstance"
 	},
 	"manifest_version": 2
 }

@@ -1,8 +1,14 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 class RottenLinksPager extends TablePager {
+	private $config = null;
+
 	public function __construct( $showBad ) {
 		parent::__construct( $this->getContext() );
 		$this->showBad = $showBad;
+		$this->config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'rottenlinks' );
 	}
 
 	public function getFieldNames() {
@@ -22,22 +28,20 @@ class RottenLinksPager extends TablePager {
 	}
 
 	public function formatValue( $name, $value ) {
-		global $wgScriptPath, $wgRottenLinksExternalLinkTarget, $wgRottenLinksBadCodes;
-
 		$row = $this->mCurrentRow;
 
 		switch ( $name ) {
 			case 'rl_externallink':
-				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, (string)$row->rl_externallink, true, '', [ 'target' => $wgRottenLinksExternalLinkTarget ] );
+				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, ( substr( (string)$row->rl_externallink, 0, 50 ) . '...' ) , true, '', [ 'target' => $this->config->get( 'RottenLinksExternalLinkTarget' ) ] );
 				break;
 			case 'rl_respcode':
 				$respCode = (int)$row->rl_respcode;
-				$colour = ( in_array( $respCode, $wgRottenLinksBadCodes ) ) ? "#8B0000" : "#008000";
+				$colour = ( in_array( $respCode, $this->config->get( 'RottenLinksBadCodes' ) ) ) ? "#8B0000" : "#008000";
 				$formatted = ( $respCode != 0 ) ? "<font color=\"{$colour}\">" . HttpStatus::getMessage( $respCode ) . "</font>" : '<font color="#8B0000">No Response</font>';
 				break;
 			case 'rl_pageusage':
 				$number = count( json_decode( $row->rl_pageusage, true ) );
-				$formatted = "<a href=\"{$wgScriptPath}/index.php?title=Special%3ALinkSearch&target={$row->rl_externallink}\">{$number}</a>";
+				$formatted = "<a href=\"{$this->config->get( 'ScriptPath' )}/index.php?title=Special%3ALinkSearch&target={$row->rl_externallink}\">{$number}</a>";
 				break;
 			default:
 				$formatted = "Unable to format $name";
@@ -48,8 +52,6 @@ class RottenLinksPager extends TablePager {
 	}
 
 	public function getQueryInfo() {
-		global $wgRottenLinksBadCodes;
-
 		$info = [
 			'tables' => [ 'rottenlinks' ],
 			'fields' => [ 'rl_externallink', 'rl_respcode', 'rl_pageusage' ],
@@ -58,7 +60,7 @@ class RottenLinksPager extends TablePager {
 		];
 
 		if ( $this->showBad ) {
-			$info['conds']['rl_respcode'] = $wgRottenLinksBadCodes;
+			$info['conds']['rl_respcode'] = $this->config->get( 'RottenLinksBadCodes' );
 		}
 
 		return $info;

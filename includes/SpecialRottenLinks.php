@@ -7,6 +7,7 @@ class SpecialRottenLinks extends SpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addHelpLink( 'Extension:RottenLinks' );
 
 		$showBad = $this->getRequest()->getText( 'showBad' );
 		$stats = $this->getRequest()->getText( 'stats' );
