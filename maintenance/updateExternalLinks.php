@@ -5,17 +5,15 @@ use MediaWiki\MediaWikiServices;
 require_once( __DIR__ . '/../../../maintenance/Maintenance.php' );
 
 class UpdateExternalLinks extends Maintenance {
-	private $config = null;
-
 	public function __construct() {
 		parent::__construct();
-		$this->config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'rottenlinks' );
 		$this->mDescription = "Updates rottenlinks database table based on externallinks table.";
 	}
 
 	public function execute() {
 		$time = time();
 
+		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'rottenlinks' );
 		$dbw = wfGetDB( DB_MASTER );
 
 		$this->output( "Dropping all existing recorded entries\n" );
@@ -40,18 +38,19 @@ class UpdateExternalLinks extends Maintenance {
 		}
 
 		foreach ( $rottenlinksarray as $url => $pages ) {
+			if ( substr( $url, 0, 2 ) === '//' ) {
+				$url = 'https:' . $url;
+			}
+
 			$urlexp = explode( ':', $url );
 
-			if ( count( $urlexp ) === 1 ) {
-				$url = 'https:' . $url;
-				$urlexp = explode( ':', $url );
-			} elseif ( in_array( $urlexp[0], (array)$this->config->get( 'RottenLinksExcludeProtocols' ) ) ) {
+			if ( in_array( $urlexp[0], (array)$config->get( 'RottenLinksExcludeProtocols' ) ) ) {
 				continue;
 			}
 
 			$mainSite = explode( '/', $urlexp[1] );
 
-			if ( in_array( $mainSite[2], (array)$this->config->get( 'RottenLinksExcludeWebsites' ) ) ) {
+			if ( in_array( $mainSite[2], (array)$config->get( 'RottenLinksExcludeWebsites' ) ) ) {
 				continue;
 			}
 
