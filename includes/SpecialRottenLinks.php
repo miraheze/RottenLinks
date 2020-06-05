@@ -45,8 +45,7 @@ class SpecialRottenLinks extends SpecialPage {
 			return;
 		}
 
-		$table = $pager->getBody();
-		$this->getOutput()->addHTML( $pager->getNavigationBar() . $table . $pager->getNavigationBar() );
+		$pager->getFullOutput();
 	}
 
 	public static function dummyProcess( $formData ) {
