@@ -44,13 +44,13 @@ class UpdateExternalLinks extends Maintenance {
 
 			$urlexp = explode( ':', $url );
 
-			if ( in_array( $urlexp[0], (array)$config->get( 'RottenLinksExcludeProtocols' ) ) ) {
+			if ( isset( $urlexp[0] ) && in_array( $urlexp[0], (array)$config->get( 'RottenLinksExcludeProtocols' ) ) ) {
 				continue;
 			}
 
 			$mainSite = explode( '/', $urlexp[1] );
 
-			if ( in_array( $mainSite[2], (array)$config->get( 'RottenLinksExcludeWebsites' ) ) ) {
+			if ( isset( $mainSite[2] ) && in_array( $mainSite[2], (array)$config->get( 'RottenLinksExcludeWebsites' ) ) ) {
 				continue;
 			}
 
