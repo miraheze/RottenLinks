@@ -45,7 +45,7 @@ class SpecialRottenLinks extends SpecialPage {
 			return;
 		}
 
-		$pager->getFullOutput();
+		$this->getOutput()->addParserOutputContent( $pager->getFullOutput() );
 	}
 
 	public static function dummyProcess( $formData ) {
