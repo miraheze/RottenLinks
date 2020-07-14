@@ -1,0 +1,2 @@
+ALTER TABLE /*$wgDBprefix*/rottenlinks
+  MODIFY COLUMN rl_respcode INT UNSIGNED NOT NULL PRIMARY KEY;
