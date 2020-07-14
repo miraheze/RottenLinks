@@ -1,5 +1,8 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.9 (14-07-2020) ===
+* Makes "rl_externallink" a primary key in the rottenlinks table, improving performace.
+
 === 1.0.8 (22-03-2020) ===
 * Fixed handling of protocol independent links (//meta.miraheze.org/).
 * Introduced excluding a website from being checked.
