@@ -1,5 +1,8 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.10 (14-07-2020) ===
+* Revert "Make "rl_externallink" a primary key"
+
 === 1.0.9 (14-07-2020) ===
 * Makes "rl_externallink" a primary key in the rottenlinks table, improving performace.
 
