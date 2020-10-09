@@ -1,5 +1,9 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.10 (09-10-2020) ===
+* Fix primary key by introducing rottenlinks.rl_id and making it the primary key.
+  Also revert rl_externallink back to a blob.
+
 === 1.0.9 (08-09-2020) ===
 * Added Primary Key to database table.
 
