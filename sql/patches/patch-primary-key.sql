@@ -1,2 +1,2 @@
- ALTER TABLE /*$wgDBprefix*/rottenlinks
-   ADD COLUMN rl_id INT AUTO_INCREMENT PRIMARY KEY;
+ALTER TABLE /*$wgDBprefix*/rottenlinks
+    MODIFY COLUMN rl_externallink VARCHAR(2048) NOT NULL PRIMARY KEY;
