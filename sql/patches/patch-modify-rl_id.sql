@@ -1,0 +1,2 @@
+ALTER TABLE /*$wgDBprefix*/rottenlinks
+    MODIFY COLUMN rl_id INT AUTO_INCREMENT FIRST;
