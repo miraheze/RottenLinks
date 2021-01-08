@@ -15,7 +15,7 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"RottenLinksAliases": "RottenLinks.i18n.alias.php"
+		"RottenLinksAliases": "includes/RottenLinksAliases.php"
 	},
 	"AutoloadClasses": {
 		"RottenLinks": "includes/RottenLinks.php",
