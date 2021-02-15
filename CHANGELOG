@@ -1,5 +1,8 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.11 (15-02-2021) ===
+* Fix the schema change errors and some possible vulnerabilities.
+
 === 1.0.10 (09-10-2020) ===
 * Fix primary key by introducing rottenlinks.rl_id and making it the primary key.
   Also revert rl_externallink back to a blob.
