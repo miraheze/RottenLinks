@@ -49,7 +49,7 @@ class RottenLinksPager extends TablePager {
 				$formatted = HTML::element( 'a', [ 'href' => $href ], $number );
 				break;
 			default:
-				$formatted = HTML::element( 'sapn', [], "Unable to format $name" );
+				$formatted = HTML::element( 'span', [], "Unable to format $name" );
 				break;
 		}
 
