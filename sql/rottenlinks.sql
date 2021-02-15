@@ -8,7 +8,7 @@ CREATE TABLE /*_*/rottenlinks (
 )/*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/rl_externallink ON /*_*/rottenlinks (rl_externallink);
-CREATE INDEX /*i*/rl_respcode ON /*_*/rottenlinks (rl_externallink);
-CREATE INDEX /*i*/rl_pageusage ON /*_*/rottenlinks (rl_externallink);
+CREATE INDEX /*i*/rl_respcode ON /*_*/rottenlinks (rl_respcode);
+CREATE INDEX /*i*/rl_pageusage ON /*_*/rottenlinks (rl_pageusage);
 
 COMMIT;
