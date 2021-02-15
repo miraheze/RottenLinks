@@ -1,11 +1,7 @@
 BEGIN;
 
-CREATE TABLE /*_*/rottenlinks (
-  `rl_id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  `rl_externallink` BLOB NOT NULL,
-  `rl_respcode` INT UNSIGNED NOT NULL,
-  `rl_pageusage` LONGTEXT NOT NULL
-)/*$wgDBTableOptions*/;
+ALTER TABLE /*$wgDBprefix*/rottenlinks
+    MODIFY COLUMN rl_externallink BLOB NOT NULL;
 
 CREATE INDEX /*i*/rl_externallink ON /*_*/rottenlinks (rl_externallink);
 CREATE INDEX /*i*/rl_respcode ON /*_*/rottenlinks (rl_externallink);

@@ -4,6 +4,7 @@ use MediaWiki\MediaWikiServices;
 
 class RottenLinksPager extends TablePager {
 	private $config = null;
+	private $showBad;
 
 	public function __construct( $showBad ) {
 		parent::__construct( $this->getContext() );
@@ -37,14 +38,18 @@ class RottenLinksPager extends TablePager {
 			case 'rl_respcode':
 				$respCode = (int)$row->rl_respcode;
 				$colour = ( in_array( $respCode, $this->config->get( 'RottenLinksBadCodes' ) ) ) ? "#8B0000" : "#008000";
-				$formatted = ( $respCode != 0 ) ? "<font color=\"{$colour}\">" . HttpStatus::getMessage( $respCode ) . "</font>" : '<font color="#8B0000">No Response</font>';
+				$formatted = ( $respCode != 0 )
+					? HTML::element( 'font', [ 'color' => $colour ], HttpStatus::getMessage( $respCode ) )
+					: HTML::element( 'font', [ 'color' => '#8B0000' ], 'No Response' );
 				break;
 			case 'rl_pageusage':
 				$number = count( json_decode( $row->rl_pageusage, true ) );
-				$formatted = "<a href=\"{$this->config->get( 'ScriptPath' )}/index.php?title=Special%3ALinkSearch&target={$row->rl_externallink}\">{$number}</a>";
+				$specialLinkSearch = SpecialPage::getTitleFor( 'LinkSearch' );
+				$href = $specialLinkSearch->getInternalURL( [ 'target' => $row->rl_externallink ] );
+				$formatted = HTML::element( 'a', [ 'href' => $href ], $number );
 				break;
 			default:
-				$formatted = "Unable to format $name";
+				$formatted = HTML::element( 'sapn', [], "Unable to format $name" );
 				break;
 		}
 
