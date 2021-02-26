@@ -44,7 +44,7 @@ class UpdateExternalLinks extends Maintenance {
 
 			$urlexp = explode( ':', $url );
 
-			if ( isset( $urlexp[0] ) && in_array( strtolower($urlexp[0]), (array)$config->get( 'RottenLinksExcludeProtocols' ) ) ) {
+			if ( isset( $urlexp[0] ) && in_array( strtolower( $urlexp[0] ), (array)$config->get( 'RottenLinksExcludeProtocols' ) ) ) {
 				continue;
 			}
 
