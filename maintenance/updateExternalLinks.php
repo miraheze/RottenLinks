@@ -14,7 +14,7 @@ class UpdateExternalLinks extends Maintenance {
 		$time = time();
 
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'rottenlinks' );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$this->output( "Dropping all existing recorded entries\n" );
 
