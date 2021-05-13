@@ -1,5 +1,8 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.13 (13-05-2021) ===
+* Use HttpRequestFactory
+
 === 1.0.12 (26-02-2021) ===
 * Set url to lowercase for ExcludeProtocols
 

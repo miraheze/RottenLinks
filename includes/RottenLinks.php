@@ -4,17 +4,19 @@ use MediaWiki\MediaWikiServices;
 
 class RottenLinks {
 	public static function getResponse( $url ) {
-		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'rottenlinks' );
+		$services = MediaWikiServices::getInstance();
 
-		$ch = curl_init( $url );
-		curl_setopt( $ch, CURLOPT_HEADER, true );
-		curl_setopt( $ch, CURLOPT_USERAGENT, 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' . $config->get( 'Server' ) );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-		curl_setopt( $ch, CURLOPT_TIMEOUT, $config->get( 'RottenLinksCurlTimeout' ) );
-		curl_exec( $ch );
-		$result = curl_getinfo( $ch );
-		curl_close( $ch );
+		$config = $services->getConfigFactory()->makeConfig( 'rottenlinks' );
 
-		return (int)$result['http_code'];
+		$request = $services->getHttpRequestFactory()->create(
+			$url, [ 
+				'method' => 'HEAD', // return headers only
+				'timeout' => $config->get( 'RottenLinksCurlTimeout' ),
+				'userAgent' => 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' . $config->get( 'Server' )
+			],
+			__METHOD__
+		)->execute();
+
+		return (int)$request->getStatusValue()->getValue();
 	}
 }
