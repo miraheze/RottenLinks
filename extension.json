@@ -1,7 +1,9 @@
 {
 	"name": "RottenLinks",
-	"version": "1.0.12",
-	"author": "John Lewis",
+	"version": "1.0.13",
+	"author": [
+		"John Lewis"
+	],
 	"descriptionmsg": "rottenlinks-desc",
 	"license-name": "GPL-3.0-or-later",
 	"url": "https://github.com/miraheze/RottenLinks",
