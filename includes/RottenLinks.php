@@ -15,7 +15,7 @@ class RottenLinks {
 		$urltouse = $proto . $site;
 		
 		$request = $services->getHttpRequestFactory()->create(
-			$urltouse ), [ 
+			$urltouse, [ 
 				'method' => 'HEAD', // return headers only
 				'timeout' => $config->get( 'RottenLinksCurlTimeout' ),
 				'userAgent' => 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' . $config->get( 'Server' )
