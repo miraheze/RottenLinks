@@ -9,7 +9,7 @@ class RottenLinks {
 		$config = $services->getConfigFactory()->makeConfig( 'rottenlinks' );
 
 		$request = $services->getHttpRequestFactory()->create(
-			$url, [ 
+			strtolower( $url ), [ 
 				'method' => 'HEAD', // return headers only
 				'timeout' => $config->get( 'RottenLinksCurlTimeout' ),
 				'userAgent' => 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' . $config->get( 'Server' )
