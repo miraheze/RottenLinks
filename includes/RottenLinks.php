@@ -12,10 +12,10 @@ class RottenLinks {
 		$urlexp = explode( '://', $url);
 		$proto = strtolower( $urlexp[0] ) . '://';
 		$site = $urlexp[1]; 
-		$urltouse = $proto . $site;
+		$urlToUse = $proto . $site;
 		
 		$request = $services->getHttpRequestFactory()->create(
-			$urltouse, [ 
+			$urlToUse, [ 
 				'method' => 'HEAD', // return headers only
 				'timeout' => $config->get( 'RottenLinksCurlTimeout' ),
 				'userAgent' => 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' . $config->get( 'Server' )
