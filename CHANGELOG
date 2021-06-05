@@ -1,5 +1,8 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.14 (05-06-2021) ===
+* Make protocols lowercase before making request
+
 === 1.0.13 (13-05-2021) ===
 * Use HttpRequestFactory
 
