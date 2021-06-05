@@ -75,7 +75,7 @@ class UpdateExternalLinks extends Maintenance {
 		$cache->set( $cache->makeKey( 'RottenLinks', 'lastRun' ), $dbw->timestamp() );
 		$cache->set( $cache->makeKey( 'RottenLinks', 'runTime' ), $time );
 
-		$this->output( 'Script took ' . $time . ' seconds.\n' );
+		$this->output( "Script took {$time} seconds.\n" );
 	}
 }
 
