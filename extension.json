@@ -1,13 +1,17 @@
 {
 	"name": "RottenLinks",
-	"version": "1.0.14",
+	"version": "1.0.15",
 	"author": [
-		"John Lewis"
+		"John Lewis",
+		"Universal Omega"
 	],
 	"descriptionmsg": "rottenlinks-desc",
 	"license-name": "GPL-3.0-or-later",
 	"url": "https://github.com/miraheze/RottenLinks",
 	"type": "specialpage",
+	"requires": {
+		"MediaWiki": ">= 1.36.0"
+	},
 	"SpecialPages": {
 		"RottenLinks": "SpecialRottenLinks"
 	},

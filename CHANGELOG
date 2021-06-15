@@ -1,5 +1,9 @@
 == ChangeLog for RottenLinks ==
 
+=== 1.0.15 (15-06-2021) ===
+* Require MediaWiki 1.36.0
+* DB_MASTER -> DB_PRIMARY
+
 === 1.0.14 (05-06-2021) ===
 * Make protocols lowercase before making request
 
