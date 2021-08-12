@@ -54,7 +54,7 @@ class UpdateExternalLinks extends Maintenance {
 				continue;
 			}
 
-			$resp = RottenLinks::getResponse( $url );
+			$resp = (int)( RottenLinks::getResponse( $url )['code'] );
 			$pagecount = count( $pages );
 
 			$dbw->insert( 'rottenlinks',
