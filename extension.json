@@ -1,6 +1,6 @@
 {
 	"name": "RottenLinks",
-	"version": "1.0.16",
+	"version": "1.0.17",
 	"author": [
 		"John Lewis",
 		"Universal Omega"
@@ -10,7 +10,7 @@
 	"url": "https://github.com/miraheze/RottenLinks",
 	"type": "specialpage",
 	"requires": {
-		"MediaWiki": ">= 1.36.0"
+		"MediaWiki": ">= 1.35.3"
 	},
 	"SpecialPages": {
 		"RottenLinks": "SpecialRottenLinks"
