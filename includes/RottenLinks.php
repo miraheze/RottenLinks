@@ -26,6 +26,6 @@ class RottenLinks {
 			]
 		);
 
-		return (int)$request['code'];
+		return $request;
 	}
 }
