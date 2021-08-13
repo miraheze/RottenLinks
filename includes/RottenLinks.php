@@ -14,6 +14,9 @@ class RottenLinks {
 		$site = $urlexp[1]; 
 		$urlToUse = $proto . $site;
 
+		// force cURL to use HTTP_VERSION_1_1 to get status messages
+		curl_setopt( curl_init(), CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
+
 		$request = $services->getHttpRequestFactory()->createMultiClient()
 			->run( [
 				'url' => $urlToUse,
