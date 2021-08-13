@@ -94,7 +94,7 @@ class SpecialRottenLinks extends SpecialPage {
 
 			$statDescriptor[$respCode] = [
 				'type' => 'info',
-				'label' => "HTTP: ${respCode} " . ( $respCode != 0 ) ? HttpStatus::getMessage( $respCode ) : 'No Response',
+				'label' => "HTTP: ${respCode} " . ( $respCode != 0 ? HttpStatus::getMessage( $respCode ) : 'No Response' ),
 				'default' => $count,
 				'section' => 'statistics'
 			];
