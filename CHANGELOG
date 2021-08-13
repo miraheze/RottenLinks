@@ -1,6 +1,6 @@
 == ChangeLog for RottenLinks ==
 
-=== 1.0.17 (12-08-2021) ===
+=== 1.0.17 (13-08-2021) ===
 * Use MultiHttpClient
 * Lower minimum required MediaWiki version to 1.35.3
 
