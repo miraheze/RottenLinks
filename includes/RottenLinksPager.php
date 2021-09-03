@@ -3,7 +3,10 @@
 use MediaWiki\MediaWikiServices;
 
 class RottenLinksPager extends TablePager {
-	private $config = null;
+	/** @var Config */
+	private $config;
+
+	/** @var bool */
 	private $showBad;
 
 	public function __construct( $showBad ) {
