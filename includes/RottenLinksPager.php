@@ -36,7 +36,7 @@ class RottenLinksPager extends TablePager {
 
 		switch ( $name ) {
 			case 'rl_externallink':
-				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, ( substr( (string)$row->rl_externallink, 0, 50 ) . '...' ) , true, '', [ 'target' => $this->config->get( 'RottenLinksExternalLinkTarget' ) ] );
+				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, ( substr( (string)$row->rl_externallink, 0, 50 ) . '...' ), true, '', [ 'target' => $this->config->get( 'RottenLinksExternalLinkTarget' ) ] );
 				break;
 			case 'rl_respcode':
 				$respCode = (int)$row->rl_respcode;
