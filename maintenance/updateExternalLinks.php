@@ -2,7 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 
-require_once( __DIR__ . '/../../../maintenance/Maintenance.php' );
+require_once __DIR__ . '/../../../maintenance/Maintenance.php';
 
 class UpdateExternalLinks extends Maintenance {
 	public function __construct() {
@@ -80,4 +80,4 @@ class UpdateExternalLinks extends Maintenance {
 }
 
 $maintClass = 'UpdateExternalLinks';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

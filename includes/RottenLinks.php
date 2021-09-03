@@ -11,14 +11,14 @@ class RottenLinks {
 		// Make the protocol lowercase
 		$urlexp = explode( '://', $url );
 		$proto = strtolower( $urlexp[0] ) . '://';
-		$site = $urlexp[1]; 
+		$site = $urlexp[1];
 		$urlToUse = $proto . $site;
 
 		$request = $services->getHttpRequestFactory()->createMultiClient()
 			->run( [
 				'url' => $urlToUse,
-				'method' => 'HEAD', // return headers only
-				'headers' => [ 
+				'method' => 'HEAD',
+				'headers' => [
 					'user-agent' => 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' . $config->get( 'Server' )
 				]
 			], [
