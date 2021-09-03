@@ -17,7 +17,7 @@ class RottenLinks {
 		$request = $services->getHttpRequestFactory()->createMultiClient()
 			->run( [
 				'url' => $urlToUse,
-				'method' => 'HEAD', // return headers only
+				'method' => 'HEAD',
 				'headers' => [ 
 					'user-agent' => 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' . $config->get( 'Server' )
 				]
