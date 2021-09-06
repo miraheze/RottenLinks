@@ -79,5 +79,5 @@ class UpdateExternalLinks extends Maintenance {
 	}
 }
 
-$maintClass = 'UpdateExternalLinks';
+$maintClass = UpdateExternalLinks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
