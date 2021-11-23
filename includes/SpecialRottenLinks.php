@@ -12,7 +12,7 @@ class SpecialRottenLinks extends SpecialPage {
 		$showBad = $this->getRequest()->getText( 'showBad' );
 		$stats = $this->getRequest()->getText( 'stats' );
 
-		$pager = new RottenLinksPager( $showBad );
+		$pager = new RottenLinksPager( $this, $showBad );
 
 		$formDescriptor = [
 			'showBad' => [
@@ -37,19 +37,15 @@ class SpecialRottenLinks extends SpecialPage {
 		];
 
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-		$htmlForm->setSubmitCallback( [ $this, 'dummyProcess' ] )->setMethod( 'get' )->prepareForm()->show();
+		$htmlForm->setMethod( 'get' )->prepareForm()->displayForm( false );
 
 		if ( $stats ) {
 			$statForm = HTMLForm::factory( 'ooui', $this->showStatistics( $this->getContext() ), $this->getContext(), 'rottenlinks' );
-			$statForm->setSubmitCallback( [ $this, 'dummyProcess' ] )->setMethod( 'get' )->suppressDefaultSubmit()->prepareForm()->show();
+			$statForm->setMethod( 'get' )->suppressDefaultSubmit()->prepareForm()->displayForm( false );
 			return;
 		}
 
 		$this->getOutput()->addParserOutputContent( $pager->getFullOutput() );
-	}
-
-	public static function dummyProcess( $formData ) {
-		return false;
 	}
 
 	public static function showStatistics( IContextSource $context ) {

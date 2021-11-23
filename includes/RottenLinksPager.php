@@ -9,8 +9,8 @@ class RottenLinksPager extends TablePager {
 	/** @var bool */
 	private $showBad;
 
-	public function __construct( $showBad ) {
-		parent::__construct( $this->getContext() );
+	public function __construct( $page, $showBad ) {
+		parent::__construct( $page->getContext() );
 		$this->showBad = $showBad;
 		$this->config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'rottenlinks' );
 	}
