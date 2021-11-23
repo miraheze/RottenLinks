@@ -41,7 +41,7 @@ class SpecialRottenLinks extends SpecialPage {
 
 		if ( $stats ) {
 			$statForm = HTMLForm::factory( 'ooui', $this->showStatistics( $this->getContext() ), $this->getContext(), 'rottenlinks' );
-			$statForm->setSubmitCallback( [ $this, 'dummyProcess' ] )->setMethod( 'get' )->suppressDefaultSubmit()->prepareForm()->show();
+			$statForm->setMethod( 'get' )->suppressDefaultSubmit()->prepareForm()->displayForm( false );
 			return;
 		}
 
