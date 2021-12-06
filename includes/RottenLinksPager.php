@@ -49,7 +49,7 @@ class RottenLinksPager extends TablePager {
 				$number = count( json_decode( $row->rl_pageusage, true ) );
 				$specialLinkSearch = SpecialPage::getTitleFor( 'LinkSearch' );
 				$href = $specialLinkSearch->getInternalURL( [ 'target' => $row->rl_externallink ] );
-				$formatted = HTML::element( 'a', [ 'href' => $href ], $number );
+				$formatted = HTML::element( 'a', [ 'href' => $href ], (string)$number );
 				break;
 			default:
 				$formatted = HTML::element( 'span', [], "Unable to format $name" );
