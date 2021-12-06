@@ -9,7 +9,7 @@ class SpecialRottenLinks extends SpecialPage {
 		$this->outputHeader();
 		$this->addHelpLink( 'Extension:RottenLinks' );
 
-		$showBad = $this->getRequest()->getText( 'showBad' );
+		$showBad = (bool)$this->getRequest()->getText( 'showBad' );
 		$stats = $this->getRequest()->getText( 'stats' );
 
 		$pager = new RottenLinksPager( $this, $showBad );
@@ -19,7 +19,7 @@ class SpecialRottenLinks extends SpecialPage {
 				'type' => 'check',
 				'name' => 'showBad',
 				'label-message' => 'rottenlinks-showbad',
-				'default' => (bool)$showBad
+				'default' => $showBad
 			],
 			'statistics' => [
 				'type' => 'check',
