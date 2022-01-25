@@ -51,7 +51,7 @@
 			"value": [ "tel", "mailto" ]
 		},
 		"RottenLinksExcludeWebsites": {
-			"description": "List of websites to blacklist checking of response codes for. (array)",
+			"description": "List of websites to exclude checking of response codes for. (array)",
 			"public": true,
 			"value": false
 		},
