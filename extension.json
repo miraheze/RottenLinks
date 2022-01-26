@@ -45,6 +45,11 @@
 			"public": true,
 			"value": 30
 		},
+		"RottenLinksHTTPProxy": {
+			"description": "Sets a proxy to use for requests. (string)",
+			"public": true,
+			"value": ""
+		},
 		"RottenLinksExcludeProtocols": {
 			"description": "Holds a list of protocols that should not be checked for validity. (array)",
 			"public": true,

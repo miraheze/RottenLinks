@@ -14,7 +14,9 @@ class RottenLinks {
 		$site = $urlexp[1];
 		$urlToUse = $proto . $site;
 
-		$request = $services->getHttpRequestFactory()->createMultiClient()
+		$httpProxy = $config->get( 'RottenLinksHTTPProxy' );
+
+		$request = $services->getHttpRequestFactory()->createMultiClient( [ 'proxy' => $httpProxy ] )
 			->run( [
 				'url' => $urlToUse,
 				'method' => 'HEAD',
