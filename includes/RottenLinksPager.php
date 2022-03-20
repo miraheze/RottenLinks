@@ -79,6 +79,10 @@ class RottenLinksPager extends TablePager {
 	}
 
 	public function isFieldSortable( $name ) {
-		return true;
+		if ( $name === 'rl_pageusage' ) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
