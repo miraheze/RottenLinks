@@ -42,7 +42,6 @@ class RottenLinks {
 				'reqTimeout' => $config->get( 'RottenLinksCurlTimeout' )
 			]
 		);
-		$status = (int)$request['code'];
-		return $status;
+		return (int)$request['code'];
 	}
 }
