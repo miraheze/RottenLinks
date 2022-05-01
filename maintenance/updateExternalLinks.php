@@ -85,14 +85,15 @@ class UpdateExternalLinks extends Maintenance {
 	// URL-decoding the domain part turns these URLs back into valid syntax.
 	private function decodeDomainName( $url ) {
 		$urlexp = explode( '://', $url, 2 );
-		if ( count( $urlexp ) == 2 ) {
+		if ( count( $urlexp ) === 2 ) {
 			$locexp = explode( '/', $urlexp[1], 2 );
 			$domain = urldecode( $locexp[0] );
 			$url = $urlexp[0] . '://' . $domain;
-			if ( count( $locexp ) == 2 ) {
+			if ( count( $locexp ) === 2 ) {
 				$url = $url . '/' . $locexp[1];
 			}
 		}
+
 		return $url;
 	}
 }

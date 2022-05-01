@@ -14,10 +14,10 @@ class RottenLinks {
 		$site = $urlexp[1];
 		$urlToUse = $proto . $site;
 
-		$status = static::getHttpStatus( $urlToUse, 'HEAD', $services, $config );
+		$status = self::getHttpStatus( $urlToUse, 'HEAD', $services, $config );
 		// Some websites return 4xx or 5xx on HEAD requests but GET with the same URL gives a 200.
-		if ($status >= 400) {
-			$status = static::getHttpStatus( $urlToUse, 'GET', $services, $config );
+		if ( $status >= 400 ) {
+			$status = self::getHttpStatus( $urlToUse, 'GET', $services, $config );
 		}
 
 		return $status;
