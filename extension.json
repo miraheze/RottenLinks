@@ -68,7 +68,7 @@
 		"RottenLinksUserAgent": {
 			"description": "Overrides the user-agent to use for requests. Defaults to 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on <Wiki base URL>'. (string)",
 			"public": true,
-			"value": null
+			"value": ""
 		}
 	},
 	"ConfigRegistry": {

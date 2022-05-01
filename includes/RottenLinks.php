@@ -26,10 +26,8 @@ class RottenLinks {
 	private static function getHttpStatus( $url, $method, $services, $config ) {
 		$httpProxy = $config->get( 'RottenLinksHTTPProxy' );
 
-		$userAgent = $config->get( 'RottenLinksUserAgent' );
-		if ( is_null( $userAgent ) ) {
-			$userAgent = 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' . $config->get( 'Server' );
-		}
+		$userAgent = $config->get( 'RottenLinksUserAgent' ) ?:
+			'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' . $config->get( 'Server' );
 
 		$request = $services->getHttpRequestFactory()->createMultiClient( [ 'proxy' => $httpProxy ] )
 			->run( [
