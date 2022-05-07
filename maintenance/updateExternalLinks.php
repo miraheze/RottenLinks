@@ -80,9 +80,11 @@ class UpdateExternalLinks extends Maintenance {
 		$this->output( "Script took {$time} seconds.\n" );
 	}
 
-	// Apparently, MediaWiki URL-encodes the whole URL, including the domain name,
-	// before storing it in the DB. This breaks non-ASCII domains.
-	// URL-decoding the domain part turns these URLs back into valid syntax.
+	/**
+	 * Apparently, MediaWiki URL-encodes the whole URL, including the domain name,
+	 * before storing it in the DB. This breaks non-ASCII domains.
+	 * URL-decoding the domain part turns these URLs back into valid syntax.
+	 */
 	private function decodeDomainName( $url ) {
 		$urlexp = explode( '://', $url, 2 );
 		if ( count( $urlexp ) === 2 ) {
