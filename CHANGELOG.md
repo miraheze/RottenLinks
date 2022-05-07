@@ -1,6 +1,6 @@
 ## ChangeLog for RottenLinks
 
-### 1.0.18 (30-04-2022)
+### 1.0.18 (07-05-2022)
 * Fix for URLs containing more than one :// such as
   https://web.archive.org/web/20100205034127/https://github.com/
 * Fix for websites that don't support HEAD requests
