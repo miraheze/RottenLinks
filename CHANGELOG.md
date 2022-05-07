@@ -1,5 +1,12 @@
 ## ChangeLog for RottenLinks
 
+### 1.0.18 (07-05-2022)
+* Fix for URLs containing more than one :// such as
+  https://web.archive.org/web/20100205034127/https://github.com/
+* Fix for websites that don't support HEAD requests
+* Fix for non-ASCII domain names such as bücher.de
+* Add wgRottenLinksUserAgent config setting
+
 ### 1.0.17 (13-08-2021)
 * Use MultiHttpClient
 * Lower minimum required MediaWiki version to 1.35.3

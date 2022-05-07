@@ -38,6 +38,8 @@ class UpdateExternalLinks extends Maintenance {
 		}
 
 		foreach ( $rottenlinksarray as $url => $pages ) {
+			$url = $this->decodeDomainName( $url );
+
 			if ( substr( $url, 0, 2 ) === '//' ) {
 				$url = 'https:' . $url;
 			}
@@ -76,6 +78,25 @@ class UpdateExternalLinks extends Maintenance {
 		$cache->set( $cache->makeKey( 'RottenLinks', 'runTime' ), $time );
 
 		$this->output( "Script took {$time} seconds.\n" );
+	}
+
+	/**
+	 * Apparently, MediaWiki URL-encodes the whole URL, including the domain name,
+	 * before storing it in the DB. This breaks non-ASCII domains.
+	 * URL-decoding the domain part turns these URLs back into valid syntax.
+	 */
+	private function decodeDomainName( $url ) {
+		$urlexp = explode( '://', $url, 2 );
+		if ( count( $urlexp ) === 2 ) {
+			$locexp = explode( '/', $urlexp[1], 2 );
+			$domain = urldecode( $locexp[0] );
+			$url = $urlexp[0] . '://' . $domain;
+			if ( count( $locexp ) === 2 ) {
+				$url = $url . '/' . $locexp[1];
+			}
+		}
+
+		return $url;
 	}
 }
 
