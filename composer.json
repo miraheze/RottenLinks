@@ -1,7 +1,24 @@
 {
-	"name": "miraheze/rottenlinks",
-	"description": "",
+	"name": "miraheze/rotten-links",
+	"type": "mediawiki-extension",
+	"description": "A MediaWiki extension to show the state of all external links on the wiki.",
+	"homepage": "https://www.mediawiki.org/wiki/Extension:RottenLinks",
 	"license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "John Lewis"
+		},
+		{
+			"name": "Universal Omega"
+		}
+	],
+	"support": {
+		"issues": "https://phabricator.miraheze.org/tag/rottenlinks/",
+		"wiki": "https://www.mediawiki.org/wiki/Extension:RottenLinks"
+	},
+	"require": {
+		"composer/installers": ">=1.0.1"
+	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "39.0.0",
 		"mediawiki/mediawiki-phan-config": "0.11.1",
@@ -21,5 +38,12 @@
 		],
 		"phan": "phan -d . --long-progress-bar",
 		"phpcs": "phpcs -sp --cache"
+	},
+	"config": {
+		"prepend-autoloader": false,
+		"optimize-autoloader": true,
+		"allow-plugins": {
+			"composer/installers": true
+		}
 	}
 }
