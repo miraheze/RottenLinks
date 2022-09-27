@@ -7,7 +7,8 @@ require_once __DIR__ . '/../../../maintenance/Maintenance.php';
 class UpdateExternalLinks extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Updates rottenlinks database table based on externallinks table.";
+
+		$this->addDescription( 'Updates rottenlinks database table based on externallinks table.' );
 	}
 
 	public function execute() {
