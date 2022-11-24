@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"BlackWhite"
+		]
+	},
+	"rottenlinks": "外部链接的状态",
+	"rottenlinks-desc": "显示wiki上 [[Special:RottenLinks|所有外部链接的状态]]",
+	"rottenlinks-metadata": "脚本数据",
+	"rottenlinks-table-external": "外部链接",
+	"rottenlinks-table-response": "HTTP响应",
+	"rottenlinks-table-usage": "页面使用情况",
+	"rottenlinks-rundate": "脚本运行日期",
+	"rottenlinks-runtime": "脚本执行时间",
+	"rottenlinks-showbad": "仅显示错误链接",
+	"rottenlinks-statistics": "错误链接统计信息",
+	"rottenlinks-stats": "显示链接统计信息"
+}
