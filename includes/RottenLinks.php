@@ -14,11 +14,21 @@ class RottenLinks {
 		$site = $urlexp[1];
 		$urlToUse = $proto . $site;
 
+		// Cache the responses to avoid making multiple requests to the same URL
+		$cache = ObjectCache::getLocalClusterInstance();
+		$cacheKey = $cache->makeKey( 'RottenLinks', 'getResponse', md5( $url ) );
+		$cachedResponse = $cache->get( $cacheKey );
+		if ( $cachedResponse !== false ) {
+			return $cachedResponse;
+		}
+
 		$status = self::getHttpStatus( $urlToUse, 'HEAD', $services, $config );
 		// Some websites return 4xx or 5xx on HEAD requests but GET with the same URL gives a 200.
 		if ( $status >= 400 ) {
 			$status = self::getHttpStatus( $urlToUse, 'GET', $services, $config );
 		}
+
+		$cache->set( $cacheKey, $status, 3600 ); // Cache the response for one hour
 
 		return $status;
 	}
