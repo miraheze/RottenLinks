@@ -83,7 +83,7 @@ class UpdateExternalLinks extends Maintenance {
 		$cache->set( $cache->makeKey( 'RottenLinks', 'runTime' ), $time );
 
 		$this->output( "Script took {$time} seconds.\n" );
-	}
+		}
 
 	/**
 	 * Apparently, MediaWiki URL-encodes the whole URL, including the domain name,
@@ -103,7 +103,7 @@ class UpdateExternalLinks extends Maintenance {
 
 		return $url;
 	}
-}
+	}
 
 $maintClass = UpdateExternalLinks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
