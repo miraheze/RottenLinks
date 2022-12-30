@@ -34,11 +34,12 @@ class UpdateExternalLinks extends Maintenance {
 
 		$rottenlinksarray = [];
 		foreach ( $res as $row ) {
-		if ( !isset( $rottenlinksarray[$row->el_to] ) ) {
-			$rottenlinksarray[$row->el_to] = [];
-		}
+			if ( !isset( $rottenlinksarray[$row->el_to] ) ) {
+				$rottenlinksarray[$row->el_to] = [];
+			}
 
-		$rottenlinksarray[$row->el_to][] = (int)$row->el_from;
+			$rottenlinksarray[$row->el_to][] = (int)$row->el_from;
+		}
 
 		// Batch the insertions to reduce the number of write operations
 		$batch = new BatchRowWriter( $dbw );
@@ -83,7 +84,7 @@ class UpdateExternalLinks extends Maintenance {
 		$cache->set( $cache->makeKey( 'RottenLinks', 'runTime' ), $time );
 
 		$this->output( "Script took {$time} seconds.\n" );
-		}
+	}
 
 	/**
 	 * Apparently, MediaWiki URL-encodes the whole URL, including the domain name,
@@ -103,7 +104,7 @@ class UpdateExternalLinks extends Maintenance {
 
 		return $url;
 	}
-	}
+}
 
 $maintClass = UpdateExternalLinks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
