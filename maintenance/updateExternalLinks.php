@@ -33,14 +33,17 @@ class UpdateExternalLinks extends Maintenance {
 		);
 
 		$rottenlinksarray = [];
-
 		foreach ( $res as $row ) {
-			$rottenlinksarray[$row->el_to][] = (int)$row->el_from;
+		if ( !isset( $rottenlinksarray[$row->el_to] ) ) {
+			$rottenlinksarray[$row->el_to] = [];
 		}
 
+		$rottenlinksarray[$row->el_to][] = (int)$row->el_from;
+
+		// Batch the insertions to reduce the number of write operations
+		$batch = new BatchRowWriter( $dbw );
 		foreach ( $rottenlinksarray as $url => $pages ) {
 			$url = $this->decodeDomainName( $url );
-
 			if ( substr( $url, 0, 2 ) === '//' ) {
 				$url = 'https:' . $url;
 			}
@@ -59,18 +62,19 @@ class UpdateExternalLinks extends Maintenance {
 
 			$resp = RottenLinks::getResponse( $url );
 			$pagecount = count( $pages );
-
-			$dbw->insert( 'rottenlinks',
+			$batch->add(
+				'rottenlinks',
 				[
 					'rl_externallink' => $url,
 					'rl_respcode' => $resp,
 					'rl_pageusage' => json_encode( $pages )
-				],
-				__METHOD__
+				]
 			);
 
-			$this->output( "Added externallink ($url) used on $pagecount with code $resp\n" );
+			$this->output( "Added externallink ($url) used on $pagecount with code $resp to batch\n" );
 		}
+
+		$batch->flush();
 
 		$time = time() - $time;
 
