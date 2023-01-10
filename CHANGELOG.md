@@ -1,5 +1,8 @@
 ## ChangeLog for RottenLinks
 
+### 1.0.20 (10-01-2023)
+* SpecialRottenLinks: replace usage of deprecated wfGetDB()
+
 ### 1.0.19 (27-09-2022)
 * Don't use Maintenance::$mDescription directly
 
