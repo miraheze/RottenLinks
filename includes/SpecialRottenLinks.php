@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 class SpecialRottenLinks extends SpecialPage {
 	public function __construct() {
 		parent::__construct( 'RottenLinks' );
@@ -49,7 +52,9 @@ class SpecialRottenLinks extends SpecialPage {
 	}
 
 	public static function showStatistics( IContextSource $context ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()
+			->getDBLoadBalancer()
+			->getMaintenanceConnectionRef( DB_REPLICA );
 
 		$statusNumbers = $dbr->select(
 			'rottenlinks',
