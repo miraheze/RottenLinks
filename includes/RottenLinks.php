@@ -28,7 +28,8 @@ class RottenLinks {
 			$status = self::getHttpStatus( $urlToUse, 'GET', $services, $config );
 		}
 
-		$cache->set( $cacheKey, $status, 3600 ); // Cache the response for one hour
+		// Cache the response for one hour
+		$cache->set( $cacheKey, $status, 3600 );
 
 		return $status;
 	}
