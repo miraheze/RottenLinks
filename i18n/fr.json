@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gomoko"
+		]
+	},
+	"rottenlinks": "État des liens externes",
+	"rottenlinks-desc": "Affiche l’[[Special:RottenLinks|état de tous les liens externes]] sur le wiki",
+	"rottenlinks-metadata": "Données du script",
+	"rottenlinks-table-external": "Lien externe",
+	"rottenlinks-table-response": "Réponse HTTP",
+	"rottenlinks-table-usage": "Utilisation de la page",
+	"rottenlinks-rundate": "Date d’exécution du script",
+	"rottenlinks-runtime": "Durée d’exécution du script",
+	"rottenlinks-showbad": "Afficher seulement les liens corrompus",
+	"rottenlinks-statistics": "Statistiques des liens corrompus",
+	"rottenlinks-stats": "Afficher les statistiques des liens"
+}

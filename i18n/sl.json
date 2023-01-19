@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"rottenlinks": "Stanje zunanjih povezav",
+	"rottenlinks-desc": "V vikiju prikaže [[Special:RottenLinks|stanje vseh zunanjih povezav]]",
+	"rottenlinks-metadata": "Podatki o skriptu",
+	"rottenlinks-table-external": "Zunanja povezava",
+	"rottenlinks-table-response": "HTTP-odgovor",
+	"rottenlinks-table-usage": "Uporaba strani",
+	"rottenlinks-rundate": "Datum izvedbe skripta",
+	"rottenlinks-runtime": "Čas izvedbe skripta",
+	"rottenlinks-showbad": "Pokaži samo nedelujoče povezave",
+	"rottenlinks-statistics": "Statistika nedelujočih povezav",
+	"rottenlinks-stats": "Prikaži statistiko povezav"
+}

@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"rottenlinks": "Состојба на надворешни врски",
+	"rottenlinks-desc": "Ја прикажува [[Special:RottenLinks|состојбата на сите надворешни врски]] на викито",
+	"rottenlinks-metadata": "Податоци за скриптата",
+	"rottenlinks-table-external": "Надворешна врска",
+	"rottenlinks-table-response": "HTTP-одговор",
+	"rottenlinks-table-usage": "Употреба на страницата",
+	"rottenlinks-rundate": "Датум на пуштање",
+	"rottenlinks-runtime": "Време на исполнување",
+	"rottenlinks-showbad": "Прикажувај само расипани врски",
+	"rottenlinks-statistics": "Статистика за расипани врски",
+	"rottenlinks-stats": "Дај статистика за врски"
+}

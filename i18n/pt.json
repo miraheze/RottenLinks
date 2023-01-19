@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"rottenlinks": "Estado das hiperligações externas",
+	"rottenlinks-desc": "Mostra o [[Special:RottenLinks|estado de todas as hiperligações externas]] da wiki",
+	"rottenlinks-metadata": "Dados do ''script''",
+	"rottenlinks-table-external": "Hiperligação externa",
+	"rottenlinks-table-response": "Resposta HTTP",
+	"rottenlinks-table-usage": "Utilização da página",
+	"rottenlinks-rundate": "Data de execução do ''script''",
+	"rottenlinks-runtime": "Tempo de execução do ''script''",
+	"rottenlinks-showbad": "Mostrar só as hiperligações corrompidas",
+	"rottenlinks-statistics": "Estatísticas de hiperligações corrompidas",
+	"rottenlinks-stats": "Mostrar estatísticas das hiperligações"
+}

@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Buehl",
+			"MathXplore"
+		]
+	},
+	"rottenlinks-metadata": "スクリプトデータ",
+	"rottenlinks-table-external": "外部リンク",
+	"rottenlinks-table-usage": "ページの使用状況",
+	"rottenlinks-rundate": "スクリプトが実行されて日時",
+	"rottenlinks-stats": "リンクの統計を表示"
+}
