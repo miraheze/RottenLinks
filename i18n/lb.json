@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"rottenlinks": "Status vun externe Linken",
+	"rottenlinks-table-external": "Externe Link",
+	"rottenlinks-table-response": "HTTP Äntwert",
+	"rottenlinks-showbad": "Nëmme futtis Linke weisen",
+	"rottenlinks-statistics": "Statistik vun de futtisse Linken",
+	"rottenlinks-stats": "Statistike vun de Linke weisen"
+}

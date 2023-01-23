@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"rottenlinks": "Status van externe koppelingen",
+	"rottenlinks-desc": "Toont de [[Special:RottenLinks|status van alle externe koppelingen]] op de wiki",
+	"rottenlinks-metadata": "Scriptgegevens",
+	"rottenlinks-table-external": "Externe koppeling",
+	"rottenlinks-table-response": "HTTP-antwoord",
+	"rottenlinks-table-usage": "Paginagebruik",
+	"rottenlinks-rundate": "Uitvoeringsdatum script",
+	"rottenlinks-runtime": "Uitvoeringstijd script",
+	"rottenlinks-showbad": "Alleen rotte links tonen",
+	"rottenlinks-statistics": "Statistieken over rotte links",
+	"rottenlinks-stats": "Linkstatistieken weergeven"
+}
