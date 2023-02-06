@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hedda",
+			"Sayginer"
+		]
+	},
+	"rottenlinks": "Dış bağlantıların durumu",
+	"rottenlinks-desc": "Viki'de [[Special:RottenLinks|tüm dış bağlantıların durumunu]] gösterir",
+	"rottenlinks-metadata": "Komut Dosyası Verileri",
+	"rottenlinks-table-external": "Dış Bağlantı",
+	"rottenlinks-table-response": "HTTP Yanıtı",
+	"rottenlinks-table-usage": "Sayfa Kullanımı",
+	"rottenlinks-rundate": "Komut dosyası çalıştırma tarihi",
+	"rottenlinks-runtime": "Komut dosyası yürütme süresi",
+	"rottenlinks-showbad": "Yalnızca bozuk bağlantıları göster",
+	"rottenlinks-statistics": "Bozuk Bağlantı İstatistikleri",
+	"rottenlinks-stats": "Bağlantı istatistiklerini göster"
+}

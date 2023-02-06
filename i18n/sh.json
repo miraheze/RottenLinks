@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"rottenlinks": "Status vanjskih linkova",
+	"rottenlinks-desc": "Prikazuje [[Special:RottenLinks|stanje svih vanjskih linkova]] na vikiju",
+	"rottenlinks-table-external": "Vanjski link"
+}

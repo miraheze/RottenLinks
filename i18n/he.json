@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"rottenlinks": "מצב הקישורים החיצוניים",
+	"rottenlinks-desc": "הצגת [[Special:RottenLinks|מצב כל הקישורים החיצוניים]] בוויקי",
+	"rottenlinks-metadata": "נתוני סקריפט",
+	"rottenlinks-table-external": "קישור חיצוני",
+	"rottenlinks-table-response": "תגובת HTTP",
+	"rottenlinks-table-usage": "שימוש בדף",
+	"rottenlinks-rundate": "תאריך הרצת הסקריפט",
+	"rottenlinks-runtime": "זמן ביצוע הסקריפט",
+	"rottenlinks-showbad": "הצג קישורים מתים בלבד",
+	"rottenlinks-statistics": "סטטיסטיקות קישורים מתים",
+	"rottenlinks-stats": "הצגת סטטיסטיקות קישורים"
+}
