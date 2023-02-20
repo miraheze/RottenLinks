@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"rottenlinks": "外部連結狀態",
+	"rottenlinks-desc": "顯示在 wiki 上的 [[Special:RottenLinks|所有外部連結狀態]]",
+	"rottenlinks-metadata": "腳本資料",
+	"rottenlinks-table-external": "外部連結",
+	"rottenlinks-table-response": "HTTP 回應",
+	"rottenlinks-table-usage": "頁面使用情況",
+	"rottenlinks-rundate": "腳本運作日期",
+	"rottenlinks-runtime": "腳本執行時間",
+	"rottenlinks-showbad": "只顯示損壞連結",
+	"rottenlinks-statistics": "損壞連結統計",
+	"rottenlinks-stats": "顯示連結統計"
+}
