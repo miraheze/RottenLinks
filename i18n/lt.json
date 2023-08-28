@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nokeoo"
+		]
+	},
+	"rottenlinks": "Išorinių nuorodų būsena",
+	"rottenlinks-desc": "Rodo [[Special:RottenLinks|visų viki išorinių nuorodų]] būseną",
+	"rottenlinks-metadata": "Kodo duomenys",
+	"rottenlinks-table-external": "Išorinė nuoroda",
+	"rottenlinks-table-response": "HTTP atsakymas",
+	"rottenlinks-table-usage": "Puslapio naudojimas",
+	"rottenlinks-rundate": "Kodo vykdymo data",
+	"rottenlinks-runtime": "Kodo vykdymo trukmė",
+	"rottenlinks-showbad": "Rodyti tik sugedusias nuorodas",
+	"rottenlinks-statistics": "Sugedusių nuorodų statistika",
+	"rottenlinks-stats": "Rodyti nuorodų statistiką"
+}
