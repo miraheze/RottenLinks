@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"rottenlinks": "Статус вањских линкова",
+	"rottenlinks-desc": "Приказује [[Special:RottenLinks|стање свих вањских линкова]] на викију",
+	"rottenlinks-metadata": "Подаци о скрипти",
+	"rottenlinks-table-external": "Вањски линк",
+	"rottenlinks-table-response": "HTTP-одговор",
+	"rottenlinks-table-usage": "Употреба странице",
+	"rottenlinks-rundate": "Датум покретања скрипте",
+	"rottenlinks-runtime": "Вријеме извршења скрипте",
+	"rottenlinks-showbad": "Прикажи само покварене линкове",
+	"rottenlinks-statistics": "Статистика покварених линкова",
+	"rottenlinks-stats": "Дај статистику линкова"
+}
