@@ -31,7 +31,10 @@
 	},
 	"Hooks": {
 		"LoadExtensionSchemaUpdates": [
-			"RottenLinksHooks::fnRottenLinksSchemaUpdates"
+			"RottenLinksHooks::onRottenLinksSchemaUpdates"
+		],
+		"LinksUpdateComplete": [
+			"RottenLinksHooks::onLinksUpdateComplete"
 		]
 	},
 	"config": {
