@@ -13,7 +13,7 @@ class RottenLinksHooks {
 
 		if ( $addedExternalLinks || $removedExternalLinks ) {
 			MediaWikiServices::getInstance()->getJobQueueGroup()->push(
-				new GlobalNewFilesInsertJob( [ 'addedExternalLinks' => $addedExternalLinks] )
+				new GlobalNewFilesInsertJob( [ 'addedExternalLinks' => $addedExternalLinks ] )
 		}
 	}
 
