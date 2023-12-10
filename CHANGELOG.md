@@ -1,6 +1,6 @@
 ## ChangeLog for RottenLinks
 
-### 1.0.20 (DD-MM-2023)
+### 1.1.0 (DD-MM-2023)
 * Redesign RottenLinks slightly to not depend on a maintenance script
 
 ### 1.0.20 (10-01-2023)
