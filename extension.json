@@ -26,6 +26,7 @@
 	"AutoloadClasses": {
 		"RottenLinks": "includes/RottenLinks.php",
 		"RottenLinksHooks": "includes/RottenLinksHooks.php",
+		"RottenLinksJob": "includes/RottenLinksJob.php",
 		"RottenLinksPager": "includes/RottenLinksPager.php",
 		"SpecialRottenLinks": "includes/SpecialRottenLinks.php"
 	},
