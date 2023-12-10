@@ -12,8 +12,12 @@ class RottenLinksHooks {
 		$removedExternalLinks = $linksUpdate->getRemovedExternalLinks();
 
 		if ( $addedExternalLinks || $removedExternalLinks ) {
+			$params = [
+				'addedExternalLinks' => $addedExternalLinks,
+				'removedExternalLinks' => $removedExternalLinks
+			];
 			MediaWikiServices::getInstance()->getJobQueueGroup()->push(
-				new GlobalNewFilesInsertJob( [ 'addedExternalLinks' => $addedExternalLinks ] )
+				new RottenLinksJob( $params )
 		}
 	}
 
