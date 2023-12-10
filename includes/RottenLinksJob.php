@@ -31,26 +31,26 @@ class RottenLinksJob0 extends Job implements GenericParameterJob {
 
 			foreach ( $this->addedExternalLinks as $url ) {
 				$url = $this->decodeDomainName( $url );
-	
+
 				if ( substr( $url, 0, 2 ) === '//' ) {
 					$url = 'https:' . $url;
 				}
-	
+
 				$urlexp = explode( ':', $url );
-	
+
 				if ( isset( $urlexp[0] ) && in_array( strtolower( $urlexp[0] ), (array)$config->get( 'RottenLinksExcludeProtocols' ) ) ) {
 					continue;
 				}
-	
+
 				$mainSite = explode( '/', $urlexp[1] );
-	
+
 				if ( isset( $mainSite[2] ) && in_array( $mainSite[2], (array)$config->get( 'RottenLinksExcludeWebsites' ) ) ) {
 					continue;
 				}
-	
+
 				$resp = RottenLinks::getResponse( $url );
 				$pagecount = count( $pages );
-	
+
 				$dbw->insert( 'rottenlinks',
 					[
 						'rl_externallink' => $url,
