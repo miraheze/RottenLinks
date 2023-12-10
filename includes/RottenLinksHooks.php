@@ -2,9 +2,25 @@
 
 class RottenLinksHooks {
 	/**
+	 * Handler for LinksUpdateComplete hook.
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/LinksUpdateComplete
+	 * @param LinksUpdate $linksUpdate
+	 * @param mixed $ticket
+	 */
+	public function onLinksUpdateComplete( $linksUpdate, $ticket ) {
+		$addedExternalLinks = $linksUpdate->getAddedExternalLinks();
+		$removedExternalLinks = $linksUpdate->getRemovedExternalLinks();
+
+		if ( $addedExternalLinks || $removedExternalLinks ) {
+			MediaWikiServices::getInstance()->getJobQueueGroup()->push(
+				new GlobalNewFilesInsertJob( [ 'addedExternalLinks' => $addedExternalLinks] )
+		}
+	}
+
+	/**
 	 * @param DatabaseUpdater $updater
 	 */
-	public static function fnRottenLinksSchemaUpdates( DatabaseUpdater $updater ) {
+	public static function onRottenLinksSchemaUpdates( DatabaseUpdater $updater ) {
 		$updater->addExtensionTable( 'rottenlinks',
 			__DIR__ . '/../sql/rottenlinks.sql' );
 
