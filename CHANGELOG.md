@@ -2,6 +2,9 @@
 
 ### 1.1.0 (DD-MM-2023)
 * Redesign RottenLinks slightly to not depend on a maintenance script
+* Changes how to count page usage on RottenLinks special page.
+  We directly gather this from externallinks table rather then
+  storing it ourselfs. Saves space and reduces complexity in getting it.
 
 ### 1.0.20 (10-01-2023)
 * SpecialRottenLinks: replace usage of deprecated wfGetDB()
