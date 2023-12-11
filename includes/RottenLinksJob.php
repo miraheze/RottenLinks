@@ -16,7 +16,7 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 		parent::__construct( 'RottenLinksJob', $params );
 
 		$this->addedExternalLinks = $params['addedExternalLinks'] ?? [];
-		$this->removedExternalLinks $params['removedExternalLinks'] ?? [];
+		$this->removedExternalLinks = $params['removedExternalLinks'] ?? [];
 	}
 
 	public function run() {
