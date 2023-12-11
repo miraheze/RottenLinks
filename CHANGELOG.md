@@ -1,10 +1,14 @@
 ## ChangeLog for RottenLinks
 
-### 1.1.0 (DD-MM-2023)
-* Redesign RottenLinks slightly to not depend on a maintenance script
+### 2.0.0 (DD-MM-2023)
+* Redesign RottenLinks to not depend on a maintenance script
 * Changes how to count page usage on RottenLinks special page.
   We directly gather this from externallinks table rather then
   storing it ourselfs. Saves space and reduces complexity in getting it.
+* Requires MediaWiki 1.40 or higher and to have migrated externallinks using
+  migrateExternallinks maintenance script and to set
+  wgExternalLinksSchemaMigrationStage to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+  or SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW.
 
 ### 1.0.20 (10-01-2023)
 * SpecialRottenLinks: replace usage of deprecated wfGetDB()
