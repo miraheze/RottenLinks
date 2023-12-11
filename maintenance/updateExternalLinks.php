@@ -28,14 +28,15 @@ class UpdateExternalLinks extends Maintenance {
 			'externallinks',
 			[
 				'el_from',
-				'el_to'
+				'el_to_domain_index',
+				'el_to_path'
 			]
 		);
 
 		$rottenlinksarray = [];
 
 		foreach ( $res as $row ) {
-			$rottenlinksarray[$row->el_to][] = (int)$row->el_from;
+			$rottenlinksarray[$row->el_to_domain_index . $row->el_to_path][] = (int)$row->el_from;
 		}
 
 		foreach ( $rottenlinksarray as $url => $pages ) {
@@ -63,8 +64,7 @@ class UpdateExternalLinks extends Maintenance {
 			$dbw->insert( 'rottenlinks',
 				[
 					'rl_externallink' => $url,
-					'rl_respcode' => $resp,
-					'rl_pageusage' => json_encode( $pages )
+					'rl_respcode' => $resp
 				],
 				__METHOD__
 			);
