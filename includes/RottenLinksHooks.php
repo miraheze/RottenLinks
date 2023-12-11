@@ -17,7 +17,7 @@ class RottenLinksHooks {
 				'removedExternalLinks' => $removedExternalLinks
 			];
 			MediaWikiServices::getInstance()->getJobQueueGroup()->push(
-				new RottenLinksJob( $params )
+				new RottenLinksJob( $params ) );
 		}
 	}
 
