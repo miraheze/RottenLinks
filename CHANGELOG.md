@@ -2,7 +2,7 @@
 
 ### 2.0.0 (DD-MM-2023)
 * Redesign RottenLinks to not depend on a maintenance script
-* Changes how to count page usage on RottenLinks special page.
+* Changes how we count page usage on RottenLinks special page.
   We directly gather this from externallinks table rather then
   storing it ourselfs. Saves space and reduces complexity in getting it.
 * Requires MediaWiki 1.40 or higher and to have migrated externallinks using
