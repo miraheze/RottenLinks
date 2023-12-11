@@ -34,6 +34,7 @@ class RottenLinksPager extends TablePager {
 	public function formatValue( $name, $value ) {
 		$row = $this->mCurrentRow;
 
+		$db = $this->getDatabase();
 		switch ( $name ) {
 			case 'rl_externallink':
 				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, ( substr( (string)$row->rl_externallink, 0, 50 ) . '...' ), true, '', [ 'target' => $this->config->get( 'RottenLinksExternalLinkTarget' ) ] );
@@ -46,7 +47,7 @@ class RottenLinksPager extends TablePager {
 					: HTML::element( 'font', [ 'color' => '#8B0000' ], 'No Response' );
 				break;
 			case 'rl_pageusage':
-				$pagesCount = $dbr->selectRowCount( 'externallinks', 'el_to', [ 'el_to' => $row->rl_externallink ] );
+				$pagesCount = $db->selectRowCount( 'externallinks', 'el_to', [ 'el_to' => $row->rl_externallink ] );
 				$specialLinkSearch = SpecialPage::getTitleFor( 'LinkSearch' );
 				$href = $specialLinkSearch->getInternalURL( [ 'target' => $row->rl_externallink ] );
 				$formatted = HTML::element( 'a', [ 'href' => $href ], (string)$pagesCount );
