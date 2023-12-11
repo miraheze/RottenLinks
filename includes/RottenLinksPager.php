@@ -43,7 +43,7 @@ class RottenLinksPager extends TablePager {
 				$respCode = (int)$row->rl_respcode;
 				$colour = ( in_array( $respCode, $this->config->get( 'RottenLinksBadCodes' ) ) ) ? "#8B0000" : "#008000";
 				$formatted = ( $respCode != 0 )
-					? HTML::element( 'font', [ 'color' => $colour ], HttpStatus::getMessage( $respCode ) ?? "HTTP: ${respCode}" )
+					? HTML::element( 'font', [ 'color' => $colour ], HttpStatus::getMessage( $respCode ) ?? "HTTP: {$respCode}" )
 					: HTML::element( 'font', [ 'color' => '#8B0000' ], 'No Response' );
 				break;
 			case 'rl_pageusage':
