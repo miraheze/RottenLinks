@@ -26,6 +26,7 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 				->getMaintenanceConnectionRef( DB_PRIMARY );
 
 			foreach ( $this->addedExternalLinks as $url ) {
+
 				$url = $this->decodeDomainName( $url );
 
 				if ( substr( $url, 0, 2 ) === '//' ) {
@@ -41,6 +42,12 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 				$mainSite = explode( '/', $urlexp[1] );
 
 				if ( isset( $mainSite[2] ) && in_array( $mainSite[2], (array)$config->get( 'RottenLinksExcludeWebsites' ) ) ) {
+					continue;
+				}
+
+				$rottenLinksCount = $dbw->selectRowCount( 'rottenlinks', 'rl_externallink', [ 'rl_externallink' => $url ], __METHOD__ );
+				if ( $rottenLinksCount > 0 ) {
+					// Don't create duplicate entires
 					continue;
 				}
 
@@ -66,6 +73,12 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 
 				if ( substr( $url, 0, 2 ) === '//' ) {
 					$url = 'https:' . $url;
+				}
+
+				$externalLinksCount = $dbw->selectRowCount( 'externallinks', 'el_to', [ 'el_to' => $url ], __METHOD__ );
+				if ( $externalLinksCount > 0 ) {
+					// Don't delete if the link exists on other pages.
+					continue;
 				}
 
 				$dbw->delete( 'rottenlinks', [ 'rl_externallink' => $url ], __METHOD__ );
