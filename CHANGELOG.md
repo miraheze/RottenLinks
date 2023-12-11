@@ -9,6 +9,8 @@
   migrateExternallinks maintenance script and to set
   wgExternalLinksSchemaMigrationStage to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
   or SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW.
+* Add support for MediaWiki 1.41.
+* Fix some deprecated warnings in php 8.2.
 
 ### 1.0.20 (10-01-2023)
 * SpecialRottenLinks: replace usage of deprecated wfGetDB()
