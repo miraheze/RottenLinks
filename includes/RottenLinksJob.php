@@ -75,7 +75,18 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 					$url = 'https:' . $url;
 				}
 
-				$externalLinksCount = $dbw->selectRowCount( 'externallinks', 'el_to', [ 'el_to' => $url ], __METHOD__ );
+				$el = LinkFilter::makeIndexes( $url );
+				$externalLinksCount = $db->selectRowCount(
+					'externallinks',
+					[
+						'el_to_domain_index',
+						'el_to_path'
+					],
+					[
+						'el_to_domain_index' => substr( $el[0][0], 0, 255 ),
+						'el_to_path' => $el[0][1]
+					]
+				);
 				if ( $externalLinksCount > 0 ) {
 					// Don't delete if the link exists on other pages.
 					continue;
