@@ -36,5 +36,8 @@ class RottenLinksHooks {
 
 		$updater->addExtensionIndex( 'rottenlinks', 'rl_externallink',
 			__DIR__ . '/../sql/patches/20210215.sql' );
+
+		$updater->dropExtensionField( 'rottenlinks', 'rl_pageusage',
+			__DIR__ . '/../sql/patches/patch-drop-rl_pageusage.sql' );
 	}
 }
