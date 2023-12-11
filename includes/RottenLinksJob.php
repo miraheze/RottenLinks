@@ -61,9 +61,30 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 				->getDBLoadBalancer()
 				->getMaintenanceConnectionRef( DB_PRIMARY );
 
-			$dbw->delete( 'rottenlinks', [ 'rl_externallink' => $url ], __METHOD__ );
+			foreach ( $this->removedExternalLinks as $url ) {
+				$dbw->delete( 'rottenlinks', [ 'rl_externallink' => $url ], __METHOD__ );
+			}
 		}
 
 		return true;
+	}
+
+	/**
+	 * Apparently, MediaWiki URL-encodes the whole URL, including the domain name,
+	 * before storing it in the DB. This breaks non-ASCII domains.
+	 * URL-decoding the domain part turns these URLs back into valid syntax.
+	 */
+	private function decodeDomainName( $url ) {
+		$urlexp = explode( '://', $url, 2 );
+		if ( count( $urlexp ) === 2 ) {
+			$locexp = explode( '/', $urlexp[1], 2 );
+			$domain = urldecode( $locexp[0] );
+			$url = $urlexp[0] . '://' . $domain;
+			if ( count( $locexp ) === 2 ) {
+				$url = $url . '/' . $locexp[1];
+			}
+		}
+
+		return $url;
 	}
 }
