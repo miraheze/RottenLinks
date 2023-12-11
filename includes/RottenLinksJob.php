@@ -62,6 +62,12 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 				->getMaintenanceConnectionRef( DB_PRIMARY );
 
 			foreach ( $this->removedExternalLinks as $url ) {
+				$url = $this->decodeDomainName( $url );
+
+				if ( substr( $url, 0, 2 ) === '//' ) {
+					$url = 'https:' . $url;
+				}
+
 				$dbw->delete( 'rottenlinks', [ 'rl_externallink' => $url ], __METHOD__ );
 			}
 		}
