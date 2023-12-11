@@ -46,10 +46,10 @@ class RottenLinksPager extends TablePager {
 					: HTML::element( 'font', [ 'color' => '#8B0000' ], 'No Response' );
 				break;
 			case 'rl_pageusage':
-				$number = count( json_decode( $row->rl_pageusage, true ) );
+				$pagesCount = $dbr->selectRowCount( 'externallinks', 'el_to', [ 'el_to' => $row->rl_externallink );
 				$specialLinkSearch = SpecialPage::getTitleFor( 'LinkSearch' );
 				$href = $specialLinkSearch->getInternalURL( [ 'target' => $row->rl_externallink ] );
-				$formatted = HTML::element( 'a', [ 'href' => $href ], (string)$number );
+				$formatted = HTML::element( 'a', [ 'href' => $href ], (string)$pagesCount );
 				break;
 			default:
 				$formatted = HTML::element( 'span', [], "Unable to format $name" );
@@ -62,7 +62,7 @@ class RottenLinksPager extends TablePager {
 	public function getQueryInfo() {
 		$info = [
 			'tables' => [ 'rottenlinks' ],
-			'fields' => [ 'rl_externallink', 'rl_respcode', 'rl_pageusage' ],
+			'fields' => [ 'rl_externallink', 'rl_respcode' ],
 			'conds' => [],
 			'joins_conds' => [],
 		];
