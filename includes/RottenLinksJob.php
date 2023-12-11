@@ -1,7 +1,5 @@
 <?php
 
-namespace Miraheze\CreateWiki;
-
 use GenericParameterJob;
 use Job;
 use MediaWiki\MediaWikiServices;
