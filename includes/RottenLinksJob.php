@@ -76,7 +76,7 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 				}
 
 				$el = LinkFilter::makeIndexes( $url );
-				$externalLinksCount = $db->selectRowCount(
+				$externalLinksCount = $dbw->selectRowCount(
 					'externallinks',
 					'*',
 					[
