@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class RottenLinksHooks {
 	/**
 	 * Handler for LinksUpdateComplete hook.
@@ -17,7 +19,8 @@ class RottenLinksHooks {
 				'removedExternalLinks' => $removedExternalLinks
 			];
 			MediaWikiServices::getInstance()->getJobQueueGroup()->push(
-				new RottenLinksJob( $params ) );
+				new RottenLinksJob( $params )
+			);
 		}
 	}
 
