@@ -15,6 +15,9 @@
 	"SpecialPages": {
 		"RottenLinks": "SpecialRottenLinks"
 	},
+	"JobClasses": {
+		"RottenLinksJob": "RottenLinksJob"
+	},
 	"MessagesDirs": {
 		"RottenLinks": [
 			"i18n"
