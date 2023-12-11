@@ -46,7 +46,7 @@ class RottenLinksPager extends TablePager {
 					: HTML::element( 'font', [ 'color' => '#8B0000' ], 'No Response' );
 				break;
 			case 'rl_pageusage':
-				$pagesCount = $dbr->selectRowCount( 'externallinks', 'el_to', [ 'el_to' => $row->rl_externallink );
+				$pagesCount = $dbr->selectRowCount( 'externallinks', 'el_to', [ 'el_to' => $row->rl_externallink ] );
 				$specialLinkSearch = SpecialPage::getTitleFor( 'LinkSearch' );
 				$href = $specialLinkSearch->getInternalURL( [ 'target' => $row->rl_externallink ] );
 				$formatted = HTML::element( 'a', [ 'href' => $href ], (string)$pagesCount );
