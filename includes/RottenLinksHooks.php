@@ -9,7 +9,7 @@ class RottenLinksHooks {
 	 * @param LinksUpdate $linksUpdate
 	 * @param mixed $ticket
 	 */
-	public function onLinksUpdateComplete( $linksUpdate, $ticket ) {
+	public static function onLinksUpdateComplete( $linksUpdate, $ticket ) {
 		$addedExternalLinks = $linksUpdate->getAddedExternalLinks();
 		$removedExternalLinks = $linksUpdate->getRemovedExternalLinks();
 
