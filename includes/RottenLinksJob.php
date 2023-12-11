@@ -1,7 +1,5 @@
 <?php
 
-use GenericParameterJob;
-use Job;
 use MediaWiki\MediaWikiServices;
 
 class RottenLinksJob extends Job implements GenericParameterJob {
