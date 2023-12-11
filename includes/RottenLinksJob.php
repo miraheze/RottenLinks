@@ -6,7 +6,7 @@ use GenericParameterJob;
 use Job;
 use MediaWiki\MediaWikiServices;
 
-class RottenLinksJob0 extends Job implements GenericParameterJob {
+class RottenLinksJob extends Job implements GenericParameterJob {
 
 	/** @var array */
 	private $addedExternalLinks;
