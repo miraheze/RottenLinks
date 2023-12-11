@@ -49,13 +49,11 @@ class RottenLinksJob0 extends Job implements GenericParameterJob {
 				}
 
 				$resp = RottenLinks::getResponse( $url );
-				$pagecount = count( $pages );
 
 				$dbw->insert( 'rottenlinks',
 					[
 						'rl_externallink' => $url,
-						'rl_respcode' => $resp,
-						'rl_pageusage' => json_encode( $pages )
+						'rl_respcode' => $resp
 					],
 					__METHOD__
 				);
@@ -63,6 +61,11 @@ class RottenLinksJob0 extends Job implements GenericParameterJob {
 		}
 
 		if ( $this->removedExternalLinks ) {
+			$dbw = MediaWikiServices::getInstance()
+				->getDBLoadBalancer()
+				->getMaintenanceConnectionRef( DB_PRIMARY );
+
+			$dbw->delete( 'rottenlinks', [ 'rl_externallink' => $url ], __METHOD__ );
 		}
 
 		return true;
