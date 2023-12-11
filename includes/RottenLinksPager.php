@@ -50,10 +50,7 @@ class RottenLinksPager extends TablePager {
 				$el = LinkFilter::makeIndexes( $row->rl_externallink );
 				$pagesCount = $db->selectRowCount(
 					'externallinks',
-					[
-						'el_to_domain_index',
-						'el_to_path'
-					],
+					'*',
 					[
 						'el_to_domain_index' => substr( $el[0][0], 0, 255 ),
 						'el_to_path' => $el[0][1]
