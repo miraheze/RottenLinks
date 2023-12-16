@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/../../../maintenance/Maintenance.php';
@@ -38,7 +37,7 @@ class UpdateExternalLinks extends Maintenance {
 			);
 
 			foreach ( $res as $row ) {
-				$elUrl = LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
+				$elUrl = MediaWiki\ExternalLinks\LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
 				$rottenlinksarray[$elUrl][] = (int)$row->el_from;
 			}
 		} else {
