@@ -37,7 +37,7 @@ class UpdateExternalLinks extends Maintenance {
 			);
 
 			foreach ( $res as $row ) {
-				$elUrl = MediaWiki\ExternalLinks\LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
+				$elUrl = MediaWiki\ExternalLinks\LinkFilter::reverseIndexes( $row->el_to_domain_index ) . $row->el_to_path;
 				$rottenlinksarray[$elUrl][] = (int)$row->el_from;
 			}
 		} else {
