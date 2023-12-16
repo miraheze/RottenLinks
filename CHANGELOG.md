@@ -7,8 +7,8 @@
   storing it ourselfs. Saves space and reduces complexity in getting it.
 * Requires MediaWiki 1.40 or higher and to have migrated externallinks using
   migrateExternallinks maintenance script and to set
-  wgExternalLinksSchemaMigrationStage to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
-  or SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW.
+  wgExternalLinksSchemaMigrationStage to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD.
+  Config is removed under MW 1.41+.
 * Add support for MediaWiki 1.41.
 * Fix some deprecated warnings in php 8.2.
 
