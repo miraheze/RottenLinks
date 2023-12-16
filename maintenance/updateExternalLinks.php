@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ExternalLinks\LinkFilter;
 
 require_once __DIR__ . '/../../../maintenance/Maintenance.php';
 
@@ -24,19 +25,34 @@ class UpdateExternalLinks extends Maintenance {
 			__METHOD__
 		);
 
-		$res = $dbw->select(
-			'externallinks',
-			[
-				'el_from',
-				'el_to_domain_index',
-				'el_to_path'
-			]
-		);
+			$rottenlinksarray = [];
 
-		$rottenlinksarray = [];
+		if ( version_compare( MW_VERSION, '1.41', '>=' ) ) {
+			$res = $dbw->select(
+				'externallinks',
+				[
+					'el_from',
+					'el_to_domain_index',
+					'el_to_path'
+				]
+			);
+	
+			foreach ( $res as $row ) {
+				$elUrl = LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
+				$rottenlinksarray[$elUrl][] = (int)$row->el_from;
+			}
+		} else {
+			$res = $dbw->select(
+				'externallinks',
+				[
+					'el_from',
+					'el_to'
+				]
+			);
 
-		foreach ( $res as $row ) {
-			$rottenlinksarray[$row->el_to_domain_index . $row->el_to_path][] = (int)$row->el_from;
+			foreach ( $res as $row ) {
+				$rottenlinksarray[$row->el_to][] = (int)$row->el_from;
+			}
 		}
 
 		foreach ( $rottenlinksarray as $url => $pages ) {
