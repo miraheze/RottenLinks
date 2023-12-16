@@ -58,7 +58,6 @@ class UpdateExternalLinks extends Maintenance {
 				continue;
 			}
 
-
 			$rottenLinksCount = $dbw->selectRowCount( 'rottenlinks', 'rl_externallink', [ 'rl_externallink' => $url ], __METHOD__ );
 			if ( $rottenLinksCount > 0 ) {
 				// Don't create duplicate entires
