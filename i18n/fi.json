@@ -10,8 +10,6 @@
 	"rottenlinks-table-external": "Ulkoinen linkki",
 	"rottenlinks-table-response": "HTTP-vastaus",
 	"rottenlinks-table-usage": "Käyttö sivuilla",
-	"rottenlinks-rundate": "Skriptin suorituspäivä",
-	"rottenlinks-runtime": "Skriptin suoritusaika",
 	"rottenlinks-showbad": "Näytä vain huonot linkit",
 	"rottenlinks-statistics": "Ulkoisten linkkien toimivuustilasto",
 	"rottenlinks-stats": "Näytä linkkitilastot"
