@@ -13,8 +13,6 @@
 	"rottenlinks-table-external": "外部リンク",
 	"rottenlinks-table-response": "HTTPレスポンス",
 	"rottenlinks-table-usage": "ページの使用状況",
-	"rottenlinks-rundate": "スクリプトが実行されて日時",
-	"rottenlinks-runtime": "スクリプトの実行時間",
 	"rottenlinks-showbad": "腐ったリンクのみを表示",
 	"rottenlinks-statistics": "腐ったリンクの統計",
 	"rottenlinks-stats": "リンクの統計を表示"
