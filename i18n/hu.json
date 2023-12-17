@@ -5,6 +5,5 @@
 		]
 	},
 	"rottenlinks": "Külső linkek állapota",
-	"rottenlinks-table-response": "HTTP-válasz",
-	"rottenlinks-rundate": "A szkript legutóbbi futtatása"
+	"rottenlinks-table-response": "HTTP-válasz"
 }
