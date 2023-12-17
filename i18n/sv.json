@@ -10,8 +10,6 @@
 	"rottenlinks-table-external": "Extern länk",
 	"rottenlinks-table-response": "HTTP-respons",
 	"rottenlinks-table-usage": "Sidanvändning",
-	"rottenlinks-rundate": "Skriptkörningsdatum",
-	"rottenlinks-runtime": "Skriptuförningstid",
 	"rottenlinks-showbad": "Visa bara döda länkar",
 	"rottenlinks-statistics": "Statistik över döda länkar",
 	"rottenlinks-stats": "Visa länkstatistik"
