@@ -11,8 +11,6 @@
 	"rottenlinks-table-external": "Vanjski link",
 	"rottenlinks-table-response": "HTTP-odgovor",
 	"rottenlinks-table-usage": "Upotreba stranice",
-	"rottenlinks-rundate": "Datum pokretanja skripte",
-	"rottenlinks-runtime": "Vrijeme izvršenja skripte",
 	"rottenlinks-showbad": "Prikaži samo pokvarene linkove",
 	"rottenlinks-statistics": "Statistika pokvarenih linkova",
 	"rottenlinks-stats": "Daj statistiku linkova"
