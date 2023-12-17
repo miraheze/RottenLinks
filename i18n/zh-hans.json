@@ -10,8 +10,6 @@
 	"rottenlinks-table-external": "外部链接",
 	"rottenlinks-table-response": "HTTP响应",
 	"rottenlinks-table-usage": "页面使用情况",
-	"rottenlinks-rundate": "脚本运行日期",
-	"rottenlinks-runtime": "脚本执行时间",
 	"rottenlinks-showbad": "仅显示错误链接",
 	"rottenlinks-statistics": "错误链接统计信息",
 	"rottenlinks-stats": "显示链接统计信息"
