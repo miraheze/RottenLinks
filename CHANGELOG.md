@@ -11,6 +11,9 @@
   Config is removed under MW 1.41+.
 * Add support for MediaWiki 1.41.
 * Fix some deprecated warnings in php 8.2.
+* Remove showing lastRun and runTime as these are no longer needed.
+  They didn't work very well to begin with.
+* Adds additional messages to qqq.json.
 
 ### 1.0.20 (10-01-2023)
 * SpecialRottenLinks: replace usage of deprecated wfGetDB()
