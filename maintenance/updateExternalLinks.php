@@ -73,6 +73,8 @@ class UpdateExternalLinks extends Maintenance {
 				continue;
 			}
 
+			// This is to ensure duplicate links are not added,
+			// now that links are added after each edit that adds a url.
 			$rottenLinksCount = $dbw->selectRowCount( 'rottenlinks', 'rl_externallink', [ 'rl_externallink' => $url ], __METHOD__ );
 			if ( $rottenLinksCount > 0 ) {
 				// Don't create duplicate entires
@@ -94,10 +96,6 @@ class UpdateExternalLinks extends Maintenance {
 		}
 
 		$time = time() - $time;
-
-		$cache = ObjectCache::getLocalClusterInstance();
-		$cache->set( $cache->makeKey( 'RottenLinks', 'lastRun' ), $dbw->timestamp() );
-		$cache->set( $cache->makeKey( 'RottenLinks', 'runTime' ), $time );
 
 		$this->output( "Script took {$time} seconds.\n" );
 	}
