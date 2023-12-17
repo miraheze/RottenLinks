@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MediaWikiServices;
 
 class RottenLinksPager extends TablePager {
