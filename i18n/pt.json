@@ -10,8 +10,6 @@
 	"rottenlinks-table-external": "Hiperligação externa",
 	"rottenlinks-table-response": "Resposta HTTP",
 	"rottenlinks-table-usage": "Utilização da página",
-	"rottenlinks-rundate": "Data de execução do ''script''",
-	"rottenlinks-runtime": "Tempo de execução do ''script''",
 	"rottenlinks-showbad": "Mostrar só as hiperligações corrompidas",
 	"rottenlinks-statistics": "Estatísticas de hiperligações corrompidas",
 	"rottenlinks-stats": "Mostrar estatísticas das hiperligações"
