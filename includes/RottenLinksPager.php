@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MediaWikiServices;
 
 class RottenLinksPager extends TablePager {
@@ -34,6 +35,7 @@ class RottenLinksPager extends TablePager {
 	public function formatValue( $name, $value ) {
 		$row = $this->mCurrentRow;
 
+		$db = $this->getDatabase();
 		switch ( $name ) {
 			case 'rl_externallink':
 				$formatted = Linker::makeExternalLink( (string)$row->rl_externallink, ( substr( (string)$row->rl_externallink, 0, 50 ) . '...' ), true, '', [ 'target' => $this->config->get( 'RottenLinksExternalLinkTarget' ) ] );
@@ -42,14 +44,22 @@ class RottenLinksPager extends TablePager {
 				$respCode = (int)$row->rl_respcode;
 				$colour = ( in_array( $respCode, $this->config->get( 'RottenLinksBadCodes' ) ) ) ? "#8B0000" : "#008000";
 				$formatted = ( $respCode != 0 )
-					? HTML::element( 'font', [ 'color' => $colour ], HttpStatus::getMessage( $respCode ) ?? "HTTP: ${respCode}" )
+					? HTML::element( 'font', [ 'color' => $colour ], HttpStatus::getMessage( $respCode ) ?? "HTTP: {$respCode}" )
 					: HTML::element( 'font', [ 'color' => '#8B0000' ], 'No Response' );
 				break;
 			case 'rl_pageusage':
-				$number = count( json_decode( $row->rl_pageusage, true ) );
+				$el = LinkFilter::makeIndexes( $row->rl_externallink );
+				$pagesCount = $db->selectRowCount(
+					'externallinks',
+					'*',
+					[
+						'el_to_domain_index' => substr( $el[0][0], 0, 255 ),
+						'el_to_path' => $el[0][1]
+					]
+				);
 				$specialLinkSearch = SpecialPage::getTitleFor( 'LinkSearch' );
 				$href = $specialLinkSearch->getInternalURL( [ 'target' => $row->rl_externallink ] );
-				$formatted = HTML::element( 'a', [ 'href' => $href ], (string)$number );
+				$formatted = HTML::element( 'a', [ 'href' => $href ], (string)$pagesCount );
 				break;
 			default:
 				$formatted = HTML::element( 'span', [], "Unable to format $name" );
@@ -62,7 +72,7 @@ class RottenLinksPager extends TablePager {
 	public function getQueryInfo() {
 		$info = [
 			'tables' => [ 'rottenlinks' ],
-			'fields' => [ 'rl_externallink', 'rl_respcode', 'rl_pageusage' ],
+			'fields' => [ 'rl_externallink', 'rl_respcode' ],
 			'conds' => [],
 			'joins_conds' => [],
 		];

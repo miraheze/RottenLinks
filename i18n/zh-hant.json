@@ -10,8 +10,6 @@
 	"rottenlinks-table-external": "外部連結",
 	"rottenlinks-table-response": "HTTP 回應",
 	"rottenlinks-table-usage": "頁面使用情況",
-	"rottenlinks-rundate": "腳本運作日期",
-	"rottenlinks-runtime": "腳本執行時間",
 	"rottenlinks-showbad": "只顯示損壞連結",
 	"rottenlinks-statistics": "損壞連結統計",
 	"rottenlinks-stats": "顯示連結統計"

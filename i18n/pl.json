@@ -11,8 +11,6 @@
 	"rottenlinks-table-external": "Link zewnętrzny",
 	"rottenlinks-table-response": "Odpowiedź HTTP",
 	"rottenlinks-table-usage": "Użycie na stronach",
-	"rottenlinks-rundate": "Data uruchomienia skryptu",
-	"rottenlinks-runtime": "Czas wykonania skryptu",
 	"rottenlinks-showbad": "Pokaż tylko zgniłe linki",
 	"rottenlinks-statistics": "Statystyki zgniłych linków",
 	"rottenlinks-stats": "Pokaż statystyki linków"

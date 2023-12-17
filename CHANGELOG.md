@@ -1,5 +1,20 @@
 ## ChangeLog for RottenLinks
 
+### 2.0.0 (DD-MM-2023)
+* Redesign RottenLinks to not depend on a maintenance script
+* Changes how we count page usage on RottenLinks special page.
+  We directly gather this from externallinks table rather then
+  storing it ourselfs. Saves space and reduces complexity in getting it.
+* Requires MediaWiki 1.40 or higher and to have migrated externallinks using
+  migrateExternallinks maintenance script and to set
+  wgExternalLinksSchemaMigrationStage to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD.
+  Config is removed under MW 1.41+.
+* Add support for MediaWiki 1.41.
+* Fix some deprecated warnings in php 8.2.
+* Remove showing lastRun and runTime as these are no longer needed.
+  They didn't work very well to begin with.
+* Adds additional messages to qqq.json.
+
 ### 1.0.20 (10-01-2023)
 * SpecialRottenLinks: replace usage of deprecated wfGetDB()
 

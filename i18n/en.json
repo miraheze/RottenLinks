@@ -11,8 +11,6 @@
 	"rottenlinks-table-external": "External Link",
 	"rottenlinks-table-response": "HTTP Response",
 	"rottenlinks-table-usage": "Page Usage",
-	"rottenlinks-rundate": "Script run date",
-	"rottenlinks-runtime": "Script execution time",
 	"rottenlinks-showbad": "Show rotten links only",
 	"rottenlinks-statistics": "Rotten Link Statistics",
 	"rottenlinks-stats": "Show link statistics"

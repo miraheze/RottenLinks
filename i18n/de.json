@@ -10,8 +10,6 @@
 	"rottenlinks-table-external": "Externer Link",
 	"rottenlinks-table-response": "HTTP-Antwort",
 	"rottenlinks-table-usage": "Seitenanzahl",
-	"rottenlinks-rundate": "Ausführungsdatum",
-	"rottenlinks-runtime": "Ausführungszeitraum",
 	"rottenlinks-showbad": "Lediglich fehlerhafte Links anzeigen",
 	"rottenlinks-statistics": "Statistiken zu den Links",
 	"rottenlinks-stats": "Statistiken anzeigen"

@@ -64,22 +64,7 @@ class SpecialRottenLinks extends SpecialPage {
 			'DISTINCT'
 		);
 
-		$cache = ObjectCache::getLocalClusterInstance();
-
-		$statDescriptor = [
-			'runTime' => [
-				'type' => 'info',
-				'label-message' => 'rottenlinks-runtime',
-				'default' => $cache->get( $cache->makeKey( 'RottenLinks', 'runTime' ) ) . ' seconds',
-				'section' => 'metadata'
-			],
-			'runDate' => [
-				'type' => 'info',
-				'label-message' => 'rottenlinks-rundate',
-				'default' => $context->getLanguage()->timeanddate( $cache->get( $cache->makeKey( 'RottenLinks', 'lastRun' ) ), true ),
-				'section' => 'metadata'
-			]
-		];
+		$statDescriptor = [];
 
 		foreach ( $statusNumbers as $num ) {
 			$respCode = $num->rl_respcode;
@@ -95,7 +80,7 @@ class SpecialRottenLinks extends SpecialPage {
 
 			$statDescriptor[$respCode] = [
 				'type' => 'info',
-				'label' => "HTTP: ${respCode} " . ( $respCode != 0 ? HttpStatus::getMessage( $respCode ) : 'No Response' ),
+				'label' => "HTTP: {$respCode} " . ( $respCode != 0 ? HttpStatus::getMessage( $respCode ) : 'No Response' ),
 				'default' => $count,
 				'section' => 'statistics'
 			];

@@ -10,8 +10,6 @@
 	"rottenlinks-table-external": "Zunanja povezava",
 	"rottenlinks-table-response": "HTTP-odgovor",
 	"rottenlinks-table-usage": "Uporaba strani",
-	"rottenlinks-rundate": "Datum izvedbe skripta",
-	"rottenlinks-runtime": "Čas izvedbe skripta",
 	"rottenlinks-showbad": "Pokaži samo nedelujoče povezave",
 	"rottenlinks-statistics": "Statistika nedelujočih povezav",
 	"rottenlinks-stats": "Prikaži statistiko povezav"
