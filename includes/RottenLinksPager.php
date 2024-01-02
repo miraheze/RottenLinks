@@ -7,7 +7,7 @@ use Html;
 use HttpStatus;
 use IContextSource;
 use Linker;
-use LinkFilter;
+use MediaWiki\ExternalLinks\LinkFilter;
 use SpecialPage;
 use TablePager;
 
