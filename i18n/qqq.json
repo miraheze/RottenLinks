@@ -8,6 +8,7 @@
 	},
 	"rottenlinks": "{{doc-special}}",
 	"rottenlinks-desc": "{{desc|name=RottenLinks|url=https://github.com/miraheze/RottenLinks}}",
+	"rottenlinks-extensionname": "{{name}}",
 	"rottenlinks-table-external": "This is the label of a tabel header on Special:RottenLinks",
 	"rottenlinks-table-response": "This is the label of a tabel header on Special:RottenLinks",
 	"rottenlinks-table-usage": "This is the label of a tabel header on Special:RottenLinks",

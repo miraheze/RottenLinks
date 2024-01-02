@@ -1,12 +1,22 @@
 <?php
 
+namespace Miraheze\RottenLinks;
+
+use Config;
 use MediaWiki\MediaWikiServices;
 
 class RottenLinks {
-	public static function getResponse( $url ) {
+	/**
+	 * Get the HTTP response status code for a given URL.
+	 *
+	 * @param string $url The URL to check.
+	 *
+	 * @return int The HTTP status code.
+	 */
+	public static function getResponse( string $url ) {
 		$services = MediaWikiServices::getInstance();
 
-		$config = $services->getConfigFactory()->makeConfig( 'rottenlinks' );
+		$config = $services->getConfigFactory()->makeConfig( 'RottenLinks' );
 
 		// Make the protocol lowercase
 		$urlexp = explode( '://', $url, 2 );
@@ -23,11 +33,27 @@ class RottenLinks {
 		return $status;
 	}
 
-	private static function getHttpStatus( $url, $method, $services, $config ) {
+	/**
+	 * Get the HTTP status code for a given URL using a specified method.
+	 *
+	 * @param string $url The URL to check.
+	 * @param string $method The HTTP method to use ('HEAD' or 'GET').
+	 * @param MediaWikiServices $services MediaWiki service instance.
+	 * @param Config $config Configuration instance.
+	 *
+	 * @return int The HTTP status code.
+	 */
+	private static function getHttpStatus(
+		string $url,
+		string $method,
+		MediaWikiServices $services,
+		Config $config
+	) {
 		$httpProxy = $config->get( 'RottenLinksHTTPProxy' );
 
 		$userAgent = $config->get( 'RottenLinksUserAgent' ) ?:
-			'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' . $config->get( 'Server' );
+			'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' .
+				$config->get( 'Server' );
 
 		$request = $services->getHttpRequestFactory()->createMultiClient( [ 'proxy' => $httpProxy ] )
 			->run( [

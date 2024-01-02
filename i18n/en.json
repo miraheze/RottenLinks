@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"John Lewis",
-			"Kghbln"
+			"Kghbln",
+			"Universal Omega"
 		]
 	},
 	"rottenlinks": "Status of external links",
 	"rottenlinks-desc": "Shows the [[Special:RottenLinks|state of all external links]] on the wiki",
-	"rottenlinks-metadata": "Script Data",
+	"rottenlinks-extensionname": "RottenLinks",
 	"rottenlinks-table-external": "External Link",
 	"rottenlinks-table-response": "HTTP Response",
 	"rottenlinks-table-usage": "Page Usage",
