@@ -4,7 +4,7 @@ namespace Miraheze\RottenLinks;
 
 use GenericParameterJob;
 use Job;
-use LinkFilter;
+use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MediaWikiServices;
 
 class RottenLinksJob extends Job implements GenericParameterJob {
