@@ -36,7 +36,6 @@ class UpdateExternalLinks extends Maintenance {
 			__METHOD__
 		);
 
-
 		$rottenlinksarray = [];
 
 		if ( version_compare( MW_VERSION, '1.41', '>=' ) ) {
