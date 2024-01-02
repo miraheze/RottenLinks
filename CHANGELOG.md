@@ -1,6 +1,16 @@
 ## ChangeLog for RottenLinks
 
-### 2.0.0 (DD-MM-2023)
+
+### 2.0.1 (02-01-2024)
+* Add `requireExtension` to updateExternalLinks.
+* Modernize extension:
+  * Use class namespacing
+  * Use dependency injection
+  * Use HookHandlers
+  * Convert DB select queries to use SelectQueryBuilder
+  * Enable and fix remaining PHPCS checks
+
+### 2.0.0 (17-12-2023)
 * Redesign RottenLinks to not depend on a maintenance script
 * Changes how we count page usage on RottenLinks special page.
   We directly gather this from externallinks table rather then
