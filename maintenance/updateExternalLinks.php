@@ -3,6 +3,7 @@
 namespace Miraheze\RottenLinks\Maintenance;
 
 use Maintenance;
+use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MediaWikiServices;
 use Miraheze\RottenLinks\RottenLinks;
 
@@ -35,20 +36,38 @@ class UpdateExternalLinks extends Maintenance {
 			__METHOD__
 		);
 
-		$res = $dbw->newSelectQueryBuilder()
-			->select( [
-				'el_from',
-				'el_to_domain_index',
-				'el_to_path',
-			] )
-			->from( 'externallinks' )
-			->caller( __METHOD__ )
-			->fetchResultSet();
 
 		$rottenlinksarray = [];
 
-		foreach ( $res as $row ) {
-			$rottenlinksarray[$row->el_to_domain_index . $row->el_to_path][] = (int)$row->el_from;
+		if ( version_compare( MW_VERSION, '1.41', '>=' ) ) {
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [
+					'el_from',
+					'el_to_domain_index',
+					'el_to_path',
+				] )
+				->from( 'externallinks' )
+				->caller( __METHOD__ )
+				->fetchResultSet();
+
+			foreach ( $res as $row ) {
+				// @phan-suppress-next-line PhanUndeclaredStaticMethod
+				$elUrl = LinkFilter::reverseIndexes( $row->el_to_domain_index ) . $row->el_to_path;
+				$rottenlinksarray[$elUrl][] = (int)$row->el_from;
+			}
+		} else {
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [
+					'el_from',
+					'el_to',
+				] )
+				->from( 'externallinks' )
+				->caller( __METHOD__ )
+				->fetchResultSet();
+
+			foreach ( $res as $row ) {
+				$rottenlinksarray[$row->el_to][] = (int)$row->el_from;
+			}
 		}
 
 		$excludeProtocols = (array)$config->get( 'RottenLinksExcludeProtocols' );
@@ -73,6 +92,8 @@ class UpdateExternalLinks extends Maintenance {
 				continue;
 			}
 
+			// This is to ensure duplicate links are not added,
+			// since links are added after each edit that adds a url.
 			$rottenLinksCount = $dbw->newSelectQueryBuilder()
 				->select( 'rl_externallink' )
 				->from( 'rottenlinks' )
