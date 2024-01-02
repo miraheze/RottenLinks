@@ -1,12 +1,39 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+namespace Miraheze\RottenLinks;
+
+use Config;
+use ConfigFactory;
+use HTMLForm;
+use HttpStatus;
+use SpecialPage;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 class SpecialRottenLinks extends SpecialPage {
-	public function __construct() {
+
+	/** @var Config */
+	private $config;
+
+	/** @var ILoadBalancer */
+	private $dbLoadBalancer;
+
+	/**
+	 * @param ConfigFactory $configFactory
+	 * @param ILoadBalancer $dbLoadBalancer
+	 */
+	public function __construct(
+		ConfigFactory $configFactory,
+		ILoadBalancer $dbLoadBalancer
+	) {
 		parent::__construct( 'RottenLinks' );
+
+		$this->config = $configFactory->makeConfig( 'RottenLinks' );
+		$this->dbLoadBalancer = $dbLoadBalancer;
 	}
 
+	/**
+	 * @param string $par
+	 */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -15,7 +42,7 @@ class SpecialRottenLinks extends SpecialPage {
 		$showBad = $this->getRequest()->getBool( 'showBad' );
 		$stats = $this->getRequest()->getBool( 'stats' );
 
-		$pager = new RottenLinksPager( $this, $showBad );
+		$pager = new RottenLinksPager( $this->getContext(), $this->config, $showBad );
 
 		$formDescriptor = [
 			'showBad' => [
@@ -43,7 +70,7 @@ class SpecialRottenLinks extends SpecialPage {
 		$htmlForm->setMethod( 'get' )->prepareForm()->displayForm( false );
 
 		if ( $stats ) {
-			$statForm = HTMLForm::factory( 'ooui', $this->showStatistics( $this->getContext() ), $this->getContext(), 'rottenlinks' );
+			$statForm = HTMLForm::factory( 'ooui', $this->showStatistics(), $this->getContext(), 'rottenlinks' );
 			$statForm->setMethod( 'get' )->suppressDefaultSubmit()->prepareForm()->displayForm( false );
 			return;
 		}
@@ -51,36 +78,36 @@ class SpecialRottenLinks extends SpecialPage {
 		$this->getOutput()->addParserOutputContent( $pager->getFullOutput() );
 	}
 
-	public static function showStatistics( IContextSource $context ) {
-		$dbr = MediaWikiServices::getInstance()
-			->getDBLoadBalancer()
-			->getMaintenanceConnectionRef( DB_REPLICA );
+	/**
+	 * Display statistics related to RottenLinks.
+	 *
+	 * @return array Array with statistics information.
+	 */
+	private function showStatistics() {
+		$dbr = $this->dbLoadBalancer->getMaintenanceConnectionRef( DB_REPLICA );
 
-		$statusNumbers = $dbr->select(
-			'rottenlinks',
-			'rl_respcode',
-			[],
-			__METHOD__,
-			'DISTINCT'
-		);
+		$statusNumbers = $dbr->newSelectQueryBuilder()
+			->select( 'rl_respcode' )
+			->distinct()
+			->from( 'rottenlinks' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$statDescriptor = [];
 
 		foreach ( $statusNumbers as $num ) {
 			$respCode = $num->rl_respcode;
-
-			$count = (string)$dbr->selectRowCount(
-				'rottenlinks',
-				'rl_respcode',
-				[
-					'rl_respcode' => $respCode
-				],
-				__METHOD__
-			);
+			$count = (string)$dbr->newSelectQueryBuilder()
+				->select( 'rl_respcode' )
+				->from( 'rottenlinks' )
+				->where( [ 'rl_respcode' => $respCode ] )
+				->caller( __METHOD__ )
+				->fetchRowCount();
 
 			$statDescriptor[$respCode] = [
 				'type' => 'info',
-				'label' => "HTTP: {$respCode} " . ( $respCode != 0 ? HttpStatus::getMessage( $respCode ) : 'No Response' ),
+				'label' => "HTTP: {$respCode} " .
+					( $respCode != 0 ? HttpStatus::getMessage( $respCode ) : 'No Response' ),
 				'default' => $count,
 				'section' => 'statistics'
 			];
@@ -89,6 +116,11 @@ class SpecialRottenLinks extends SpecialPage {
 		return $statDescriptor;
 	}
 
+	/**
+	 * Get the group name for the special page.
+	 *
+	 * @return string Group name.
+	 */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

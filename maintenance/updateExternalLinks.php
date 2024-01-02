@@ -1,20 +1,31 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+namespace Miraheze\RottenLinks\Maintenance;
 
-require_once __DIR__ . '/../../../maintenance/Maintenance.php';
+use Maintenance;
+use MediaWiki\MediaWikiServices;
+use Miraheze\RottenLinks\RottenLinks;
+
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = __DIR__ . '/../../..';
+}
+
+require_once "$IP/maintenance/Maintenance.php";
 
 class UpdateExternalLinks extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
 		$this->addDescription( 'Updates rottenlinks database table based on externallinks table.' );
+
+		$this->requireExtension( 'RottenLinks' );
 	}
 
 	public function execute() {
 		$time = time();
 
-		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'rottenlinks' );
+		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'RottenLinks' );
 		$dbw = $this->getDB( DB_PRIMARY );
 
 		$this->output( "Dropping all existing recorded entries\n" );
@@ -24,35 +35,24 @@ class UpdateExternalLinks extends Maintenance {
 			__METHOD__
 		);
 
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [
+				'el_from',
+				'el_to_domain_index',
+				'el_to_path',
+			] )
+			->from( 'externallinks' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+
 		$rottenlinksarray = [];
 
-		if ( version_compare( MW_VERSION, '1.41', '>=' ) ) {
-			$res = $dbw->select(
-				'externallinks',
-				[
-					'el_from',
-					'el_to_domain_index',
-					'el_to_path'
-				]
-			);
-
-			foreach ( $res as $row ) {
-				$elUrl = \MediaWiki\ExternalLinks\LinkFilter::reverseIndexes( $row->el_to_domain_index ) . $row->el_to_path;
-				$rottenlinksarray[$elUrl][] = (int)$row->el_from;
-			}
-		} else {
-			$res = $dbw->select(
-				'externallinks',
-				[
-					'el_from',
-					'el_to'
-				]
-			);
-
-			foreach ( $res as $row ) {
-				$rottenlinksarray[$row->el_to][] = (int)$row->el_from;
-			}
+		foreach ( $res as $row ) {
+			$rottenlinksarray[$row->el_to_domain_index . $row->el_to_path][] = (int)$row->el_from;
 		}
+
+		$excludeProtocols = (array)$config->get( 'RottenLinksExcludeProtocols' );
+		$excludeWebsites = (array)$config->get( 'RottenLinksExcludeWebsites' );
 
 		foreach ( $rottenlinksarray as $url => $pages ) {
 			$url = $this->decodeDomainName( $url );
@@ -63,21 +63,25 @@ class UpdateExternalLinks extends Maintenance {
 
 			$urlexp = explode( ':', $url );
 
-			if ( isset( $urlexp[0] ) && in_array( strtolower( $urlexp[0] ), (array)$config->get( 'RottenLinksExcludeProtocols' ) ) ) {
+			if ( isset( $urlexp[0] ) && in_array( strtolower( $urlexp[0] ), $excludeProtocols ) ) {
 				continue;
 			}
 
 			$mainSite = explode( '/', $urlexp[1] );
 
-			if ( isset( $mainSite[2] ) && in_array( $mainSite[2], (array)$config->get( 'RottenLinksExcludeWebsites' ) ) ) {
+			if ( isset( $mainSite[2] ) && in_array( $mainSite[2], $excludeWebsites ) ) {
 				continue;
 			}
 
-			// This is to ensure duplicate links are not added,
-			// now that links are added after each edit that adds a url.
-			$rottenLinksCount = $dbw->selectRowCount( 'rottenlinks', 'rl_externallink', [ 'rl_externallink' => $url ], __METHOD__ );
+			$rottenLinksCount = $dbw->newSelectQueryBuilder()
+				->select( 'rl_externallink' )
+				->from( 'rottenlinks' )
+				->where( [ 'rl_externallink' => $url ] )
+				->caller( __METHOD__ )
+				->fetchRowCount();
+
 			if ( $rottenLinksCount > 0 ) {
-				// Don't create duplicate entires
+				// Don't create duplicate entries
 				continue;
 			}
 
@@ -104,8 +108,12 @@ class UpdateExternalLinks extends Maintenance {
 	 * Apparently, MediaWiki URL-encodes the whole URL, including the domain name,
 	 * before storing it in the DB. This breaks non-ASCII domains.
 	 * URL-decoding the domain part turns these URLs back into valid syntax.
+	 *
+	 * @param string $url The URL to decode.
+	 *
+	 * @return string The URL with the decoded domain name.
 	 */
-	private function decodeDomainName( $url ) {
+	private function decodeDomainName( string $url ): string {
 		$urlexp = explode( '://', $url, 2 );
 		if ( count( $urlexp ) === 2 ) {
 			$locexp = explode( '/', $urlexp[1], 2 );

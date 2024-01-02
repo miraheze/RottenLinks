@@ -1,23 +1,18 @@
 {
 	"name": "RottenLinks",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"author": [
 		"John Lewis",
-		"Universal Omega",
-		"Paladox"
+		"Paladox",
+		"Universal Omega"
 	],
-	"descriptionmsg": "rottenlinks-desc",
-	"license-name": "GPL-3.0-or-later",
 	"url": "https://github.com/miraheze/RottenLinks",
+	"descriptionmsg": "rottenlinks-desc",
+	"namemsg": "rottenlinks-extensionname",
+	"license-name": "GPL-3.0-or-later",
 	"type": "specialpage",
 	"requires": {
 		"MediaWiki": ">= 1.40.0"
-	},
-	"SpecialPages": {
-		"RottenLinks": "SpecialRottenLinks"
-	},
-	"JobClasses": {
-		"RottenLinksJob": "RottenLinksJob"
 	},
 	"MessagesDirs": {
 		"RottenLinks": [
@@ -25,62 +20,74 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"RottenLinksAliases": "includes/RottenLinksAliases.php"
+		"RottenLinksAliases": "RottenLinksAliases.php"
 	},
-	"AutoloadClasses": {
-		"RottenLinks": "includes/RottenLinks.php",
-		"RottenLinksHooks": "includes/RottenLinksHooks.php",
-		"RottenLinksJob": "includes/RottenLinksJob.php",
-		"RottenLinksPager": "includes/RottenLinksPager.php",
-		"SpecialRottenLinks": "includes/SpecialRottenLinks.php"
+	"AutoloadNamespaces": {
+		"Miraheze\\RottenLinks\\": "includes/"
+	},
+	"JobClasses": {
+		"RottenLinksJob": "Miraheze\\RottenLinks\\RottenLinksJob"
+	},
+	"SpecialPages": {
+		"RottenLinks": {
+			"class": "Miraheze\\RottenLinks\\SpecialRottenLinks",
+			"services": [
+				"ConfigFactory",
+				"DBLoadBalancer"
+			]
+		}
 	},
 	"Hooks": {
-		"LoadExtensionSchemaUpdates": [
-			"RottenLinksHooks::onRottenLinksSchemaUpdates"
-		],
-		"LinksUpdateComplete": [
-			"RottenLinksHooks::onLinksUpdateComplete"
-		]
+		"LinksUpdateComplete": {
+			"handler": "Main"
+		},
+		"LoadExtensionSchemaUpdates": {
+			"handler": "Installer"
+		}
+	},
+	"HookHandlers": {
+		"Installer": {
+			"class": "Miraheze\\RottenLinks\\HookHandlers\\Installer"
+		},
+		"Main": {
+			"class": "Miraheze\\RottenLinks\\HookHandlers\\Main",
+			"services": [
+				"JobQueueGroup"
+			]
+		}
 	},
 	"config": {
 		"RottenLinksBadCodes": {
-			"description": "Holds a list of HTTP codes that are considered bad. (array)",
-			"public": true,
-			"value": [ "0", "400", "401", "403", "404", "405", "502", "503", "504" ]
+			"value": [ "0", "400", "401", "403", "404", "405", "502", "503", "504" ],
+			"description": "Holds a list of HTTP codes that are considered bad. (array)"
 		},
 		"RottenLinksCurlTimeout": {
-			"description": "Sets the timeout for cURL in seconds. (integer)",
-			"public": true,
-			"value": 30
+			"value": 30,
+			"description": "Sets the timeout for cURL in seconds. (integer)"
 		},
 		"RottenLinksHTTPProxy": {
-			"description": "Sets a proxy to use for requests. (string)",
-			"public": true,
-			"value": ""
+			"value": "",
+			"description": "Sets a proxy to use for requests. (string)"
 		},
 		"RottenLinksExcludeProtocols": {
-			"description": "Holds a list of protocols that should not be checked for validity. (array)",
-			"public": true,
-			"value": [ "tel", "mailto" ]
+			"value": [ "tel", "mailto" ],
+			"description": "Holds a list of protocols that should not be checked for validity. (array)"
 		},
 		"RottenLinksExcludeWebsites": {
-			"description": "List of websites to exclude checking of response codes for. (array)",
-			"public": true,
-			"value": false
+			"value": false,
+			"description": "List of websites to exclude checking of response codes for. (array)"
 		},
 		"RottenLinksExternalLinkTarget": {
-			"description": "Sets the external link target (_self for the current tab or _blank for a new tab). (string)",
-			"public": true,
-			"value": "_self"
+			"value": "_self",
+			"description": "Sets the external link target (_self for the current tab or _blank for a new tab). (string)"
 		},
 		"RottenLinksUserAgent": {
-			"description": "Overrides the user-agent to use for requests. Defaults to 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on <Wiki base URL>'. (string)",
-			"public": true,
-			"value": ""
+			"value": "",
+			"description": "Overrides the user-agent to use for requests. Defaults to 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on <Wiki base URL>'. (string)"
 		}
 	},
 	"ConfigRegistry": {
-		"rottenlinks": "GlobalVarConfig::newInstance"
+		"RottenLinks": "GlobalVarConfig::newInstance"
 	},
 	"manifest_version": 2
 }
