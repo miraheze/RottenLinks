@@ -103,7 +103,7 @@ class RottenLinksPager extends TablePager {
 					->fetchRowCount();
 
 				$specialLinkSearch = SpecialPage::getTitleFor( 'LinkSearch' );
-				$href = $specialLinkSearch->getInternalURL( [ 'target' => $row->rl_externallink ] );
+				$href = $specialLinkSearch->getFullURL( [ 'target' => $row->rl_externallink ] );
 				$formatted = Html::element( 'a', [ 'href' => $href ], (string)$pagesCount );
 				break;
 			default:
