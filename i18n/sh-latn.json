@@ -7,7 +7,6 @@
 	},
 	"rottenlinks": "Status vanjskih linkova",
 	"rottenlinks-desc": "Prikazuje [[Special:RottenLinks|stanje svih vanjskih linkova]] na vikiju",
-	"rottenlinks-metadata": "Podaci o skripti",
 	"rottenlinks-table-external": "Vanjski link",
 	"rottenlinks-table-response": "HTTP-odgovor",
 	"rottenlinks-table-usage": "Upotreba stranice",

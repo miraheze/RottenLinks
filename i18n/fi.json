@@ -6,7 +6,6 @@
 	},
 	"rottenlinks": "Ulkoisten linkkien tila",
 	"rottenlinks-desc": "Näyttää [[Special:RottenLinks|kaikkien ulkoisten linkkien tilan]] wikissä",
-	"rottenlinks-metadata": "Skriptin data",
 	"rottenlinks-table-external": "Ulkoinen linkki",
 	"rottenlinks-table-response": "HTTP-vastaus",
 	"rottenlinks-table-usage": "Käyttö sivuilla",

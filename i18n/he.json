@@ -6,11 +6,10 @@
 	},
 	"rottenlinks": "מצב הקישורים החיצוניים",
 	"rottenlinks-desc": "הצגת [[Special:RottenLinks|מצב כל הקישורים החיצוניים]] בוויקי",
-	"rottenlinks-metadata": "נתוני סקריפט",
 	"rottenlinks-table-external": "קישור חיצוני",
 	"rottenlinks-table-response": "תגובת HTTP",
 	"rottenlinks-table-usage": "שימוש בדף",
-	"rottenlinks-showbad": "הצג קישורים מתים בלבד",
+	"rottenlinks-showbad": "להציג קישורים מתים בלבד",
 	"rottenlinks-statistics": "סטטיסטיקות קישורים מתים",
 	"rottenlinks-stats": "הצגת סטטיסטיקות קישורים"
 }

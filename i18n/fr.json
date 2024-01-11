@@ -7,7 +7,6 @@
 	},
 	"rottenlinks": "État des liens externes",
 	"rottenlinks-desc": "Affiche l’[[Special:RottenLinks|état de tous les liens externes]] présents sur le wiki",
-	"rottenlinks-metadata": "Données du script",
 	"rottenlinks-table-external": "Lien externe",
 	"rottenlinks-table-response": "Réponse HTTP",
 	"rottenlinks-table-usage": "Utilisation de la page",

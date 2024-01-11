@@ -6,7 +6,6 @@
 	},
 	"rottenlinks": "Состояние внешних ссылок",
 	"rottenlinks-desc": "Отображает [[Special:RottenLinks|состояние всех внешних ссылок]] в вики.",
-	"rottenlinks-metadata": "Данные скрипта",
 	"rottenlinks-table-external": "Внешняя ссылка",
 	"rottenlinks-table-response": "HTTP-ответ",
 	"rottenlinks-table-usage": "Использование страницы",

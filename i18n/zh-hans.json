@@ -6,7 +6,6 @@
 	},
 	"rottenlinks": "外部链接的状态",
 	"rottenlinks-desc": "显示wiki上 [[Special:RottenLinks|所有外部链接的状态]]",
-	"rottenlinks-metadata": "脚本数据",
 	"rottenlinks-table-external": "外部链接",
 	"rottenlinks-table-response": "HTTP响应",
 	"rottenlinks-table-usage": "页面使用情况",

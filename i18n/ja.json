@@ -9,7 +9,6 @@
 	},
 	"rottenlinks": "外部リンクの状況",
 	"rottenlinks-desc": "ウィキ上の[[Special:RottenLinks|すべての外部リンクの状態]]を表示します",
-	"rottenlinks-metadata": "スクリプトデータ",
 	"rottenlinks-table-external": "外部リンク",
 	"rottenlinks-table-response": "HTTPレスポンス",
 	"rottenlinks-table-usage": "ページの使用状況",

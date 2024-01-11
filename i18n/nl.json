@@ -6,7 +6,6 @@
 	},
 	"rottenlinks": "Status van externe koppelingen",
 	"rottenlinks-desc": "Toont de [[Special:RottenLinks|status van alle externe koppelingen]] op de wiki",
-	"rottenlinks-metadata": "Scriptgegevens",
 	"rottenlinks-table-external": "Externe koppeling",
 	"rottenlinks-table-response": "HTTP-antwoord",
 	"rottenlinks-table-usage": "Paginagebruik",

@@ -6,7 +6,6 @@
 	},
 	"rottenlinks": "Status för externa länkar",
 	"rottenlinks-desc": "Visar [[Special:RottenLinks|status för alla externa länkar]] på wikin",
-	"rottenlinks-metadata": "Skriptdata",
 	"rottenlinks-table-external": "Extern länk",
 	"rottenlinks-table-response": "HTTP-respons",
 	"rottenlinks-table-usage": "Sidanvändning",

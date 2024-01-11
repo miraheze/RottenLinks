@@ -6,7 +6,6 @@
 	},
 	"rottenlinks": "Išorinių nuorodų būsena",
 	"rottenlinks-desc": "Rodo [[Special:RottenLinks|visų viki išorinių nuorodų]] būseną",
-	"rottenlinks-metadata": "Kodo duomenys",
 	"rottenlinks-table-external": "Išorinė nuoroda",
 	"rottenlinks-table-response": "HTTP atsakymas",
 	"rottenlinks-table-usage": "Puslapio naudojimas",

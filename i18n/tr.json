@@ -7,7 +7,6 @@
 	},
 	"rottenlinks": "Dış bağlantıların durumu",
 	"rottenlinks-desc": "Viki'de [[Special:RottenLinks|tüm dış bağlantıların durumunu]] gösterir",
-	"rottenlinks-metadata": "Komut Dosyası Verileri",
 	"rottenlinks-table-external": "Dış Bağlantı",
 	"rottenlinks-table-response": "HTTP Yanıtı",
 	"rottenlinks-table-usage": "Sayfa Kullanımı",

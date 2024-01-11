@@ -6,7 +6,6 @@
 	},
 	"rottenlinks": "Status externer Links",
 	"rottenlinks-desc": "Ermöglicht die Anzeige des [[Special:RottenLinks|Status]] der auf dem Wiki genutzten externen Links",
-	"rottenlinks-metadata": "Statistiken zum Skript",
 	"rottenlinks-table-external": "Externer Link",
 	"rottenlinks-table-response": "HTTP-Antwort",
 	"rottenlinks-table-usage": "Seitenanzahl",

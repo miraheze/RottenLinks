@@ -6,7 +6,6 @@
 	},
 	"rottenlinks": "Состојба на надворешни врски",
 	"rottenlinks-desc": "Ја прикажува [[Special:RottenLinks|состојбата на сите надворешни врски]] на викито",
-	"rottenlinks-metadata": "Податоци за скриптата",
 	"rottenlinks-table-external": "Надворешна врска",
 	"rottenlinks-table-response": "HTTP-одговор",
 	"rottenlinks-table-usage": "Употреба на страницата",

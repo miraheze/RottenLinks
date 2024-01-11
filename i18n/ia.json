@@ -6,7 +6,6 @@
 	},
 	"rottenlinks": "Stato de ligamines externe",
 	"rottenlinks-desc": "Monstra le [[Special:RottenLinks|stato de tote le ligamines externe]] sur le wiki",
-	"rottenlinks-metadata": "Datos del script",
 	"rottenlinks-table-external": "Ligamine externe",
 	"rottenlinks-table-response": "Responsa HTTP",
 	"rottenlinks-table-usage": "Uso del pagina",
