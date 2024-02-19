@@ -9,6 +9,8 @@
 	"rottenlinks": "Status of external links",
 	"rottenlinks-desc": "Shows the [[Special:RottenLinks|state of all external links]] on the wiki",
 	"rottenlinks-extensionname": "RottenLinks",
+	"rottenlinks-header": "Refine external link results display",
+	"rottenlinks-header-info": "You may select what statistics you want displayed or how many results you want displayed per page.",
 	"rottenlinks-table-external": "External Link",
 	"rottenlinks-table-response": "HTTP Response",
 	"rottenlinks-table-usage": "Page Usage",

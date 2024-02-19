@@ -45,6 +45,10 @@ class SpecialRottenLinks extends SpecialPage {
 		$pager = new RottenLinksPager( $this->getContext(), $this->config, $showBad );
 
 		$formDescriptor = [
+			'info' => [
+				'type' => 'info',
+				'default' => $this->msg( 'rottenlinks-header-info' )->text(),
+			],
 			'showBad' => [
 				'type' => 'check',
 				'name' => 'showBad',
@@ -67,11 +71,20 @@ class SpecialRottenLinks extends SpecialPage {
 		];
 
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-		$htmlForm->setMethod( 'get' )->prepareForm()->displayForm( false );
+		$htmlForm
+			->setMethod( 'get' )
+			->setWrapperLegendMsg( 'rottenlinks-header' )
+			->setSubmitTextMsg( 'search' )
+			->prepareForm()
+			->displayForm( false );
 
 		if ( $stats ) {
 			$statForm = HTMLForm::factory( 'ooui', $this->showStatistics(), $this->getContext(), 'rottenlinks' );
-			$statForm->setMethod( 'get' )->suppressDefaultSubmit()->prepareForm()->displayForm( false );
+			$statForm
+				->setMethod( 'get' )
+				->suppressDefaultSubmit()
+				->prepareForm()
+				->displayForm( false );
 			return;
 		}
 
