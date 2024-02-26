@@ -6,6 +6,8 @@
 	},
 	"rottenlinks": "מצב הקישורים החיצוניים",
 	"rottenlinks-desc": "הצגת [[Special:RottenLinks|מצב כל הקישורים החיצוניים]] בוויקי",
+	"rottenlinks-header": "כוונון תצוגת תוצאות קישורים חיצוניים",
+	"rottenlinks-header-info": "אפשר לבחור איזו סטטיסטיקה או כמה תוצאות ברצונך להציג בכל דף.",
 	"rottenlinks-table-external": "קישור חיצוני",
 	"rottenlinks-table-response": "תגובת HTTP",
 	"rottenlinks-table-usage": "שימוש בדף",
