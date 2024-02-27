@@ -16,7 +16,7 @@
 		}
 	],
 	"support": {
-		"issues": "https://phabricator.miraheze.org/tag/rottenlinks/",
+		"issues": "https://issue-tracker.miraheze.org/tag/rottenlinks/",
 		"wiki": "https://www.mediawiki.org/wiki/Extension:RottenLinks"
 	},
 	"require": {
