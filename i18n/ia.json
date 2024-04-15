@@ -6,6 +6,8 @@
 	},
 	"rottenlinks": "Stato de ligamines externe",
 	"rottenlinks-desc": "Monstra le [[Special:RottenLinks|stato de tote le ligamines externe]] sur le wiki",
+	"rottenlinks-header": "Affinar le presentation de resultatos de ligamines externe",
+	"rottenlinks-header-info": "Tu pote seliger le statisticas que tu vole monstrar o le numero de resultatos que tu vole monstrar per pagina.",
 	"rottenlinks-table-external": "Ligamine externe",
 	"rottenlinks-table-response": "Responsa HTTP",
 	"rottenlinks-table-usage": "Uso del pagina",
