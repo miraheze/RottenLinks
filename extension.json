@@ -38,7 +38,7 @@
 		"RottenLinksBadCodes": {
 			"description": "Holds a list of HTTP codes that are considered bad. (array)",
 			"public": true,
-			"value": [ "0", "400", "401", "403", "404", "405", "502", "503", "504" ]
+			"value": [ "0", "400", "401", "403", "404", "405", "410", "502", "503", "504" ]
 		},
 		"RottenLinksCurlTimeout": {
 			"description": "Sets the timeout for cURL in seconds. (integer)",
