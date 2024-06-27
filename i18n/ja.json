@@ -4,11 +4,14 @@
 			"Buehl",
 			"M1660661",
 			"MathXplore",
+			"Waki285",
 			"背番号4のエース"
 		]
 	},
 	"rottenlinks": "外部リンクの状況",
 	"rottenlinks-desc": "ウィキ上の[[Special:RottenLinks|すべての外部リンクの状態]]を表示します",
+	"rottenlinks-header": "外部リンク結果表示の絞り込み",
+	"rottenlinks-header-info": "表示する統計情報や、ページごとに表示する結果の数を選択できます。",
 	"rottenlinks-table-external": "外部リンク",
 	"rottenlinks-table-response": "HTTPレスポンス",
 	"rottenlinks-table-usage": "ページの使用状況",
