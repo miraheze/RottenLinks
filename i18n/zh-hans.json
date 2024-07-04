@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"BlackWhite",
+			"LittlePaw365",
 			"沈澄心"
 		]
 	},
 	"rottenlinks": "外部链接的状态",
-	"rottenlinks-desc": "显示wiki上 [[Special:RottenLinks|所有外部链接的状态]]",
+	"rottenlinks-desc": "显示wiki上[[Special:RottenLinks|所有外部链接的状态]]",
 	"rottenlinks-header": "优化外部链接结果显示",
 	"rottenlinks-header-info": "您可以选择要显示的统计数据或每页显示的结果数。",
 	"rottenlinks-table-external": "外部链接",
