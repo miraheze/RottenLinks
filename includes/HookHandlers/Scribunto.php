@@ -2,8 +2,8 @@
 
 namespace Miraheze\RottenLinks\HookHandlers;
 
-use Miraheze\RottenLinks\RottenLinksLuaLibrary;
 use MediaWiki\Extension\Scribunto\Hooks\ScribuntoExternalLibrariesHook;
+use Miraheze\RottenLinks\RottenLinksLuaLibrary;
 
 class Scribunto implements ScribuntoExternalLibrariesHook {
 

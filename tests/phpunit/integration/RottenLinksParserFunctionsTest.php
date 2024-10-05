@@ -2,10 +2,9 @@
 
 namespace Miraheze\RottenLinks\Tests;
 
-use ParserOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\Parser;
-use Miraheze\RottenLinks\RottenLinksParserFunctions;
+use ParserOptions;
 
 /**
  * @coversDefaultClass Miraheze\RottenLinks\RottenLinksParserFunctions

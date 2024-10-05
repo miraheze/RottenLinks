@@ -2,10 +2,10 @@
 
 namespace Miraheze\RottenLinks;
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Extension\Scribunto\Engines\LuaCommon\LibraryBase;
 use MediaWiki\Extension\Scribunto\Engines\LuaCommon\LuaEngine;
 use MediaWiki\Extension\Scribunto\Engines\LuaCommon\LuaError;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class RottenLinksLuaLibrary extends LibraryBase {

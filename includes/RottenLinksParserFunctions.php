@@ -2,10 +2,10 @@
 
 namespace Miraheze\RottenLinks;
 
-use PPNode;
-use PPFrame;
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\Parser;
+use PPFrame;
+use PPNode;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class RottenLinksParserFunctions {
