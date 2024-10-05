@@ -13,8 +13,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
 
 class Main implements LinksUpdateCompleteHook, ParserFirstCallInitHook {
 
-	/** @var JobQueueGroup */
-	private $jobQueueGroup;
+	private JobQueueGroup $jobQueueGroup;
+	private RottenLinksParserFunctions $parserFunctions;
 
 	/**
 	 * @param JobQueueGroup $jobQueueGroup

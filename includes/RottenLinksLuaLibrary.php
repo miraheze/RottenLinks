@@ -1,4 +1,8 @@
 <?php
+// phan keeps whining in CI since Scribunto isn't installed, so:
+// @phan-file-suppress PhanUndeclaredInterface, PhanUndeclaredExtendedClass
+// @phan-file-suppress PhanUndeclaredTypeParameter, PhanUndeclaredClass
+// @phan-file-suppress PhanUndeclaredMethod, PhanUndeclaredClassMethod
 
 namespace Miraheze\RottenLinks;
 
@@ -31,6 +35,9 @@ class RottenLinksLuaLibrary extends LibraryBase {
 	public function onGetStatus( ?string $url = null ) {
 		$name = 'mw.ext.rottenLinks.getStatus';
 		$this->checkType( $name, 1, $url, 'string' );
+		// $this->checkType() validates that $url is a string, therefore...
+		'@phan-var string $url';
+
 		// I think Lua errors are untranslated? LibraryBase::checkType() returns
 		// a plain ol' English string too.
 		if ( $url === '' ) {
