@@ -1,9 +1,4 @@
 <?php
-// phan keeps whining in CI since Scribunto isn't installed, so:
-// @phan-file-suppress PhanUndeclaredInterface, PhanUndeclaredExtendedClass
-// @phan-file-suppress PhanUndeclaredTypeParameter, PhanUndeclaredClass
-// @phan-file-suppress PhanUndeclaredMethod, PhanUndeclaredClassMethod
-
 namespace Miraheze\RottenLinks;
 
 use MediaWiki\Extension\Scribunto\Engines\LuaCommon\LibraryBase;
