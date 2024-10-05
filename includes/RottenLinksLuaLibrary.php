@@ -23,11 +23,11 @@ class RottenLinksLuaLibrary extends LibraryBase {
 	}
 
 	/**
-	 * @param ?string $url
+	 * @param mixed $url
 	 * @return array
 	 * @internal
 	 */
-	public function onGetStatus( ?string $url = null ) {
+	public function onGetStatus( $url = null ) {
 		$name = 'mw.ext.rottenLinks.getStatus';
 		$this->checkType( $name, 1, $url, 'string' );
 		// $this->checkType() validates that $url is a string, therefore...
