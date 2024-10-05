@@ -43,6 +43,9 @@
 		},
 		"LoadExtensionSchemaUpdates": {
 			"handler": "Installer"
+		},
+		"ParserFirstCallInit": {
+			"handler": "Main"
 		}
 	},
 	"HookHandlers": {
@@ -52,7 +55,8 @@
 		"Main": {
 			"class": "Miraheze\\RottenLinks\\HookHandlers\\Main",
 			"services": [
-				"JobQueueGroup"
+				"JobQueueGroup",
+				"DBLoadBalancer"
 			]
 		}
 	},

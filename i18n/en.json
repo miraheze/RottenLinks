@@ -11,6 +11,7 @@
 	"rottenlinks-extensionname": "RottenLinks",
 	"rottenlinks-header": "Refine external link results display",
 	"rottenlinks-header-info": "You may select what statistics you want displayed or how many results you want displayed per page.",
+	"rottenlinks-rlstatus-no-url": "No URL provided for {{#rl_status}}",
 	"rottenlinks-table-external": "External Link",
 	"rottenlinks-table-response": "HTTP Response",
 	"rottenlinks-table-usage": "Page Usage",
