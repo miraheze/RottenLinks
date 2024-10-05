@@ -46,6 +46,9 @@
 		},
 		"ParserFirstCallInit": {
 			"handler": "Main"
+		},
+		"ScribuntoExternalLibraries": {
+			"handler": "Scribunto"
 		}
 	},
 	"HookHandlers": {
@@ -58,6 +61,9 @@
 				"JobQueueGroup",
 				"DBLoadBalancer"
 			]
+		},
+		"Scribunto": {
+			"class": "Miraheze\\RottenLinks\\HookHandlers\\Scribunto"
 		}
 	},
 	"config": {
