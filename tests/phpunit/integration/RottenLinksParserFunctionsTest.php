@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\RottenLinks\Tests;
+namespace Miraheze\RottenLinks\Tests\Integration;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\Parser;
