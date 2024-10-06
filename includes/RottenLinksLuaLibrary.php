@@ -5,21 +5,21 @@ use MediaWiki\Extension\Scribunto\Engines\LuaCommon\LibraryBase;
 use MediaWiki\Extension\Scribunto\Engines\LuaCommon\LuaEngine;
 use MediaWiki\Extension\Scribunto\Engines\LuaCommon\LuaError;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 class RottenLinksLuaLibrary extends LibraryBase {
 
-	private ILoadBalancer $loadBalancer;
+	private IConnectionProvider $connectionProvider;
 
 	/**
 	 * @param LuaEngine $engine
 	 */
-	public function __construct( $engine ) {
+	public function __construct( LuaEngine $engine ) {
 		parent::__construct( $engine );
 		// Unfortunately, Scribunto currently does not offer us any options to do
 		// dependency injection, so we have to pretend that we do. Luckily, there
 		// is already an upstream task: https://phabricator.wikimedia.org/T375835
-		$this->loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$this->connectionProvider = MediaWikiServices::getInstance()->getConnectionProvider();
 	}
 
 	/**
@@ -27,7 +27,7 @@ class RottenLinksLuaLibrary extends LibraryBase {
 	 * @return array
 	 * @internal
 	 */
-	public function onGetStatus( $url = null ) {
+	public function onGetStatus( $url = null ): array {
 		$name = 'mw.ext.rottenLinks.getStatus';
 		$this->checkType( $name, 1, $url, 'string' );
 		// $this->checkType() validates that $url is a string, therefore...
@@ -39,14 +39,14 @@ class RottenLinksLuaLibrary extends LibraryBase {
 			throw new LuaError( "bad argument #1 to '{$name}' (url is empty)" );
 		}
 
-		$dbr = $this->loadBalancer->getMaintenanceConnectionRef( DB_REPLICA );
+		$dbr = $this->connectionProvider->getReplicaDatabase();
 		return [ RottenLinks::getResponseFromDatabase( $dbr, $url ) ];
 	}
 
 	/**
 	 * @return array
 	 */
-	public function register() {
+	public function register(): array {
 		$functions = [
 			'getStatus' => [ $this, 'onGetStatus' ],
 		];
@@ -54,5 +54,4 @@ class RottenLinksLuaLibrary extends LibraryBase {
 
 		return $this->getEngine()->registerInterface( __DIR__ . '/mw.ext.rottenLinks.lua', $functions, $arguments );
 	}
-
 }

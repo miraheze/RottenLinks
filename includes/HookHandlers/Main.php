@@ -9,7 +9,7 @@ use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Parser\Parser;
 use Miraheze\RottenLinks\RottenLinksJob;
 use Miraheze\RottenLinks\RottenLinksParserFunctions;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 class Main implements LinksUpdateCompleteHook, ParserFirstCallInitHook {
 
@@ -18,11 +18,11 @@ class Main implements LinksUpdateCompleteHook, ParserFirstCallInitHook {
 
 	/**
 	 * @param JobQueueGroup $jobQueueGroup
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $connectionProvider
 	 */
-	public function __construct( JobQueueGroup $jobQueueGroup, ILoadBalancer $loadBalancer ) {
+	public function __construct( JobQueueGroup $jobQueueGroup, IConnectionProvider $connectionProvider ) {
 		$this->jobQueueGroup = $jobQueueGroup;
-		$this->parserFunctions = new RottenLinksParserFunctions( $loadBalancer );
+		$this->parserFunctions = new RottenLinksParserFunctions( $connectionProvider );
 	}
 
 	/**

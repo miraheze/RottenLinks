@@ -4,22 +4,22 @@ namespace Miraheze\RottenLinks\Tests;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\Parser;
+use MediaWikiIntegrationTestCase;
 use ParserOptions;
 
 /**
  * @coversDefaultClass Miraheze\RottenLinks\RottenLinksParserFunctions
  * @group Database
  */
-class RottenLinksParserFunctionsTest extends \MediaWikiIntegrationTestCase {
+class RottenLinksParserFunctionsTest extends MediaWikiIntegrationTestCase {
 
-	public function addDBDataOnce() {
-		$data = [
-			[ 'rl_externallink' => 'https://ooo.eeeee.ooo/', 'rl_respcode' => 418 ],
-			[ 'rl_externallink' => 'https://witix777.neocities.org/', 'rl_respcode' => 0 ],
-		];
+	public function addDBDataOnce(): void {
 		$this->getDB()->newInsertQueryBuilder()
-			->insert( 'rottenlinks' )
-			->rows( $data )
+			->insertInto( 'rottenlinks' )
+			->rows( [
+				[ 'rl_externallink' => 'https://ooo.eeeee.ooo/', 'rl_respcode' => 418 ],
+				[ 'rl_externallink' => 'https://witix777.neocities.org/', 'rl_respcode' => 0 ],
+			] )
 			->execute();
 	}
 
@@ -45,7 +45,7 @@ class RottenLinksParserFunctionsTest extends \MediaWikiIntegrationTestCase {
 	 * @param string $expected
 	 * @covers ::onRLStatus
 	 */
-	public function testOnRLStatus( string $url, string $expected ) {
+	public function testOnRLStatus( string $url, string $expected ): void {
 		// Set the target language to "qqx", mainly so that we can test no URL
 		// without having to either hardcode the English string, or having to do
 		// some file read shenanigans to get the string.
@@ -61,5 +61,4 @@ class RottenLinksParserFunctionsTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $output['found'] );
 		$this->assertSame( $expected, $output['text'] );
 	}
-
 }

@@ -6,17 +6,17 @@ use MediaWiki\Html\Html;
 use MediaWiki\Parser\Parser;
 use PPFrame;
 use PPNode;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 class RottenLinksParserFunctions {
 
-	private ILoadBalancer $loadBalancer;
+	private IConnectionProvider $connectionProvider;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $connectionProvider
 	 */
-	public function __construct( ILoadBalancer $loadBalancer ) {
-		$this->loadBalancer = $loadBalancer;
+	public function __construct( IConnectionProvider $connectionProvider ) {
+		$this->connectionProvider = $connectionProvider;
 	}
 
 	/**
@@ -35,8 +35,7 @@ class RottenLinksParserFunctions {
 			], $parser->msg( 'rottenlinks-rlstatus-no-url' ) );
 		}
 
-		$dbr = $this->loadBalancer->getMaintenanceConnectionRef( DB_REPLICA );
+		$dbr = $this->connectionProvider->getReplicaDatabase();
 		return (string)RottenLinks::getResponseFromDatabase( $dbr, $url );
 	}
-
 }

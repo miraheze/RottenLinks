@@ -20,5 +20,4 @@ class Scribunto implements ScribuntoExternalLibrariesHook {
 
 		return true;
 	}
-
 }

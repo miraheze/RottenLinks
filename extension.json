@@ -20,7 +20,8 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"RottenLinksAliases": "RottenLinksAliases.php"
+		"RottenLinksAliases": "RottenLinksAliases.php",
+		"RottenLinksMagic": "RottenLinksMagic.php"
 	},
 	"AutoloadNamespaces": {
 		"Miraheze\\RottenLinks\\": "includes/"
@@ -59,7 +60,7 @@
 			"class": "Miraheze\\RottenLinks\\HookHandlers\\Main",
 			"services": [
 				"JobQueueGroup",
-				"DBLoadBalancer"
+				"ConnectionProvider"
 			]
 		},
 		"Scribunto": {
