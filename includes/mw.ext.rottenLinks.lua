@@ -13,7 +13,6 @@ function p.setupInterface(arguments)
 
 	mw.ext.rottenLinks = p
 	package.loaded['mw.ext.rottenLinks'] = p
-
 end
 
 return p
