@@ -1,6 +1,6 @@
 {
 	"name": "RottenLinks",
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"author": [
 		"John Lewis",
 		"Paladox",
@@ -12,7 +12,10 @@
 	"license-name": "GPL-3.0-or-later",
 	"type": "specialpage",
 	"requires": {
-		"MediaWiki": ">= 1.40.0"
+		"MediaWiki": ">= 1.42.0",
+		"platform": {
+			"php": ">= 8.0"
+		}
 	},
 	"MessagesDirs": {
 		"RottenLinks": [
@@ -20,7 +23,8 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"RottenLinksAliases": "RottenLinksAliases.php"
+		"RottenLinksAliases": "RottenLinksAliases.php",
+		"RottenLinksMagic": "RottenLinksMagic.php"
 	},
 	"AutoloadNamespaces": {
 		"Miraheze\\RottenLinks\\": "includes/"
@@ -43,6 +47,12 @@
 		},
 		"LoadExtensionSchemaUpdates": {
 			"handler": "Installer"
+		},
+		"ParserFirstCallInit": {
+			"handler": "Main"
+		},
+		"ScribuntoExternalLibraries": {
+			"handler": "Scribunto"
 		}
 	},
 	"HookHandlers": {
@@ -52,8 +62,12 @@
 		"Main": {
 			"class": "Miraheze\\RottenLinks\\HookHandlers\\Main",
 			"services": [
-				"JobQueueGroup"
+				"JobQueueGroup",
+				"ConnectionProvider"
 			]
+		},
+		"Scribunto": {
+			"class": "Miraheze\\RottenLinks\\HookHandlers\\Scribunto"
 		}
 	},
 	"config": {

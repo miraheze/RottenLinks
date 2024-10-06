@@ -1,6 +1,10 @@
 ## ChangeLog for RottenLinks
 
 
+### 2.1.0 (06-10-2024)
+* Add parser function (`{{#rl_status: URL}}`) and Scribunto library
+  (`mw.ext.rottenLinks.getStatus(url)`) for getting the status code of a URL.
+
 ### 2.0.1 (02-01-2024)
 * Add `requireExtension` to updateExternalLinks.
 * Modernize extension:

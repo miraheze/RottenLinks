@@ -4,6 +4,7 @@ namespace Miraheze\RottenLinks;
 
 use Config;
 use MediaWiki\MediaWikiServices;
+use WikiMedia\Rdbms\IReadableDatabase;
 
 class RottenLinks {
 	/**
@@ -68,5 +69,28 @@ class RottenLinks {
 		);
 
 		return (int)$request['code'];
+	}
+
+	/**
+	 * Get the HTTP response status for a given URL from the database.
+	 *
+	 * @param IReadableDatabase $dbr
+	 * @param string $url
+	 *
+	 * @return ?int null if the URL is not in the database, 0 if there was no response, or the response code
+	 */
+	public static function getResponseFromDatabase( IReadableDatabase $dbr, string $url ): ?int {
+		$statusCode = $dbr->newSelectQueryBuilder()
+			->select( 'rl_respcode' )
+			->from( 'rottenlinks' )
+			->where( [
+				'rl_externallink' => $url,
+			] )
+			->caller( __METHOD__ )
+			->fetchField();
+
+		return $statusCode !== false
+			? $statusCode
+			: null;
 	}
 }
