@@ -8,6 +8,7 @@
 	"rottenlinks-desc": "顯示在 wiki 上的[[Special:RottenLinks|所有外部連結狀態]]",
 	"rottenlinks-header": "強化外部連結結果顯示",
 	"rottenlinks-header-info": "您可以選擇要顯示的統計資料，或是每頁顯示的結果數量。",
+	"rottenlinks-rlstatus-no-url": "沒有提供{{#rl_status}}的 URL",
 	"rottenlinks-table-external": "外部連結",
 	"rottenlinks-table-response": "HTTP 回應",
 	"rottenlinks-table-usage": "頁面使用情況",
