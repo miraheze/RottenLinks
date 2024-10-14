@@ -9,6 +9,7 @@
 	"rottenlinks-extensionname": "RottenLinks",
 	"rottenlinks-header": "Уточни приказ на надворешни врски во исходот",
 	"rottenlinks-header-info": "Можете да изберете кои статистики сакате да се прикажуваат или колку ставки по страница да има исходот.",
+	"rottenlinks-rlstatus-no-url": "Нема укажано URL-адреса за {{#rl_status}}",
 	"rottenlinks-table-external": "Надворешна врска",
 	"rottenlinks-table-response": "HTTP-одговор",
 	"rottenlinks-table-usage": "Употреба на страницата",
