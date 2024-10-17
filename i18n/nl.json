@@ -9,6 +9,7 @@
 	"rottenlinks-desc": "Toont de [[Special:RottenLinks|status van alle externe koppelingen]] op de wiki",
 	"rottenlinks-header": "Weergave resultaten externe koppelingen verfijnen",
 	"rottenlinks-header-info": "U kunt kiezen welke statistieken u wilt weergeven of hoeveel resultaten u per pagina wilt zien.",
+	"rottenlinks-rlstatus-no-url": "Geen URL opgegeven voor {{#rl_status}}",
 	"rottenlinks-table-external": "Externe koppeling",
 	"rottenlinks-table-response": "HTTP-antwoord",
 	"rottenlinks-table-usage": "Paginagebruik",
