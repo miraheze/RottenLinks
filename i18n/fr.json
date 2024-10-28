@@ -10,6 +10,7 @@
 	"rottenlinks": "État des liens externes",
 	"rottenlinks-desc": "Affiche l’[[Special:RottenLinks|état de tous les liens externes]] présents sur le wiki",
 	"rottenlinks-header": "Affiner l'affichage des résultats des liens externes",
+	"rottenlinks-header-info": "Vous pouvez sélectionner les statistiques que vous souhaitez afficher ou le nombre de résultats que vous souhaitez afficher par page.",
 	"rottenlinks-rlstatus-no-url": "Aucune URL fournie pour {{#rl_status}}",
 	"rottenlinks-table-external": "Lien externe",
 	"rottenlinks-table-response": "Réponse HTTP",
