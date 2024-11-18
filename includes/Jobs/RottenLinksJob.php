@@ -2,31 +2,43 @@
 
 namespace Miraheze\RottenLinks\Jobs;
 
-use GenericParameterJob;
 use Job;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigFactory;
 use MediaWiki\ExternalLinks\LinkFilter;
-use MediaWiki\MediaWikiServices;
 use Miraheze\RottenLinks\RottenLinks;
+use Wikimedia\Rdbms\IConnectionProvider;
 
-class RottenLinksJob extends Job implements GenericParameterJob {
+class RottenLinksJob extends Job {
+
+	public const JOB_NAME = 'RottenLinksJob';
+
+	private Config $config;
+	private IConnectionProvider $connectionProvider;
 
 	private array $addedExternalLinks;
 	private array $removedExternalLinks;
 
-	public function __construct( array $params ) {
-		parent::__construct( 'RottenLinksJob', $params );
+	public function __construct(
+		array $params,
+		ConfigFactory $configFactory,
+		IConnectionProvider $connectionProvider
+	) {
+		parent::__construct( self::JOB_NAME, $params );
 
 		$this->addedExternalLinks = $params['addedExternalLinks'];
 		$this->removedExternalLinks = $params['removedExternalLinks'];
+
+		$this->config = $configFactory->makeConfig( 'RottenLinks' );
+		$this->connectionProvider = $connectionProvider;
 	}
 
 	public function run(): bool {
-		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'RottenLinks' );
-		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
+		$dbw = $this->connectionProvider->getPrimaryDatabase();
 
 		if ( $this->addedExternalLinks ) {
-			$excludeProtocols = (array)$config->get( 'RottenLinksExcludeProtocols' );
-			$excludeWebsites = (array)$config->get( 'RottenLinksExcludeWebsites' );
+			$excludeProtocols = (array)$this->config->get( 'RottenLinksExcludeProtocols' );
+			$excludeWebsites = (array)$this->config->get( 'RottenLinksExcludeWebsites' );
 
 			foreach ( $this->addedExternalLinks as $url ) {
 				$url = $this->decodeDomainName( $url );

@@ -30,7 +30,14 @@
 		"Miraheze\\RottenLinks\\": "includes/"
 	},
 	"JobClasses": {
-		"RottenLinksJob": "Miraheze\\RottenLinks\\Jobs\\RottenLinksJob"
+		"RottenLinksJob": {
+			"class": "Miraheze\\RottenLinks\\Jobs\\RottenLinksJob",
+			"services": [
+				"ConfigFactory",
+				"ConnectionProvider"
+			],
+			"needsPage": false
+		}
 	},
 	"SpecialPages": {
 		"RottenLinks": {
