@@ -2,6 +2,7 @@
 
 namespace Miraheze\RottenLinks\HookHandlers;
 
+use JobSpecification;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Hook\LinksUpdateCompleteHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
@@ -11,7 +12,10 @@ use Miraheze\RottenLinks\Jobs\RottenLinksJob;
 use Miraheze\RottenLinks\RottenLinksParserFunctions;
 use Wikimedia\Rdbms\IConnectionProvider;
 
-class Main implements LinksUpdateCompleteHook, ParserFirstCallInitHook {
+class Main implements
+	LinksUpdateCompleteHook,
+	ParserFirstCallInitHook
+{
 
 	private JobQueueGroupFactory $jobQueueGroupFactory;
 	private RottenLinksParserFunctions $parserFunctions;
@@ -35,13 +39,16 @@ class Main implements LinksUpdateCompleteHook, ParserFirstCallInitHook {
 		$removedExternalLinks = $linksUpdate->getRemovedExternalLinks();
 
 		if ( $addedExternalLinks || $removedExternalLinks ) {
-			$params = [
-				'addedExternalLinks' => $addedExternalLinks ?? [],
-				'removedExternalLinks' => $removedExternalLinks ?? [],
-			];
-
 			$jobQueueGroup = $this->jobQueueGroupFactory->makeJobQueueGroup();
-			$jobQueueGroup->push( new RottenLinksJob( $params ) );
+			$jobQueueGroup->push(
+				new JobSpecification(
+					RottenLinksJob::JOB_NAME,
+					[
+						'addedExternalLinks' => $addedExternalLinks ?? [],
+						'removedExternalLinks' => $removedExternalLinks ?? [],
+					]
+				)
+			);
 		}
 	}
 
