@@ -36,7 +36,6 @@
 		"RottenLinks": {
 			"class": "Miraheze\\RottenLinks\\Specials\\SpecialRottenLinks",
 			"services": [
-				"ConfigFactory",
 				"ConnectionProvider"
 			]
 		}
