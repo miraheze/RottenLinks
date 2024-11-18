@@ -2,19 +2,19 @@
 
 namespace Miraheze\RottenLinks;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 use WikiMedia\Rdbms\IReadableDatabase;
 
 class RottenLinks {
+
 	/**
 	 * Get the HTTP response status code for a given URL.
 	 *
 	 * @param string $url The URL to check.
-	 *
 	 * @return int The HTTP status code.
 	 */
-	public static function getResponse( string $url ) {
+	public static function getResponse( string $url ): int {
 		$services = MediaWikiServices::getInstance();
 
 		$config = $services->getConfigFactory()->makeConfig( 'RottenLinks' );
@@ -41,7 +41,6 @@ class RottenLinks {
 	 * @param string $method The HTTP method to use ('HEAD' or 'GET').
 	 * @param MediaWikiServices $services MediaWiki service instance.
 	 * @param Config $config Configuration instance.
-	 *
 	 * @return int The HTTP status code.
 	 */
 	private static function getHttpStatus(
@@ -49,7 +48,7 @@ class RottenLinks {
 		string $method,
 		MediaWikiServices $services,
 		Config $config
-	) {
+	): int {
 		$httpProxy = $config->get( 'RottenLinksHTTPProxy' );
 
 		$userAgent = $config->get( 'RottenLinksUserAgent' ) ?:
@@ -76,7 +75,6 @@ class RottenLinks {
 	 *
 	 * @param IReadableDatabase $dbr
 	 * @param string $url
-	 *
 	 * @return ?int null if the URL is not in the database, 0 if there was no response, or the response code
 	 */
 	public static function getResponseFromDatabase( IReadableDatabase $dbr, string $url ): ?int {

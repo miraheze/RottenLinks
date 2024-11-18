@@ -2,75 +2,53 @@
 
 namespace Miraheze\RottenLinks\Maintenance;
 
-use Maintenance;
-use MediaWiki\ExternalLinks\LinkFilter;
-use MediaWiki\MediaWikiServices;
-use Miraheze\RottenLinks\RottenLinks;
-
-$IP = getenv( 'MW_INSTALL_PATH' );
-if ( $IP === false ) {
-	$IP = __DIR__ . '/../../..';
-}
-
+$IP ??= getenv( 'MW_INSTALL_PATH' ) ?: dirname( __DIR__, 3 );
 require_once "$IP/maintenance/Maintenance.php";
 
+use Maintenance;
+use MediaWiki\ExternalLinks\LinkFilter;
+use Miraheze\RottenLinks\RottenLinks;
+
 class UpdateExternalLinks extends Maintenance {
+
 	public function __construct() {
 		parent::__construct();
 
 		$this->addDescription( 'Updates rottenlinks database table based on externallinks table.' );
-
 		$this->requireExtension( 'RottenLinks' );
 	}
 
-	public function execute() {
+	public function execute(): void {
 		$time = time();
 
-		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'RottenLinks' );
 		$dbw = $this->getDB( DB_PRIMARY );
 
 		$this->output( "Dropping all existing recorded entries\n" );
 
-		$dbw->delete( 'rottenlinks',
-			'*',
-			__METHOD__
-		);
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'rottenlinks' )
+			->where( '*' )
+			->caller( __METHOD__ )
+			->execute();
+
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [
+				'el_from',
+				'el_to_domain_index',
+				'el_to_path',
+			] )
+			->from( 'externallinks' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$rottenlinksarray = [];
-
-		if ( version_compare( MW_VERSION, '1.41', '>=' ) ) {
-			$res = $dbw->newSelectQueryBuilder()
-				->select( [
-					'el_from',
-					'el_to_domain_index',
-					'el_to_path',
-				] )
-				->from( 'externallinks' )
-				->caller( __METHOD__ )
-				->fetchResultSet();
-
-			foreach ( $res as $row ) {
-				// @phan-suppress-next-line PhanUndeclaredStaticMethod
-				$elUrl = LinkFilter::reverseIndexes( $row->el_to_domain_index ) . $row->el_to_path;
-				$rottenlinksarray[$elUrl][] = (int)$row->el_from;
-			}
-		} else {
-			$res = $dbw->newSelectQueryBuilder()
-				->select( [
-					'el_from',
-					'el_to',
-				] )
-				->from( 'externallinks' )
-				->caller( __METHOD__ )
-				->fetchResultSet();
-
-			foreach ( $res as $row ) {
-				$rottenlinksarray[$row->el_to][] = (int)$row->el_from;
-			}
+		foreach ( $res as $row ) {
+			$elUrl = LinkFilter::reverseIndexes( $row->el_to_domain_index ) . $row->el_to_path;
+			$rottenlinksarray[$elUrl][] = (int)$row->el_from;
 		}
 
-		$excludeProtocols = (array)$config->get( 'RottenLinksExcludeProtocols' );
-		$excludeWebsites = (array)$config->get( 'RottenLinksExcludeWebsites' );
+		$excludeProtocols = (array)$this->getConfig()->get( 'RottenLinksExcludeProtocols' );
+		$excludeWebsites = (array)$this->getConfig()->get( 'RottenLinksExcludeWebsites' );
 
 		foreach ( $rottenlinksarray as $url => $pages ) {
 			$url = $this->decodeDomainName( $url );
@@ -108,13 +86,14 @@ class UpdateExternalLinks extends Maintenance {
 			$resp = RottenLinks::getResponse( $url );
 			$pagecount = count( $pages );
 
-			$dbw->insert( 'rottenlinks',
-				[
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'rottenlinks' )
+				->row( [
 					'rl_externallink' => $url,
-					'rl_respcode' => $resp
-				],
-				__METHOD__
-			);
+					'rl_respcode' => $resp,
+				] )
+				->caller( __METHOD__ )
+				->execute();
 
 			$this->output( "Added externallink ($url) used on $pagecount with code $resp\n" );
 		}
@@ -130,7 +109,6 @@ class UpdateExternalLinks extends Maintenance {
 	 * URL-decoding the domain part turns these URLs back into valid syntax.
 	 *
 	 * @param string $url The URL to decode.
-	 *
 	 * @return string The URL with the decoded domain name.
 	 */
 	private function decodeDomainName( string $url ): string {

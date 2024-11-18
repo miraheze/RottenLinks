@@ -12,9 +12,6 @@ class RottenLinksParserFunctions {
 
 	private IConnectionProvider $connectionProvider;
 
-	/**
-	 * @param IConnectionProvider $connectionProvider
-	 */
 	public function __construct( IConnectionProvider $connectionProvider ) {
 		$this->connectionProvider = $connectionProvider;
 	}

@@ -1,4 +1,5 @@
 <?php
+
 namespace Miraheze\RottenLinks;
 
 use MediaWiki\Extension\Scribunto\Engines\LuaCommon\LibraryBase;

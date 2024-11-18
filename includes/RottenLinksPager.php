@@ -2,37 +2,31 @@
 
 namespace Miraheze\RottenLinks;
 
-use Config;
-use Html;
 use HttpStatus;
-use IContextSource;
-use Linker;
+use MediaWiki\Config\Config;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\ExternalLinks\LinkFilter;
-use SpecialPage;
-use TablePager;
+use MediaWiki\Html\Html;
+use MediaWiki\Linker\Linker;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Pager\TablePager;
+use MediaWiki\SpecialPage\SpecialPage;
 
 class RottenLinksPager extends TablePager {
 
-	/** @var Config */
-	private $config;
+	private Config $config;
+	private bool $showBad;
 
-	/** @var bool */
-	private $showBad;
-
-	/**
-	 * @param IContextSource $context The context source.
-	 * @param Config $config RottenLinks config factory instance.
-	 * @param bool $showBad Whether to show only links with bad status.
-	 */
 	public function __construct(
-		IContextSource $context,
 		Config $config,
+		IContextSource $context,
+		LinkRenderer $linkRenderer,
 		bool $showBad
 	) {
-		parent::__construct( $context );
+		parent::__construct( $context, $linkRenderer );
 
-		$this->showBad = $showBad;
 		$this->config = $config;
+		$this->showBad = $showBad;
 	}
 
 	/**
