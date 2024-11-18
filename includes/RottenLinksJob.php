@@ -74,13 +74,14 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 
 				$resp = RottenLinks::getResponse( $url );
 
-				$dbw->insert( 'rottenlinks',
-					[
+				$dbw->newInsertQueryBuilder()
+					->insertInto( 'rottenlinks' )
+					->row( [
 						'rl_externallink' => $url,
-						'rl_respcode' => $resp
-					],
-					__METHOD__
-				);
+						'rl_respcode' => $resp,
+					] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 		}
 
@@ -112,7 +113,11 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 					continue;
 				}
 
-				$dbw->delete( 'rottenlinks', [ 'rl_externallink' => $url ], __METHOD__ );
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'rottenlinks' )
+					->where( [ 'rl_externallink' => $url ] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 		}
 
