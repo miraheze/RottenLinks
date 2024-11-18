@@ -7,7 +7,7 @@ use MediaWiki\Hook\LinksUpdateCompleteHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Parser\Parser;
-use Miraheze\RottenLinks\RottenLinksJob;
+use Miraheze\RottenLinks\Jobs\RottenLinksJob;
 use Miraheze\RottenLinks\RottenLinksParserFunctions;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -36,8 +36,8 @@ class Main implements LinksUpdateCompleteHook, ParserFirstCallInitHook {
 
 		if ( $addedExternalLinks || $removedExternalLinks ) {
 			$params = [
-				'addedExternalLinks' => $addedExternalLinks,
-				'removedExternalLinks' => $removedExternalLinks,
+				'addedExternalLinks' => $addedExternalLinks ?? [],
+				'removedExternalLinks' => $removedExternalLinks ?? [],
 			];
 
 			$jobQueueGroup = $this->jobQueueGroupFactory->makeJobQueueGroup();

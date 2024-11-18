@@ -18,7 +18,7 @@ class UpdateExternalLinks extends Maintenance {
 		$this->requireExtension( 'RottenLinks' );
 	}
 
-	public function execute() {
+	public function execute(): void {
 		$time = time();
 
 		$dbw = $this->getDB( DB_PRIMARY );
@@ -109,7 +109,6 @@ class UpdateExternalLinks extends Maintenance {
 	 * URL-decoding the domain part turns these URLs back into valid syntax.
 	 *
 	 * @param string $url The URL to decode.
-	 *
 	 * @return string The URL with the decoded domain name.
 	 */
 	private function decodeDomainName( string $url ): string {

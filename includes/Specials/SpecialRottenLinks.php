@@ -1,33 +1,26 @@
 <?php
 
-namespace Miraheze\RottenLinks;
+namespace Miraheze\RottenLinks\Specials;
 
 use HttpStatus;
-use MediaWiki\Config\Config;
-use MediaWiki\Config\ConfigFactory;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\SpecialPage\SpecialPage;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Miraheze\RottenLinks\RottenLinksPager;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 class SpecialRottenLinks extends SpecialPage {
 
-	private Config $config;
-	private ILoadBalancer $dbLoadBalancer;
+	private IConnectionProvider $connectionProvider;
 
-	public function __construct(
-		ConfigFactory $configFactory,
-		ILoadBalancer $dbLoadBalancer
-	) {
+	public function __construct( IConnectionProvider $connectionProvider ) {
 		parent::__construct( 'RottenLinks' );
-
-		$this->config = $configFactory->makeConfig( 'RottenLinks' );
-		$this->dbLoadBalancer = $dbLoadBalancer;
+		$this->connectionProvider = $connectionProvider;
 	}
 
 	/**
 	 * @param ?string $par
 	 */
-	public function execute( $par ) {
+	public function execute( $par ): void {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Extension:RottenLinks' );
@@ -35,7 +28,12 @@ class SpecialRottenLinks extends SpecialPage {
 		$showBad = $this->getRequest()->getBool( 'showBad' );
 		$stats = $this->getRequest()->getBool( 'stats' );
 
-		$pager = new RottenLinksPager( $this->getContext(), $this->config, $showBad );
+		$pager = new RottenLinksPager(
+			$this->getConfig(),
+			$this->getContext(),
+			$this->getLinkRenderer(),
+			$showBad
+		);
 
 		$formDescriptor = [
 			'info' => [
@@ -46,21 +44,21 @@ class SpecialRottenLinks extends SpecialPage {
 				'type' => 'check',
 				'name' => 'showBad',
 				'label-message' => 'rottenlinks-showbad',
-				'default' => $showBad
+				'default' => $showBad,
 			],
 			'statistics' => [
 				'type' => 'check',
 				'name' => 'stats',
 				'label-message' => 'rottenlinks-stats',
-				'default' => $stats
+				'default' => $stats,
 			],
 			'limit' => [
 				'type' => 'limitselect',
 				'name' => 'limit',
 				'label-message' => 'table_pager_limit_label',
 				'default' => $pager->getLimit(),
-				'options' => $pager->getLimitSelectList()
-			]
+				'options' => $pager->getLimitSelectList(),
+			],
 		];
 
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
@@ -84,13 +82,8 @@ class SpecialRottenLinks extends SpecialPage {
 		$this->getOutput()->addParserOutputContent( $pager->getFullOutput() );
 	}
 
-	/**
-	 * Display statistics related to RottenLinks.
-	 *
-	 * @return array Array with statistics information.
-	 */
-	private function showStatistics() {
-		$dbr = $this->dbLoadBalancer->getMaintenanceConnectionRef( DB_REPLICA );
+	private function showStatistics(): array {
+		$dbr = $this->connectionProvider->getReplicaDatabase();
 
 		$statusNumbers = $dbr->newSelectQueryBuilder()
 			->select( 'rl_respcode' )
@@ -115,19 +108,15 @@ class SpecialRottenLinks extends SpecialPage {
 				'label' => "HTTP: {$respCode} " .
 					( $respCode != 0 ? HttpStatus::getMessage( $respCode ) : 'No Response' ),
 				'default' => $count,
-				'section' => 'statistics'
+				'section' => 'statistics',
 			];
 		}
 
 		return $statDescriptor;
 	}
 
-	/**
-	 * Get the group name for the special page.
-	 *
-	 * @return string Group name.
-	 */
-	protected function getGroupName() {
+	/** @inheritDoc */
+	protected function getGroupName(): string {
 		return 'maintenance';
 	}
 }

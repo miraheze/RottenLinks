@@ -8,6 +8,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Pager\TablePager;
 use MediaWiki\SpecialPage\SpecialPage;
 
@@ -16,20 +17,16 @@ class RottenLinksPager extends TablePager {
 	private Config $config;
 	private bool $showBad;
 
-	/**
-	 * @param IContextSource $context The context source.
-	 * @param Config $config RottenLinks config factory instance.
-	 * @param bool $showBad Whether to show only links with bad status.
-	 */
 	public function __construct(
-		IContextSource $context,
 		Config $config,
+		IContextSource $context,
+		LinkRenderer $linkRenderer,
 		bool $showBad
 	) {
-		parent::__construct( $context );
+		parent::__construct( $context, $linkRenderer );
 
-		$this->showBad = $showBad;
 		$this->config = $config;
+		$this->showBad = $showBad;
 	}
 
 	/**

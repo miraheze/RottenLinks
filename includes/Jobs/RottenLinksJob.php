@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\RottenLinks;
+namespace Miraheze\RottenLinks\Jobs;
 
 use GenericParameterJob;
 use Job;
@@ -12,14 +12,11 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 	private array $addedExternalLinks;
 	private array $removedExternalLinks;
 
-	/**
-	 * @param array $params Job parameters.
-	 */
 	public function __construct( array $params ) {
 		parent::__construct( 'RottenLinksJob', $params );
 
-		$this->addedExternalLinks = $params['addedExternalLinks'] ?? [];
-		$this->removedExternalLinks = $params['removedExternalLinks'] ?? [];
+		$this->addedExternalLinks = $params['addedExternalLinks'];
+		$this->removedExternalLinks = $params['removedExternalLinks'];
 	}
 
 	/**
@@ -27,14 +24,11 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 	 *
 	 * @return bool True on success.
 	 */
-	public function run() {
+	public function run(): bool {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'RottenLinks' );
+		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 
 		if ( $this->addedExternalLinks ) {
-			$dbw = MediaWikiServices::getInstance()
-				->getDBLoadBalancer()
-				->getMaintenanceConnectionRef( DB_PRIMARY );
-
 			$excludeProtocols = (array)$config->get( 'RottenLinksExcludeProtocols' );
 			$excludeWebsites = (array)$config->get( 'RottenLinksExcludeWebsites' );
 
@@ -83,10 +77,6 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 		}
 
 		if ( $this->removedExternalLinks ) {
-			$dbw = MediaWikiServices::getInstance()
-				->getDBLoadBalancer()
-				->getMaintenanceConnectionRef( DB_PRIMARY );
-
 			foreach ( $this->removedExternalLinks as $url ) {
 				$url = $this->decodeDomainName( $url );
 
@@ -127,7 +117,6 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 	 * URL-decoding the domain part turns these URLs back into valid syntax.
 	 *
 	 * @param string $url The URL to decode.
-	 *
 	 * @return string The URL with the decoded domain name.
 	 */
 	private function decodeDomainName( string $url ): string {
