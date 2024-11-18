@@ -6,6 +6,7 @@ use GenericParameterJob;
 use Job;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MediaWikiServices;
+use Miraheze\RottenLinks\RottenLinks;
 
 class RottenLinksJob extends Job implements GenericParameterJob {
 
@@ -19,11 +20,6 @@ class RottenLinksJob extends Job implements GenericParameterJob {
 		$this->removedExternalLinks = $params['removedExternalLinks'];
 	}
 
-	/**
-	 * Execute the job, updating the 'rottenlinks' table based on added and removed external links.
-	 *
-	 * @return bool True on success.
-	 */
 	public function run(): bool {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'RottenLinks' );
 		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
