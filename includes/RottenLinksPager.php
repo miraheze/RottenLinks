@@ -13,11 +13,8 @@ use MediaWiki\SpecialPage\SpecialPage;
 
 class RottenLinksPager extends TablePager {
 
-	/** @var Config */
-	private $config;
-
-	/** @var bool */
-	private $showBad;
+	private Config $config;
+	private bool $showBad;
 
 	/**
 	 * @param IContextSource $context The context source.

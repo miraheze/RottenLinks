@@ -9,11 +9,8 @@ use MediaWiki\MediaWikiServices;
 
 class RottenLinksJob extends Job implements GenericParameterJob {
 
-	/** @var array */
-	private $addedExternalLinks;
-
-	/** @var array */
-	private $removedExternalLinks;
+	private array $addedExternalLinks;
+	private array $removedExternalLinks;
 
 	/**
 	 * @param array $params Job parameters.

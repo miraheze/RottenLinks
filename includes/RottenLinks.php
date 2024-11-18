@@ -7,6 +7,7 @@ use MediaWiki\MediaWikiServices;
 use WikiMedia\Rdbms\IReadableDatabase;
 
 class RottenLinks {
+
 	/**
 	 * Get the HTTP response status code for a given URL.
 	 *

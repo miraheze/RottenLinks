@@ -62,8 +62,8 @@
 		"Main": {
 			"class": "Miraheze\\RottenLinks\\HookHandlers\\Main",
 			"services": [
-				"JobQueueGroup",
-				"ConnectionProvider"
+				"ConnectionProvider",
+				"JobQueueGroupFactory"
 			]
 		},
 		"Scribunto": {
@@ -72,32 +72,32 @@
 	},
 	"config": {
 		"RottenLinksBadCodes": {
-			"value": [ "0", "400", "401", "403", "404", "405", "410", "502", "503", "504" ],
-			"description": "Holds a list of HTTP codes that are considered bad. (array)"
+			"description": "Array. Holds a list of HTTP codes that are considered bad.",
+			"value": [ "0", "400", "401", "403", "404", "405", "410", "502", "503", "504" ]
 		},
 		"RottenLinksCurlTimeout": {
-			"value": 30,
-			"description": "Sets the timeout for cURL in seconds. (integer)"
-		},
-		"RottenLinksHTTPProxy": {
-			"value": "",
-			"description": "Sets a proxy to use for requests. (string)"
+			"description": "Integer. Sets the timeout for cURL in seconds.",
+			"value": 30
 		},
 		"RottenLinksExcludeProtocols": {
-			"value": [ "tel", "mailto" ],
-			"description": "Holds a list of protocols that should not be checked for validity. (array)"
+			"description": "Array. Holds a list of protocols that should not be checked for validity.",
+			"value": [ "tel", "mailto" ]
 		},
 		"RottenLinksExcludeWebsites": {
-			"value": false,
-			"description": "List of websites to exclude checking of response codes for. (array)"
+			"description": "Array. List of websites to exclude checking of response codes for.",
+			"value": []
 		},
 		"RottenLinksExternalLinkTarget": {
-			"value": "_self",
-			"description": "Sets the external link target (_self for the current tab or _blank for a new tab). (string)"
+			"description": "String. Sets the external link target (_self for the current tab or _blank for a new tab).",
+			"value": "_self"
+		},
+		"RottenLinksHTTPProxy": {
+			"description": "String. Sets a proxy to use for requests.",
+			"value": ""
 		},
 		"RottenLinksUserAgent": {
-			"value": "",
-			"description": "Overrides the user-agent to use for requests. Defaults to 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on <Wiki base URL>'. (string)"
+			"description": "String. Overrides the user-agent to use for requests. Defaults to 'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on <Wiki base URL>'.",
+			"value": ""
 		}
 	},
 	"ConfigRegistry": {

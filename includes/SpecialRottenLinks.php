@@ -11,16 +11,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
 
 class SpecialRottenLinks extends SpecialPage {
 
-	/** @var Config */
-	private $config;
+	private Config $config;
+	private ILoadBalancer $dbLoadBalancer;
 
-	/** @var ILoadBalancer */
-	private $dbLoadBalancer;
-
-	/**
-	 * @param ConfigFactory $configFactory
-	 * @param ILoadBalancer $dbLoadBalancer
-	 */
 	public function __construct(
 		ConfigFactory $configFactory,
 		ILoadBalancer $dbLoadBalancer
@@ -32,7 +25,7 @@ class SpecialRottenLinks extends SpecialPage {
 	}
 
 	/**
-	 * @param string $par
+	 * @param ?string $par
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
