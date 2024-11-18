@@ -2,7 +2,7 @@
 
 namespace Miraheze\RottenLinks;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 use WikiMedia\Rdbms\IReadableDatabase;
 

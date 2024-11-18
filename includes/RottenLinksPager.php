@@ -2,14 +2,14 @@
 
 namespace Miraheze\RottenLinks;
 
-use Config;
-use Html;
 use HttpStatus;
-use IContextSource;
-use Linker;
+use MediaWiki\Config\Config;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\ExternalLinks\LinkFilter;
-use SpecialPage;
-use TablePager;
+use MediaWiki\Html\Html;
+use MediaWiki\Linker\Linker;
+use MediaWiki\Pager\TablePager;
+use MediaWiki\SpecialPage\SpecialPage;
 
 class RottenLinksPager extends TablePager {
 

@@ -2,11 +2,11 @@
 
 namespace Miraheze\RottenLinks;
 
-use Config;
-use ConfigFactory;
-use HTMLForm;
 use HttpStatus;
-use SpecialPage;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigFactory;
+use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class SpecialRottenLinks extends SpecialPage {

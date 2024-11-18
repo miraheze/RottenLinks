@@ -2,7 +2,7 @@
 
 namespace Miraheze\RottenLinks\HookHandlers;
 
-use DatabaseUpdater;
+use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
 
 class Installer implements LoadExtensionSchemaUpdatesHook {

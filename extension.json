@@ -101,7 +101,7 @@
 		}
 	},
 	"ConfigRegistry": {
-		"RottenLinks": "GlobalVarConfig::newInstance"
+		"RottenLinks": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
 	},
 	"manifest_version": 2
 }
