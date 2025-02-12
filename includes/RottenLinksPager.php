@@ -7,7 +7,6 @@ use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\Html\Html;
-use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Pager\TablePager;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -15,6 +14,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 class RottenLinksPager extends TablePager {
 
 	private Config $config;
+	private LinkRenderer $linkRenderer;
 	private bool $showBad;
 
 	public function __construct(
@@ -26,6 +26,7 @@ class RottenLinksPager extends TablePager {
 		parent::__construct( $context, $linkRenderer );
 
 		$this->config = $config;
+		$this->linkRenderer = $linkRenderer;
 		$this->showBad = $showBad;
 	}
 
@@ -64,10 +65,10 @@ class RottenLinksPager extends TablePager {
 		$db = $this->getDatabase();
 		switch ( $name ) {
 			case 'rl_externallink':
-				$formatted = Linker::makeExternalLink(
+				$formatted = $this->linkRenderer->makeExternalLink(
 					(string)$row->rl_externallink,
 					( substr( (string)$row->rl_externallink, 0, 50 ) . '...' ),
-					true, '',
+					SpecialPage::getTitleFor( 'RottenLinks' ), '',
 					[ 'target' => $this->config->get( 'RottenLinksExternalLinkTarget' ) ]
 				);
 				break;
