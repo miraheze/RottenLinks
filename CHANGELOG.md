@@ -1,5 +1,8 @@
 ## ChangeLog for RottenLinks
 
+### 2.1.1 (12-02-2025)
+* Replace deprecated `Linker::makeExternalLink` with `LinkRenderer`.
+* Requires MediaWiki 1.43 or higher.
 
 ### 2.1.0 (06-10-2024)
 * Add parser function (`{{#rl_status: URL}}`) and Scribunto library
