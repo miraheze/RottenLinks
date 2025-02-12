@@ -2,6 +2,7 @@
 
 ### 2.1.1 (12-02-2025)
 * Replace deprecated `Linker::makeExternalLink` with `LinkRenderer`.
+* Replace deprecated namespaces.
 * Requires MediaWiki 1.43 or higher.
 
 ### 2.1.0 (06-10-2024)

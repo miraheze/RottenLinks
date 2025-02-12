@@ -4,8 +4,8 @@ namespace Miraheze\RottenLinks;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\Parser;
-use PPFrame;
-use PPNode;
+use MediaWiki\Parser\PPFrame;
+use MediaWiki\Parser\PPNode;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class RottenLinksParserFunctions {
