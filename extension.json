@@ -27,7 +27,8 @@
 		"RottenLinksMagic": "RottenLinksMagic.php"
 	},
 	"AutoloadNamespaces": {
-		"Miraheze\\RottenLinks\\": "includes/"
+		"Miraheze\\RottenLinks\\": "includes/",
+		"Miraheze\\RottenLinks\\Maintenance\\": "maintenance/"
 	},
 	"JobClasses": {
 		"RottenLinksJob": {
