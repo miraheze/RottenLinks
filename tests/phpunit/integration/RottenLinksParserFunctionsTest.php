@@ -4,8 +4,8 @@ namespace Miraheze\RottenLinks\Tests\Integration;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
 use MediaWikiIntegrationTestCase;
-use ParserOptions;
 
 /**
  * @coversDefaultClass Miraheze\RottenLinks\RottenLinksParserFunctions
