@@ -30,69 +30,55 @@ class RottenLinksPager extends TablePager {
 		$this->showBad = $showBad;
 	}
 
-	/**
-	 * Get the field names for the table header.
-	 *
-	 * @return array Field names and their corresponding messages.
-	 */
-	public function getFieldNames() {
-		static $headers = null;
-
-		$headers = [
-			'rl_externallink' => 'rottenlinks-table-external',
-			'rl_respcode' => 'rottenlinks-table-response',
-			'rl_pageusage' => 'rottenlinks-table-usage',
+	/** @inheritDoc */
+	public function getFieldNames(): array {
+		return [
+			'rl_externallink' => $this->msg( 'rottenlinks-table-external' )->text(),
+			'rl_respcode' => $this->msg( 'rottenlinks-table-response' )->text(),
+			'rl_pageusage' => $this->msg( 'rottenlinks-table-usage' )->text(),
 		];
-
-		foreach ( $headers as &$msg ) {
-			$msg = $this->msg( $msg )->text();
-		}
-
-		return $headers;
 	}
 
-	/**
-	 * Format the values for each field in the table.
-	 *
-	 * @param string $name Field name.
-	 * @param mixed $value Field value.
-	 *
-	 * @return string Formatted HTML for the field.
-	 */
-	public function formatValue( $name, $value ) {
-		$row = $this->mCurrentRow;
+	/** @inheritDoc */
+	public function formatValue( $field, $value ): string {
+		if ( $value === null ) {
+			return '';
+		}
 
-		$db = $this->getDatabase();
-		switch ( $name ) {
+		switch ( $field ) {
 			case 'rl_externallink':
 				$formatted = $this->linkRenderer->makeExternalLink(
-					(string)$row->rl_externallink,
-					( substr( (string)$row->rl_externallink, 0, 50 ) . '...' ),
+					$value,
+					substr( $value, 0, 50 ) . '...',
 					SpecialPage::getTitleFor( 'RottenLinks' ), '',
 					[ 'target' => $this->config->get( 'RottenLinksExternalLinkTarget' ) ]
 				);
 				break;
 			case 'rl_respcode':
-				$respCode = (int)$row->rl_respcode;
-				$colour = ( in_array(
+				$respCode = (int)$value;
+				$color = in_array(
 					$respCode,
-					$this->config->get( 'RottenLinksBadCodes' )
-				) ) ? "#8B0000" : "#008000";
-				$formatted = ( $respCode != 0 )
+					$this->config->get( 'RottenLinksBadCodes' ),
+					true
+				) ? '#8B0000' : '#008000';
+				$formatted = $respCode !== 0
 					? Html::element( 'font',
-						[ 'color' => $colour ],
-						HttpStatus::getMessage( $respCode ) ?? "HTTP: {$respCode}"
+						[ 'color' => $color ],
+						HttpStatus::getMessage( $respCode ) ?? "HTTP: $respCode"
 					)
 					: Html::element( 'font', [ 'color' => '#8B0000' ], 'No Response' );
 				break;
 			case 'rl_pageusage':
+				$row = $this->getCurrentRow();
+				$db = $this->getDatabase();
+
 				$el = LinkFilter::makeIndexes( $row->rl_externallink );
 				$pagesCount = $db->newSelectQueryBuilder()
 					->select( '*' )
 					->from( 'externallinks' )
 					->where( [
 						'el_to_domain_index' => substr( $el[0][0], 0, 255 ),
-						'el_to_path' => $el[0][1]
+						'el_to_path' => $el[0][1],
 					] )
 					->caller( __METHOD__ )
 					->fetchRowCount();
@@ -102,19 +88,15 @@ class RottenLinksPager extends TablePager {
 				$formatted = Html::element( 'a', [ 'href' => $href ], (string)$pagesCount );
 				break;
 			default:
-				$formatted = Html::element( 'span', [], "Unable to format $name" );
+				$formatted = Html::element( 'span', [], "Unable to format $field" );
 				break;
 		}
 
 		return $formatted;
 	}
 
-	/**
-	 * Get the query information for the pager.
-	 *
-	 * @return array Query information.
-	 */
-	public function getQueryInfo() {
+	/** @inheritDoc */
+	public function getQueryInfo(): array {
 		$info = [
 			'tables' => [ 'rottenlinks' ],
 			'fields' => [ 'rl_externallink', 'rl_respcode' ],
@@ -129,23 +111,13 @@ class RottenLinksPager extends TablePager {
 		return $info;
 	}
 
-	/**
-	 * Get the default sorting field for the table.
-	 *
-	 * @return string Default sorting field.
-	 */
-	public function getDefaultSort() {
+	/** @inheritDoc */
+	public function getDefaultSort(): string {
 		return 'rl_externallink';
 	}
 
-	/**
-	 * Check if a field is sortable.
-	 *
-	 * @param string $name Field name.
-	 *
-	 * @return bool True if the field is sortable, false otherwise.
-	 */
-	public function isFieldSortable( $name ) {
-		return $name !== 'rl_pageusage';
+	/** @inheritDoc */
+	public function isFieldSortable( $field ): bool {
+		return $field !== 'rl_pageusage';
 	}
 }

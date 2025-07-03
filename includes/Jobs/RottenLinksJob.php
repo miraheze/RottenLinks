@@ -49,13 +49,13 @@ class RottenLinksJob extends Job {
 
 				$urlexp = explode( ':', $url );
 
-				if ( isset( $urlexp[0] ) && in_array( strtolower( $urlexp[0] ), $excludeProtocols ) ) {
+				if ( isset( $urlexp[0] ) && in_array( strtolower( $urlexp[0] ), $excludeProtocols, true ) ) {
 					continue;
 				}
 
 				$mainSite = explode( '/', $urlexp[1] );
 
-				if ( isset( $mainSite[2] ) && in_array( $mainSite[2], $excludeWebsites ) ) {
+				if ( isset( $mainSite[2] ) && in_array( $mainSite[2], $excludeWebsites, true ) ) {
 					continue;
 				}
 

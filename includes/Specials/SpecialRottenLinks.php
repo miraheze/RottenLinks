@@ -18,7 +18,7 @@ class SpecialRottenLinks extends SpecialPage {
 	}
 
 	/**
-	 * @param ?string $par
+	 * @param ?string $par @phan-unused-param
 	 */
 	public function execute( $par ): void {
 		$this->setHeaders();
@@ -84,7 +84,6 @@ class SpecialRottenLinks extends SpecialPage {
 
 	private function showStatistics(): array {
 		$dbr = $this->connectionProvider->getReplicaDatabase();
-
 		$statusNumbers = $dbr->newSelectQueryBuilder()
 			->select( 'rl_respcode' )
 			->distinct()
@@ -93,9 +92,8 @@ class SpecialRottenLinks extends SpecialPage {
 			->fetchResultSet();
 
 		$statDescriptor = [];
-
 		foreach ( $statusNumbers as $num ) {
-			$respCode = $num->rl_respcode;
+			$respCode = (int)$num->rl_respcode;
 			$count = (string)$dbr->newSelectQueryBuilder()
 				->select( 'rl_respcode' )
 				->from( 'rottenlinks' )
@@ -105,8 +103,8 @@ class SpecialRottenLinks extends SpecialPage {
 
 			$statDescriptor[$respCode] = [
 				'type' => 'info',
-				'label' => "HTTP: {$respCode} " .
-					( $respCode != 0 ? HttpStatus::getMessage( $respCode ) : 'No Response' ),
+				'label' => "HTTP: $respCode " .
+					( $respCode !== 0 ? HttpStatus::getMessage( $respCode ) : 'No Response' ),
 				'default' => $count,
 				'section' => 'statistics',
 			];
