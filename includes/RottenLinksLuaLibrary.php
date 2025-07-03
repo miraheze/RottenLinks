@@ -26,6 +26,7 @@ class RottenLinksLuaLibrary extends LibraryBase {
 	/**
 	 * @param mixed $url
 	 * @return array
+	 * @throws LuaError
 	 * @internal
 	 */
 	public function onGetStatus( mixed $url = null ): array {
@@ -37,7 +38,7 @@ class RottenLinksLuaLibrary extends LibraryBase {
 		// I think Lua errors are untranslated? LibraryBase::checkType() returns
 		// a plain ol' English string too.
 		if ( $url === '' ) {
-			throw new LuaError( "bad argument #1 to '{$name}' (url is empty)" );
+			throw new LuaError( "bad argument #1 to '$name' (url is empty)" );
 		}
 
 		$dbr = $this->connectionProvider->getReplicaDatabase();

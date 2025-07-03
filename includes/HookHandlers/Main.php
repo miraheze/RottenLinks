@@ -32,7 +32,7 @@ class Main implements
 	 * Handler for LinksUpdateComplete hook.
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/LinksUpdateComplete
 	 * @param LinksUpdate $linksUpdate
-	 * @param mixed $ticket
+	 * @param mixed $ticket @phan-unused-param
 	 */
 	public function onLinksUpdateComplete( $linksUpdate, $ticket ) {
 		$addedExternalLinks = $linksUpdate->getAddedExternalLinks();
