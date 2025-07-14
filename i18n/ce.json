@@ -4,7 +4,11 @@
 			"Умар"
 		]
 	},
+	"rottenlinks": "Арахьарчу хьажоргийн статус",
 	"rottenlinks-table-external": "Арахьара хьажорг",
 	"rottenlinks-table-response": "HTTP-жоп",
-	"rottenlinks-table-usage": "АгӀо лелор"
+	"rottenlinks-table-usage": "АгӀо лелор",
+	"rottenlinks-showbad": "Гайта йеккъа цхьа ирча хьажоргаш",
+	"rottenlinks-statistics": "Йоьхна хьажоргийн статистика",
+	"rottenlinks-stats": "Гайта хьажоргийн статистика"
 }
