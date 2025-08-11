@@ -5,6 +5,7 @@
 		]
 	},
 	"rottenlinks": "Арахьарчу хьажоргийн статус",
+	"rottenlinks-rlstatus-no-url": "{{#rl_status}} -на URL ца йелла",
 	"rottenlinks-table-external": "Арахьара хьажорг",
 	"rottenlinks-table-response": "HTTP-жоп",
 	"rottenlinks-table-usage": "АгӀо лелор",
