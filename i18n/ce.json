@@ -5,6 +5,8 @@
 		]
 	},
 	"rottenlinks": "Арахьарчу хьажоргийн статус",
+	"rottenlinks-desc": "Гойту [[Special:RottenLinks|массо арахьара хьажоргийн статус]] вики тӀехь",
+	"rottenlinks-header": "Арахьара хьажорган жамӀаш гайтар тодар",
 	"rottenlinks-rlstatus-no-url": "{{#rl_status}} -на URL ца йелла",
 	"rottenlinks-table-external": "Арахьара хьажорг",
 	"rottenlinks-table-response": "HTTP-жоп",
