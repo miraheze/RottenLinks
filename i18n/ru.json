@@ -1,11 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"BerryAVGN"
+			"BerryAVGN",
+			"Vonavy"
 		]
 	},
 	"rottenlinks": "Состояние внешних ссылок",
 	"rottenlinks-desc": "Отображает [[Special:RottenLinks|состояние всех внешних ссылок]] в вики.",
+	"rottenlinks-header": "Уточнение отображения результатов по внешним ссылкам",
+	"rottenlinks-header-info": "Вы можете выбрать, какие статистические данные показывать и сколько результатов отображать на странице.",
+	"rottenlinks-rlstatus-no-url": "URL не указан для {{#rl_status}}",
 	"rottenlinks-table-external": "Внешняя ссылка",
 	"rottenlinks-table-response": "HTTP-ответ",
 	"rottenlinks-table-usage": "Использование страницы",
