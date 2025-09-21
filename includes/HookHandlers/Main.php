@@ -2,11 +2,11 @@
 
 namespace Miraheze\RottenLinks\HookHandlers;
 
-use JobSpecification;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Hook\LinksUpdateCompleteHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\Parser\Parser;
 use Miraheze\RottenLinks\Jobs\RottenLinksJob;
 use Miraheze\RottenLinks\RottenLinksParserFunctions;

@@ -2,12 +2,13 @@
 
 namespace Miraheze\RottenLinks\Jobs;
 
-use Job;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigFactory;
 use MediaWiki\ExternalLinks\LinkFilter;
+use MediaWiki\JobQueue\Job;
 use Miraheze\RottenLinks\RottenLinks;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 class RottenLinksJob extends Job {
 
@@ -34,6 +35,7 @@ class RottenLinksJob extends Job {
 	}
 
 	public function run(): bool {
+		$dbr = $this->connectionProvider->getReplicaDatabase();
 		$dbw = $this->connectionProvider->getPrimaryDatabase();
 
 		if ( $this->addedExternalLinks ) {
@@ -59,7 +61,7 @@ class RottenLinksJob extends Job {
 					continue;
 				}
 
-				$rottenLinksCount = $dbw->newSelectQueryBuilder()
+				$rottenLinksCount = $dbr->newSelectQueryBuilder()
 					->select( 'rl_externallink' )
 					->from( 'rottenlinks' )
 					->where( [ 'rl_externallink' => $url ] )
@@ -93,12 +95,12 @@ class RottenLinksJob extends Job {
 				}
 
 				$el = LinkFilter::makeIndexes( $url );
-				$externalLinksCount = $dbw->newSelectQueryBuilder()
-					->select( '*' )
+				$externalLinksCount = $dbr->newSelectQueryBuilder()
+					->select( ISQLPlatform::ALL_ROWS )
 					->from( 'externallinks' )
 					->where( [
 						'el_to_domain_index' => substr( $el[0][0], 0, 255 ),
-						'el_to_path' => $el[0][1]
+						'el_to_path' => $el[0][1],
 					] )
 					->caller( __METHOD__ )
 					->fetchRowCount();

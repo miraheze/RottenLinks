@@ -3,6 +3,7 @@
 namespace Miraheze\RottenLinks;
 
 use MediaWiki\Config\Config;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use WikiMedia\Rdbms\IReadableDatabase;
 
@@ -53,17 +54,17 @@ class RottenLinks {
 
 		$userAgent = $config->get( 'RottenLinksUserAgent' ) ?:
 			'RottenLinks, MediaWiki extension (https://github.com/miraheze/RottenLinks), running on ' .
-				$config->get( 'Server' );
+				$config->get( MainConfigNames::Server );
 
 		$request = $services->getHttpRequestFactory()->createMultiClient( [ 'proxy' => $httpProxy ] )
 			->run( [
 				'url' => $url,
 				'method' => $method,
 				'headers' => [
-					'user-agent' => $userAgent
+					'user-agent' => $userAgent,
 				]
 			], [
-				'reqTimeout' => $config->get( 'RottenLinksCurlTimeout' )
+				'reqTimeout' => $config->get( 'RottenLinksCurlTimeout' ),
 			]
 		);
 
@@ -81,9 +82,7 @@ class RottenLinks {
 		$statusCode = $dbr->newSelectQueryBuilder()
 			->select( 'rl_respcode' )
 			->from( 'rottenlinks' )
-			->where( [
-				'rl_externallink' => $url,
-			] )
+			->where( [ 'rl_externallink' => $url ] )
 			->caller( __METHOD__ )
 			->fetchField();
 

@@ -2,7 +2,6 @@
 
 namespace Miraheze\RottenLinks;
 
-use HttpStatus;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\ExternalLinks\LinkFilter;
@@ -10,6 +9,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Pager\TablePager;
 use MediaWiki\SpecialPage\SpecialPage;
+use Wikimedia\Http\HttpStatus;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 class RottenLinksPager extends TablePager {
 
@@ -74,7 +75,7 @@ class RottenLinksPager extends TablePager {
 
 				$el = LinkFilter::makeIndexes( $row->rl_externallink );
 				$pagesCount = $db->newSelectQueryBuilder()
-					->select( '*' )
+					->select( ISQLPlatform::ALL_ROWS )
 					->from( 'externallinks' )
 					->where( [
 						'el_to_domain_index' => substr( $el[0][0], 0, 255 ),

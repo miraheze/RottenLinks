@@ -1,6 +1,6 @@
 {
 	"name": "RottenLinks",
-	"version": "2.1.1",
+	"version": "2.2.0",
 	"author": [
 		"John Lewis",
 		"Paladox",
@@ -12,10 +12,7 @@
 	"license-name": "GPL-3.0-or-later",
 	"type": "specialpage",
 	"requires": {
-		"MediaWiki": ">= 1.43.0",
-		"platform": {
-			"php": ">= 8.0"
-		}
+		"MediaWiki": ">= 1.44.0"
 	},
 	"MessagesDirs": {
 		"RottenLinks": [

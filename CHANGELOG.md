@@ -1,5 +1,12 @@
 ## ChangeLog for RottenLinks
 
+### 2.2.0 (21-09-2024)
+* Use `ISQLPlatform::ALL_ROWS` instead of just `*`.
+* Use `MainConfigNames`.
+* Always use `DB_REPLICA` connections for read queries.
+* Replace deprecated namespaces.
+* Requires MediaWiki 1.44 or higher.
+
 ### 2.1.1 (12-02-2025)
 * Replace deprecated `Linker::makeExternalLink` with `LinkRenderer`.
 * Replace deprecated namespaces.

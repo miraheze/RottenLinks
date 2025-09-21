@@ -2,10 +2,10 @@
 
 namespace Miraheze\RottenLinks\Specials;
 
-use HttpStatus;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\SpecialPage\SpecialPage;
 use Miraheze\RottenLinks\RottenLinksPager;
+use Wikimedia\Http\HttpStatus;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class SpecialRottenLinks extends SpecialPage {
