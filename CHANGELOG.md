@@ -1,6 +1,6 @@
 ## ChangeLog for RottenLinks
 
-### 2.2.0 (21-09-2024)
+### 2.2.0 (21-09-2025)
 * Use `ISQLPlatform::ALL_ROWS` instead of just `*`.
 * Use `MainConfigNames`.
 * Always use `DB_REPLICA` connections for read queries.
