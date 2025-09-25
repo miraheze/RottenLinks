@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25"
+		]
+	},
+	"rottenlinks": "حالة الروابط الخارجية",
+	"rottenlinks-desc": "يعرض [[Special:RottenLinks|حالة جميع الروابط الخارجية]] على الويكي",
+	"rottenlinks-header": "تحسين عرض نتائج الروابط الخارجية",
+	"rottenlinks-header-info": "يمكنك تحديد الإحصائيات التي تريد عرضها أو عدد النتائج التي تريد عرضها في كل صفحة.",
+	"rottenlinks-rlstatus-no-url": "لم يتم توفير عنوان URL لـ {{#rl_status}}",
+	"rottenlinks-table-external": "رابط خارجي",
+	"rottenlinks-table-response": "استجابة HTTP",
+	"rottenlinks-table-usage": "استخدام الصفحة",
+	"rottenlinks-showbad": "إظهار الروابط الفاسدة فقط",
+	"rottenlinks-statistics": "إحصائيات الروابط الفاسدة",
+	"rottenlinks-stats": "إظهار إحصائيات الرابط"
+}
