@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"rottenlinks": "Estado das ligazóns externas",
+	"rottenlinks-desc": "Mostra o [[Special:RottenLinks|estado de todas as ligazóns externas]] no wiki",
+	"rottenlinks-extensionname": "Ligazóns podres",
+	"rottenlinks-header": "Refinar a visualización de resultados de ligazóns externas",
+	"rottenlinks-header-info": "Podes seleccionar as estatísticas que queres que se mostren ou cantos resultados queres que se mostren por páxina.",
+	"rottenlinks-rlstatus-no-url": "Non se proporcionou ningún enderezo URL para {{#rl_status}}",
+	"rottenlinks-table-external": "Ligazón externa",
+	"rottenlinks-table-response": "Resposta HTTP",
+	"rottenlinks-table-usage": "Uso da páxina",
+	"rottenlinks-showbad": "Mostrar só as ligazóns podres",
+	"rottenlinks-statistics": "Estatísticas das ligazóns podres",
+	"rottenlinks-stats": "Mostrar as estatísticas das ligazóns"
+}
