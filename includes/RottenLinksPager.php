@@ -42,10 +42,7 @@ class RottenLinksPager extends TablePager {
 
 	/** @inheritDoc */
 	public function formatValue( $field, $value ): string {
-		if ( $value === null ) {
-			return '';
-		}
-
+		$value ??= '';
 		switch ( $field ) {
 			case 'rl_externallink':
 				$formatted = $this->linkRenderer->makeExternalLink(
