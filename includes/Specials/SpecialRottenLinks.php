@@ -3,6 +3,7 @@
 namespace Miraheze\RottenLinks\Specials;
 
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\SpecialPage;
 use Miraheze\RottenLinks\RottenLinksPager;
 use Wikimedia\Http\HttpStatus;
@@ -79,7 +80,8 @@ class SpecialRottenLinks extends SpecialPage {
 			return;
 		}
 
-		$this->getOutput()->addParserOutputContent( $pager->getFullOutput() );
+		$parserOptions = ParserOptions::newFromContext( $this->getContext() );
+		$this->getOutput()->addParserOutputContent( $pager->getFullOutput(), $parserOptions );
 	}
 
 	private function showStatistics(): array {
