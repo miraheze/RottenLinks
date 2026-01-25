@@ -80,8 +80,9 @@ class SpecialRottenLinks extends SpecialPage {
 			return;
 		}
 
+		$table = $pager->getFullOutput();
 		$parserOptions = ParserOptions::newFromContext( $this->getContext() );
-		$this->getOutput()->addParserOutputContent( $pager->getFullOutput(), $parserOptions );
+		$this->getOutput()->addParserOutputContent( $table, $parserOptions );
 	}
 
 	private function showStatistics(): array {
