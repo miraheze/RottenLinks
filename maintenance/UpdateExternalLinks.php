@@ -2,12 +2,17 @@
 
 namespace Miraheze\RottenLinks\Maintenance;
 
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = __DIR__ . '/../../..';
+}
+require_once $IP . '/maintenance/Maintenance.php';
+
 use MediaWiki\ExternalLinks\LinkFilter;
-use MediaWiki\Maintenance\Maintenance;
 use Miraheze\RottenLinks\RottenLinks;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
-class UpdateExternalLinks extends Maintenance {
+class UpdateExternalLinks extends \Maintenance {
 
 	public function __construct() {
 		parent::__construct();
@@ -126,5 +131,6 @@ class UpdateExternalLinks extends Maintenance {
 }
 
 // @codeCoverageIgnoreStart
-return UpdateExternalLinks::class;
+$maintClass = UpdateExternalLinks::class;
+require_once RUN_MAINTENANCE_IF_MAIN;
 // @codeCoverageIgnoreEnd
