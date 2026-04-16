@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tensama0415",
+			"Ykhwong"
+		]
+	},
+	"rottenlinks": "외부 링크 상태",
+	"rottenlinks-desc": "위키의 [[Special:RottenLinks|모든 외부 링크의 상태]]를 표시합니다",
+	"rottenlinks-header": "외부 링크 결과 표시 정리",
+	"rottenlinks-header-info": "표시할 통계 항목이나 한 페이지 당 표시할 결과 개수를 선택할 수 있습니다.",
+	"rottenlinks-rlstatus-no-url": "{{#rl_status}}에 대해 제공된 URL 없음",
+	"rottenlinks-table-external": "외부 링크",
+	"rottenlinks-table-response": "HTTP 응답",
+	"rottenlinks-table-usage": "문서 사용 현황",
+	"rottenlinks-showbad": "썩은 링크만 보기",
+	"rottenlinks-statistics": "썩은 링크 통계",
+	"rottenlinks-stats": "링크 통계 보기"
+}
