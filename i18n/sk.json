@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"rottenlinks": "Stav externých odkazov",
+	"rottenlinks-desc": "Zobrazuje [[Special:RottenLinks|stav všetkých externých odkazov]] na wiki",
+	"rottenlinks-extensionname": "RottenLinks",
+	"rottenlinks-header": "Spresniť zobrazovanie výsledkov externých odkazov",
+	"rottenlinks-header-info": "Môžete vybrať, ktoré štatistiky sa majú zobraziť alebo koľko výsledkov sa má zobraziť na jednu stránku.",
+	"rottenlinks-rlstatus-no-url": "Pre {{#rl_status}} nebola poskytnutá žiadna URL",
+	"rottenlinks-table-external": "Externý odkaz",
+	"rottenlinks-table-response": "Odpoveď HTTP",
+	"rottenlinks-table-usage": "Využitie stránky",
+	"rottenlinks-showbad": "Zobraziť iba neplatné odkazy",
+	"rottenlinks-statistics": "Štatistika neplatných odkazov",
+	"rottenlinks-stats": "Zobraziť štatistiky odkazov"
+}
