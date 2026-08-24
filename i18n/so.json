@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"rottenlinks": "Xaaladda xiriirrada dibadda",
+	"rottenlinks-desc": "Waxay muujisaa [[Special:RottenLinks|xaaladda dhammaan xiriirrada dibadda]] ee wiki-ga.",
+	"rottenlinks-header": "Hagaaji muuqaalka natiijooyinka xiriirrada dibadda",
+	"rottenlinks-header-info": "Waxaad dooran kartaa tirakoobyada aad doonayso in la muujiyo ama tirada natiijooyinka bog kasta lagu muujinayo.",
+	"rottenlinks-rlstatus-no-url": "URL looma bixin {{#rl_status}}",
+	"rottenlinks-table-external": "Xiriirinta dibadda",
+	"rottenlinks-table-response": "Jawaabta HTTP",
+	"rottenlinks-table-usage": "Isticmaalka bogga",
+	"rottenlinks-showbad": "Muuji oo keliya xiriirrada aan shaqaynayn",
+	"rottenlinks-statistics": "Tirakoobka xiriirrada aan shaqaynayn",
+	"rottenlinks-stats": "Muuji tirakoobka xiriirrada"
+}
