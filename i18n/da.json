@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Zakawer2"
+		]
+	},
+	"rottenlinks": "Status for eksterne henvisninger",
+	"rottenlinks-desc": "Viser [[Special:RottenLinks|tilstanden for alle eksterne henvisninger]] på wikien",
+	"rottenlinks-header": "Forfin visningen af resultater fra eksterne henvisninger",
+	"rottenlinks-header-info": "Du kan vælge, hvilke statistikker du vil have vist, eller hvor mange resultater du vil have vist per side.",
+	"rottenlinks-rlstatus-no-url": "Ingen URL angivet for {{#rl_status}}",
+	"rottenlinks-table-external": "Ekstern henvisning",
+	"rottenlinks-table-response": "HTTP-svar",
+	"rottenlinks-table-usage": "Sidebrug",
+	"rottenlinks-showbad": "Vis kun døde links",
+	"rottenlinks-statistics": "Statistik over døde links",
+	"rottenlinks-stats": "Vis linkstatistik"
+}
