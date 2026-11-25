@@ -1,5 +1,12 @@
 ## ChangeLog for RottenLinks
 
+### 2.3.0 (26-11-2025)
+* Fix empty "Page Usage" column in Special:RottenLinks.
+* Fix deprecated syntax for `addParserOutputContent()` call.
+* Use `->text()` for Message objects.
+* Don't create index for `rl_pageusage` DB column.
+* Requires MediaWiki 1.46 or higher.
+
 ### 2.2.0 (21-09-2025)
 * Use `ISQLPlatform::ALL_ROWS` instead of just `*`.
 * Use `MainConfigNames`.
