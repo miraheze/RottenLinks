@@ -1,6 +1,6 @@
 ## ChangeLog for RottenLinks
 
-### 2.3.0 (26-11-2025)
+### 2.3.0 (26-11-2026)
 * Fix empty "Page Usage" column in Special:RottenLinks.
 * Fix deprecated syntax for `addParserOutputContent()` call.
 * Use `->text()` for Message objects.
